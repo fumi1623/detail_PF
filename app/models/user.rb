@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :profile_image
-  has_many
+
+  has_many :events, dependent: :destroy
 
 end

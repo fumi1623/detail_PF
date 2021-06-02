@@ -1,2 +1,36 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h3>
+  <%= @event.name %> </br>
+  <%= @event.place %>
+</h3>
+
+<div>
+  <%= @event.start_time.strftime('%Y/%m/%d %H:%M:%S') %> ~ <%= @event.end_time.strftime('%Y/%m/%d %H:%M:%S') %>
+</div>
+
+<div>
+  <h6>詳細</h6>
+  <p><%= @event.detail %></p>
+</div>
+
+<div>
+  <h6>備考</h6>
+  <p><%= @event.remarks %></p>
+</div>
+
+<div>
+  <h6>Map</h6>
+  <input id="address" type="textbox" value="">
+  <input type="button" value="Encode" onclick="codeAddress()">
+  <% @maps.each do |map| %>
+    <%= map.name %>
+  <% end %>
+
+  <%= form_with(model:[@event, @map], url: event_path(@event), data: {remote: true}) do |f| %>
+  <%= f.label :name, "map名" %>
+  <%= f.text_field :name %>
+  <%= f.submit "保存" %>
+  <% end %>
+
+  <div id="map"></div>
+</div>
+

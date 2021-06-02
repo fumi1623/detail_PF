@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: [:index, :new, :create, :show, :edit, :update]
-
+  resources :maps, only: [:create, :edit, :update, :destroy]
 
 
 end
