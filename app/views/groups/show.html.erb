@@ -1,0 +1,40 @@
+<h4><%= @group.name %></h4>
+
+
+
+<div class="row">
+  <div class="col-3">
+    <% @users.each do |user| %>
+      <div class="d-flex align-items-center">
+        <div class="mx-auto">
+          <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        </div>
+      </div>
+      <p class="text-center"><%= user.name %></p>
+    <% end %>
+  </div>
+  <div class="col-9">
+    <p></p>
+    <div class="group-calendar-box">
+      <%= week_calendar(number_of_weeks: 2, events: @events) do |date, events| %>
+        <%= date.day %>
+        <% events.each do |event| %>
+          <div>
+            <%= link_to event_path(event) do %>
+              <%= event.name %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if events.present? %>
+          <div>
+            予定：<%= events.count %>件
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div>
+  <p><%= link_to '編集する', edit_group_path(@group.id), class: 'btn btn-success' %></p>
+</div>

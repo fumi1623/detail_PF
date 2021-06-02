@@ -1,0 +1,23 @@
+<P>gtoupEdit</P>
+
+<div>
+  <p><%= @group.name %></p>
+  <% @group.users.each do |user| %>
+    <div>
+      <p>ユーザー名：<%= user.name %>　|　ユーザーID：<%= user.id %>　｜　<%= link_to 'メンバーから外す','' %></p>
+    </div>
+  <% end %>
+</div>
+
+<%= form_with(model: @group, local: true) do |form| %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>

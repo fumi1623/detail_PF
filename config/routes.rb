@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :events, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :maps, only: [:create, :edit, :update, :destroy]
   end
-  # post 'events/:id' => "maps#create"
+
+  resources :groups, only: [:index, :new, :create, :show, :edit, :update]
+  get 'groups/:id/day' => 'groups#day'
+  # get 'groups/:id/edit/:id' => 'groups#delete_user'
 
 end
