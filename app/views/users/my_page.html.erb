@@ -1,2 +1,5 @@
-<h1>Users#my_page</h1>
-<p>Find me in app/views/users/my_page.html.erb</p>
+<p><%= @user.name %></p>
+
+<p><%= @user.email %></p>
+
+<p><i class="fas fa-child">登録情報　<%= link_to '編集する', edit_user_path(@user.id), class: 'btn' %></p>
