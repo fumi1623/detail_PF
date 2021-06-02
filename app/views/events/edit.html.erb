@@ -1,2 +1,42 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<%= form_with(model: @event, local: true) do |form| %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :start_time %>
+    <%= form.date_field :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time %>
+    <%= form.date_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.label :detail %>
+    <%= form.text_field :detail %>
+  </div>
+
+  <div>
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div>
+    <%= form.label :place %>
+    <%= form.text_field :place %>
+  </div>
+
+  <div>
+    <%= form.label :release %>
+    <%= form.select :release, [['非公開',0],['公開',1]], { include_blank: true, selected: 1 } %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>

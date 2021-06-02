@@ -1,6 +1,5 @@
 <h3>
-  <%= @event.name %> </br>
-  <%= @event.place %>
+  <%= @event.name %> 　　　　場所：<%= @event.place %>
 </h3>
 
 <div>
@@ -18,19 +17,104 @@
 </div>
 
 <div>
-  <h6>Map</h6>
-  <input id="address" type="textbox" value="">
-  <input type="button" value="Encode" onclick="codeAddress()">
-  <% @maps.each do |map| %>
-    <%= map.name %>
-  <% end %>
-
-  <%= form_with(model:[@event, @map], url: event_path(@event), data: {remote: true}) do |f| %>
-  <%= f.label :name, "map名" %>
-  <%= f.text_field :name %>
-  <%= f.submit "保存" %>
-  <% end %>
-
-  <div id="map"></div>
+  <%= link_to '編集する', edit_event_path(@event.id), class: 'btn btn-outline-success' %>
+  <%= link_to '削除する', event_path(@event.id), method: :delete, class: 'btn btn-outline-danger' %>
 </div>
 
+<div>
+  <div>
+    <h6>Map</h6>
+    <input id="address" type="textbox" value="">
+    <input type="button" value="検索" onclick="codeAddress()">
+
+    <div id="map"></div>
+
+    <div>
+      <%= form_with(model:[@event, @map], local: true) do |f| %>
+      <input type="hidden" name="map[address]" id="hidden_address">
+      <%= f.label :name, "map名" %>
+      <%= f.text_field :name %>
+      <%= f.submit "保存" %>
+      <% end %>
+    </div>
+
+  <div>
+    <% @maps.each do |map| %>
+      <%= map.name %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+<script>
+  let map
+  let geocoder
+  // 変数を追加
+  let marker
+
+  function initMap() {
+    geocoder = new google.maps.Geocoder()
+
+    // 変数の名前をmapInstanceに変更、デフォルト位置を東京に変更
+    mapInstance = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: 35.681,
+        lng: 139.767
+      },
+      zoom: 8
+    });
+
+    // 保存された地図情報からピンをさす
+    <% @maps.each do |map| %>
+    // google.maps.LatLngインスタンスを生成
+    pos = new google.maps.LatLng(
+    <%=map.latitude%>, //latitude
+    <%=map.longitude%> //longitude
+    );
+    default_marker = new google.maps.Marker({
+    map: mapInstance,
+    position: pos,
+    icon: {
+    url: ' https://maps.google.com/mapfiles/ms/icons/green-dot.png', //アイコンのURL
+    scaledSize: new google.maps.Size(40, 40) //サイズ
+    }
+    });
+    <% end %>
+  }
+
+  function codeAddress() {
+    let inputAddress = document.getElementById('address').value;
+
+    geocoder.geocode({
+      'address': inputAddress
+    }, function (results, status) {
+      if (status == 'OK') {
+        // map→mapInstanceに変更
+        mapInstance.setCenter(results[0].geometry.location);
+
+        // 既存の検索マーカーを削除
+        if(marker != null){
+        marker.setMap(null);
+        }
+        marker = null;
+
+        // var marker → markerへ変更
+        marker = new google.maps.Marker({
+          //map→mapInstanceに変更
+          map: mapInstance,
+          position: results[0].geometry.location
+        });
+
+        let title = document.getElementById('map_name');
+        title.setAttribute("value", inputAddress);
+
+        let hidden_address = document.getElementById('hidden_address');
+        hidden_address.setAttribute("value", inputAddress);
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+</script>

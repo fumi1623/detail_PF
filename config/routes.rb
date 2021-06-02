@@ -11,8 +11,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events, only: [:index, :new, :create, :show, :edit, :update]
-  resources :maps, only: [:create, :edit, :update, :destroy]
-
+  resources :events, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :maps, only: [:create, :edit, :update, :destroy]
+  end
+  # post 'events/:id' => "maps#create"
 
 end
