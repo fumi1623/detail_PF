@@ -1,10 +1,13 @@
 <P>gtoupEdit</P>
+<p><%= @group.name %></p>
 
 <div>
-  <p><%= @group.name %></p>
   <% @group.users.each do |user| %>
     <div>
-      <p>ユーザー名：<%= user.name %>　|　ユーザーID：<%= user.id %>　｜　<%= link_to 'メンバーから外す','' %></p>
+      <p>
+        ユーザー名：<%= user.name %>　|　ユーザーID：<%= user.id %>　｜
+        <%= link_to 'メンバーから外す', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "btn btn-danger" %>
+      </p>
     </div>
   <% end %>
 </div>
@@ -14,6 +17,21 @@
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>
+
+
+<%= form_with(model: [@group, @new_group_user], url: group_users_path, local: true) do |form| %>
+
+  <div>
+    <%= form.label :"ユーザーID" %>
+    <%= form.text_field :user_id %>
+    <%= form.hidden_field :group_id, value: @group.id %>
   </div>
 
   <div>

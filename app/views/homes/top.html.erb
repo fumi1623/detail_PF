@@ -1,6 +1,28 @@
-<h2>トップページ</h2>
+<main class="main-container">
+  <div>
+    <%= image_tag "logo-b.png", :size =>"350x310", class: "top-logo-img" %>
+  </div>
 
-<div>
-  <%= link_to "ログイン", new_user_session_path, class: "btn fas fa-sign-in-alt" %>
-  <%= link_to "新規登録", new_user_registration_path, class: "btn fas fa-user" %>
-</div>
+  <section class="top-text text-center">
+    <p><span class="top-text--title">detail</span>　は予定管理を行うWebアプリケーションです。</p>
+    <p>
+      詳細は、
+      <%= link_to "こちらのページ", about_path, class: "" %>
+      から確認できます。
+    </p>
+  </section>
+
+  <section class="top-form">
+    <div class="d-flex justify-content-center">
+      <div class="top-form--box">
+        <i class="fas fa-sign-in-alt"></i>
+        <%= link_to "ログイン", new_user_session_path, class: "top-form--text" %>
+      </div>
+      <div class="top-form--box">
+        <i class="fas fa-user"></i>
+        <%= link_to "新規登録", new_user_registration_path, class: "top-form--text" %>
+      </div>
+    </div>
+  </section>
+</main>
+

@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
-    # @users = @group.users
+    @new_group_user = GroupUser.new
   end
 
   def update

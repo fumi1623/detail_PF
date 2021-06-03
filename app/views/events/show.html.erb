@@ -23,6 +23,26 @@
 
 <div>
   <div>
+    <%= form_with(model: @event, local: true) do |f| %>
+      <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
+      <%= f.submit "Add Image" %>
+    <% end %>
+  </div>
+  <div>
+    <% if @event.images.present? %>
+      <%= @event.images.each do |image| %>
+        <%= attachment_image_tag image, :image, :fill, 60, 60, size:'60x60' %>
+        <%= link_to "Destroy", event_image_path(image), method: :delete, class: "btn btn-danger" %>
+      <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
+  </div>
+</div>
+
+
+<div>
+  <div>
     <h6>Map</h6>
     <input id="address" type="textbox" value="">
     <input type="button" value="検索" onclick="codeAddress()">
