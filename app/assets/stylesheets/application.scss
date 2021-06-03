@@ -18,3 +18,22 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.content {
+  min-height: 100%;
+  margin: 0 0 -70px 0;
+}
+
+.push,
+.footer {
+  height: 70px;
+}
+
+.footer-text {
+  margin: 20px 0 20px 0;
+}

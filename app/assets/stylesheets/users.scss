@@ -1,3 +1,31 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-new--title,
+.user-login--title {
+  margin-top: 30px;
+}
+
+.user-new--form,
+.user-login--form {
+  margin-top: 30px;
+  width: 75%;
+}
+
+.user-new--form--btn,
+.user-login--form--btn {
+  width: 120px;
+  height: 40px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.user-new--form--btn:hover,
+.user-login--form--btn:hover  {
+  color: #f9f9f9;
+  background-color: #202020;
+}
+
+.user-new--login_text,
+.user-login--registration_text,
+.user-login--forget_text {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}

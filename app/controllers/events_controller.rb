@@ -18,6 +18,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @map = Map.new
     @maps =Map.where(event_id: @event.id)
+    @image = Image.new
   end
 
   def edit
@@ -39,7 +40,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :name, :detail, :remarks, :start_time, :end_time, :place, :release)
+    params.require(:event).permit(:user_id, :name, :detail, :remarks, :start_time, :end_time, :place, :release, images_images: [])
   end
 
 end
