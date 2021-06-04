@@ -1,42 +1,49 @@
+<h2 class="text-center event-new--title">予定の追加</h2>
+
 <%= form_with(model: @event, local: true) do |form| %>
-
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<div class="d-flex justify-content-center">
+  <div class="user-new--form">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th><%= form.label :"予定のタイトル" %></th>
+          <td><%= form.text_field :name, autofocus: true, placeholder: "◯◯会議 , ◯◯に行く , ◯◯出張", :size => "60*30" %></td>
+        </tr>
+        <tr>
+          <th><%= form.label :"場所" %></th>
+          <td><%= form.text_field :place, :size => "60*30", placeholder: "後から予定の場所をMAPでも登録できます" %></td>
+        </tr>
+        <tr>
+          <th><%= form.label :"時間" %></th>
+          <td><%= form.date_field :start_time %>　〜　<%= form.date_field :end_time %></td>
+        </tr>
+        <tr>
+          <th><%= form.label :"予定の詳細" %></th>
+          <td><%= form.text_area :detail, size: "60x5" %></td>
+        </tr>
+        <tr>
+          <th><%= form.label :"備考" %></th>
+          <td><%= form.text_area :remarks, size: "60x3", placeholder: "◯◯を持っていく！" %></td>
+        </tr>
+        <tr>
+          <th><%= form.label :"グループメンバーへの公開設定" %></th>
+          <td class="event-new--release">
+            <%= form.select :release, [['非公開',0],['公開',1]], { include_blank: true, selected: 0 } %>　<i class="far fa-question-circle event-new--question_icon" id="questionBtn"></i>
+            <div class="event-new--question_box" id="eventNewQuestion">
+              <div class="event-new--question_t"></div>
+              <p class="event-new--question_text">
+                「公開」にした場合、あなたが所属するグループメンバーがこの予定を閲覧できるようになります。</br>
+                この設定は後から変更が出来ます。
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= form.submit %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <div>
-    <%= form.label :start_time %>
-    <%= form.date_field :start_time %>
-  </div>
-
-  <div>
-    <%= form.label :end_time %>
-    <%= form.date_field :end_time %>
-  </div>
-
-  <div>
-    <%= form.label :detail %>
-    <%= form.text_field :detail %>
-  </div>
-
-  <div>
-    <%= form.label :remarks %>
-    <%= form.text_field :remarks %>
-  </div>
-
-  <div>
-    <%= form.label :place %>
-    <%= form.text_field :place %>
-  </div>
-
-  <div>
-    <%= form.label :release %>
-    <%= form.select :release, [['非公開',0],['公開',1]], { include_blank: true, selected: 1 } %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-
+</div>
 <% end %>

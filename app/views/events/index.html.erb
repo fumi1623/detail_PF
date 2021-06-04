@@ -1,12 +1,25 @@
 <p><%= link_to '予定を追加', new_event_path %></p>
 
-<%= month_calendar events: @events do |date, events| %>
-  <%= date.day %>
-    <% events.each do |event| %>
-    <div>
-      <%= link_to event_path(event) do %>
-        <%= event.name %>
+<div class="row">
+  <div class="col-2">
+
+  </div>
+
+  <div class="col-8">
+    <%= month_calendar events: @events do |date, events| %>
+      <%= date.day %>
+        <% events.each do |event| %>
+        <div>
+          <%= link_to event_path(event) do %>
+            <%= event.name %>
+          <% end %>
+        </div>
       <% end %>
-    </div>
-  <% end %>
-<% end %>
+    <% end %>
+  </div>
+
+  <div class="col-2">
+
+  </div>
+
+</div>
