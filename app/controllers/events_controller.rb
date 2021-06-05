@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.where(user_id: current_user.id).order(:start_time)
+    # @events = Event.where(user_id: current_user.id).order(:start_time)
+    @events = current_user.events.order(:start_time)
+    # group_ids = GroupUser.where(user_id: current_user.id).pluck(:group_id)
+    group_ids = current_user.group_users.pluck(:group_id)
+    @groups = Group.where(id: group_ids)
   end
 
   def day
@@ -47,5 +51,10 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:user_id, :name, :detail, :remarks, :start_time, :end_time, :place, :release, images_images: [])
   end
+
+
+  # def group_user_params
+  #   params.require(:group_user).permit(:user_id, :group_id)
+  # end
 
 end

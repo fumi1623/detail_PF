@@ -1,19 +1,29 @@
-<h3>
-  <%= @event.name %> 　　　　場所：<%= @event.place %>
-</h3>
+<div class="row event-show--main_box">
+  <div class="col-6">
+    <div class="event-show--upper_left">
+      <div>
+        <h3><%= @event.start_time.strftime('%m/%d %H:%M:%S') %> ~ <%= @event.end_time.strftime('%m/%d %H:%M:%S') %></h3>
+      </div>
+      <div class="event-show--name">
+        <h3>予定：<span class="event-show--name_text"><%= @event.name %></span></h3>
+      </div>
+      <div class="event-show--place">
+        <h3>場所：<span class="event-show--place_text"><%= @event.place %></span></h3>
+      </div>
+      <div class="event-show--detail">
+        <h3>詳細：<span class="event-show--detail_text"><%= simple_format(@event.detail) %></span></h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
 
-<div>
-  <%= @event.start_time.strftime('%Y/%m/%d %H:%M:%S') %> ~ <%= @event.end_time.strftime('%Y/%m/%d %H:%M:%S') %>
+  </div>
 </div>
 
-<div>
-  <h6>詳細</h6>
-  <p><%= @event.detail %></p>
-</div>
 
 <div>
   <h6>備考</h6>
-  <p><%= @event.remarks %></p>
+  <p><%= simple_format(@event.remarks) %></p>
 </div>
 
 <div>
