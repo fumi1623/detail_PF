@@ -8,9 +8,10 @@ class GroupUsersController < ApplicationController
   end
 
   def destroy
-    user = GroupUser.where(user.id = user_id)
+    group_user = GroupUser.find_by(user_id: group_user_params[:user_id], group_id: params[:id])
     group = Group.find(params[:id])
-    # group.users.delete(user)
+    group_user.destroy
+    redirect_to group_path(group)
 
   end
 
