@@ -1,8 +1,14 @@
-<p><%= link_to '予定を追加', new_event_path %></p>
 
-<div class="row">
+<div class="row event-index--main_box">
+
   <div class="col-2">
+    <h4 class="text-center event-index--new_btn"><%= link_to '予定を追加　＞', new_event_path, class: "event-index--new_link" %></h4>
 
+    <h4 class="text-center event-index--group">所属グループ</h4>
+
+    <% @groups.each do |group| %>
+      <p><%= group.name %></p>
+    <% end %>
   </div>
 
   <div class="col-8">
@@ -24,9 +30,7 @@
       <% end %>
     <% end %>
   </div>
-
   <div class="col-2">
-
   </div>
 
 </div>
