@@ -8,10 +8,17 @@
   <div class="col-8">
     <%= month_calendar events: @events do |date, events| %>
       <%= date.day %>
-        <% events.each do |event| %>
-        <div>
-          <%= link_to event_path(event) do %>
-            <%= event.name %>
+        <% events.first(3).each do |event| %>
+          <div>
+            <%= link_to event_path(event) do %>
+              <%= event.name %>
+            <% end %>
+          </div>
+        <% end %>
+      <% if events.present? %>
+        <div class="event-index--day_count">
+          <%= link_to event_day_path(date) do %>
+            予定：<%= events.count %>件
           <% end %>
         </div>
       <% end %>

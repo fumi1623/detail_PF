@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.where(user_id: current_user.id)
+    @events = Event.where(user_id: current_user.id).order(:start_time)
+  end
+
+  def day
+    user_events = Event.where(user_id: current_user.id)
+    @events = user_events.where(start_time: format)
   end
 
   def new
