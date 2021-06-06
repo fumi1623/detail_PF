@@ -15,7 +15,12 @@ class EventsController < ApplicationController
 
   def day
     user_events = Event.where(user_id: current_user.id)
-    @events = user_events.where(start_time: format)
+    day = DateTime.parse("#{params[:day]}T00:00:00Z").to_time
+    @events = user_events.where("end_time>=? and start_time<?", day, day.tomorrow)
+    # @events = user_events
+    # @events = user_events.where("(start_time - 1)<=?", params[:format])
+
+    # pp @events
   end
 
   def new
