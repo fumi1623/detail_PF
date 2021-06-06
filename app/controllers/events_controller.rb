@@ -1,15 +1,26 @@
 class EventsController < ApplicationController
+
   def index
     # @events = Event.where(user_id: current_user.id).order(:start_time)
     @events = current_user.events.order(:start_time)
     # group_ids = GroupUser.where(user_id: current_user.id).pluck(:group_id)
     group_ids = current_user.group_users.pluck(:group_id)
     @groups = Group.where(id: group_ids)
+
+    # start_times = @events.pluck(:start_time)
+    # today = Date.current
+    # @recently_event = @events.order("start_time DESC")
+
   end
 
   def day
     user_events = Event.where(user_id: current_user.id)
-    @events = user_events.where(start_time: format)
+    day = DateTime.parse("#{params[:day]}T00:00:00Z").to_time
+    @events = user_events.where("end_time>=? and start_time<?", day, day.tomorrow)
+    # @events = user_events
+    # @events = user_events.where("(start_time - 1)<=?", params[:format])
+
+    # pp @events
   end
 
   def new
@@ -27,6 +38,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @map = Map.new
     @maps =Map.where(event_id: @event.id)
+    @map_pin = @maps.first
     @image = Image.new
   end
 

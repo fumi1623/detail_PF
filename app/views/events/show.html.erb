@@ -13,66 +13,70 @@
       <div class="event-show--detail">
         <h3>詳細：<span class="event-show--detail_text"><%= simple_format(@event.detail) %></span></h3>
       </div>
+      <div class="event-show--remarks">
+        <h3>備考：<span class="event-show--detail_text"><%= simple_format(@event.remarks) %></span></h3>
+      </div>
+
+      <div>
+        <div>
+          <h3>登録画像</h3>
+          <% if @event.images.present? %>
+            <% @event.images.each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 160, 160, size:'160x160' %>
+              <%= link_to "Destroy", event_image_path(image), method: :delete, class: "btn btn-danger " %>
+            <% end %>
+          <% else %>
+            画像はありません。
+          <% end %>
+        </div>
+        <div>
+          <%= form_with(model: @event, local: true) do |f| %>
+            <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
+            <%= f.submit "Add Image" %>
+          <% end %>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="col-6">
+    <div class="event-show--upper_right">
+      <h4>Map</h4>
 
+      <div>
+        <input id="address" type="textbox" value="">
+        <input type="button" value="検索" onclick="codeAddress()">
+        <%= form_with(model:[@event, @map], html:{class: "event-show--map_form"},local: true) do |f| %>
+        <input type="hidden" name="map[address]" id="hidden_address">
+        <%= f.label :name, "ピンの名前" %>
+        <%= f.text_field :name %>
+        <%= f.submit "保存" %>
+        <% end %>
+      </div>
+
+      <div id="map"></div>
+
+      <div class="event-show--map_index">
+        <h5 class="event-show--pin_title">登録したピン</h5>
+        <% @maps.each do |map| %>
+          <div class="event-show--pin_name"><i class="fas fa-map-marker-alt"></i><%= map.name %></div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
-
-<div>
-  <h6>備考</h6>
-  <p><%= simple_format(@event.remarks) %></p>
-</div>
 
 <div>
   <%= link_to '編集する', edit_event_path(@event.id), class: 'btn btn-outline-success' %>
   <%= link_to '削除する', event_path(@event.id), method: :delete, class: 'btn btn-outline-danger' %>
 </div>
 
-<div>
-  <div>
-    <%= form_with(model: @event, local: true) do |f| %>
-      <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
-      <%= f.submit "Add Image" %>
-    <% end %>
-  </div>
-  <div>
-    <% if @event.images.present? %>
-      <% @event.images.each do |image| %>
-        <%= attachment_image_tag image, :image, :fill, 60, 60, size:'60x60' %>
-        <%= link_to "Destroy", event_image_path(image), method: :delete, class: "btn btn-danger" %>
-      <% end %>
-    <% else %>
-      画像はありません。
-    <% end %>
-  </div>
-</div>
+
 
 
 <div>
-  <div>
-    <h6>Map</h6>
-    <input id="address" type="textbox" value="">
-    <input type="button" value="検索" onclick="codeAddress()">
 
-    <div id="map"></div>
-
-    <div>
-      <%= form_with(model:[@event, @map], local: true) do |f| %>
-      <input type="hidden" name="map[address]" id="hidden_address">
-      <%= f.label :name, "map名" %>
-      <%= f.text_field :name %>
-      <%= f.submit "保存" %>
-      <% end %>
-    </div>
-
-  <div>
-    <% @maps.each do |map| %>
-      <%= map.name %>
-    <% end %>
-  </div>
 </div>
 
 <!--以下googleMap情報-->
@@ -90,10 +94,15 @@
     // 変数の名前をmapInstanceに変更、デフォルト位置を東京に変更
     mapInstance = new google.maps.Map(document.getElementById('map'), {
       center: {
-        lat: 35.681,
-        lng: 139.767
+        <% if @maps.present? %>
+          lat: <%= @map_pin.latitude %>,
+          lng: <%= @map_pin.longitude %>
+        <% else %>
+          lat: 35.681,
+          lng: 139.767
+        <% end %>
       },
-      zoom: 8
+      zoom: 13
     });
 
     // 保存された地図情報からピンをさす
