@@ -71,11 +71,16 @@
   margin-top: 30px;
 }
 
-.event-show--upper_left {
+.event-show--upper_left,
+.event-show--upper_right {
   margin: 20px;
   background-color: #e0e0e0;
   padding: 10px;
   border: 6px ridge rgba(57, 61, 80, .6);
+}
+
+.event-show--upper_right {
+  margin-left: -10px;
 }
 
 .event-show--name,
@@ -88,16 +93,36 @@
 //   text-decoration: underline;
 // }
 
-.event-show--detail {
+.event-show--detail,
+.event-show--remarks {
   margin-top: 20px;
+  height: 250px;
 }
 
 .event-show--detail_text {
   font-size: 1.5rem;
 }
 
+.event-show--map_form {
+  margin-left: 20px;
+  display: inline-block;
+}
+
 
 #map {
-  width: 400px;
-  height: 400px;
+  width: 90%;
+  height: 280px;
+}
+
+.event-show--map_index {
+  margin-top: 20px;
+}
+
+.event-show--pin_title {
+  margin-bottom: 8px;
+}
+
+.event-show--pin_name {
+  display: inline-block;
+  margin-right: 10px;
 }

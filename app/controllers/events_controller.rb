@@ -1,10 +1,16 @@
 class EventsController < ApplicationController
+
   def index
     # @events = Event.where(user_id: current_user.id).order(:start_time)
     @events = current_user.events.order(:start_time)
     # group_ids = GroupUser.where(user_id: current_user.id).pluck(:group_id)
     group_ids = current_user.group_users.pluck(:group_id)
     @groups = Group.where(id: group_ids)
+
+    # start_times = @events.pluck(:start_time)
+    # today = Date.current
+    # @recently_event = @events.order("start_time DESC")
+
   end
 
   def day
@@ -27,6 +33,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @map = Map.new
     @maps =Map.where(event_id: @event.id)
+    @map_pin = @maps.first
     @image = Image.new
   end
 
