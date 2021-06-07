@@ -17,8 +17,11 @@ Rails.application.routes.draw do
   end
   get 'event/day' => 'events#day'
 
-  resources :groups, only: [:index, :new, :create, :show, :edit, :update]
-  get 'groups/:id/day' => 'groups#day'
+  resources :groups, only: [:index, :new, :create, :show, :edit, :update] do
+    get 'day'
+  end
+
+  # get 'groups/:id/day' => 'groups#day'
   # post 'groups/:id/edit' => 'groups#delete_user'
   # get 'groups/:id/edit/:id' => 'groups#delete_user'
 

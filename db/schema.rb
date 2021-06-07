@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_035245) do
+ActiveRecord::Schema.define(version: 2021_06_07_030342) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_035245) do
   create_table "group_users", force: :cascade do |t|
     t.integer "group_id"
     t.integer "user_id"
-    t.boolean "invitation"
+    t.boolean "invitation", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

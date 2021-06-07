@@ -4,7 +4,7 @@
     <% if calendar.number_of_weeks == 1 %>
       <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %></span>
     <% else %>
-      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
+      <span class="calendar-title"><%= t('simple_calendar.week', default: '') %> <%= start_date.year %> / <%= start_date.month %></span>
     <% end %>
     <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
   </div>
@@ -20,7 +20,7 @@
 
     <tbody>
       <% date_range.each_slice(7) do |week| %>
-        <tr>
+        <tr class="calender-week--day">
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>

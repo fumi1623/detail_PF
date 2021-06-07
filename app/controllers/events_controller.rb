@@ -7,20 +7,18 @@ class EventsController < ApplicationController
     group_ids = current_user.group_users.pluck(:group_id)
     @groups = Group.where(id: group_ids)
 
-    # start_times = @events.pluck(:start_time)
-    # today = Date.current
-    # @recently_event = @events.order("start_time DESC")
+    @today_events = @events.where("end_time>=? and start_time<?", Date.today, Date.tomorrow).order(:start_time)
 
   end
 
   def day
     user_events = Event.where(user_id: current_user.id)
-    day = DateTime.parse("#{params[:day]}T00:00:00Z").to_time
-    @events = user_events.where("end_time>=? and start_time<?", day, day.tomorrow)
-    # @events = user_events
-    # @events = user_events.where("(start_time - 1)<=?", params[:format])
+    @day = DateTime.parse("#{params[:day]}T00:00:00Z").to_time
+    # @day = Time.zone.parse("#{params[:day]}T00:00:00Z").to_time
+    @events = user_events.where("end_time>=? and start_time<?", @day, @day.tomorrow)
 
-    # pp @events
+    @before_events = @events.where("start_time<?", @day).order(:start_time)
+    @today_events = @events.where("start_time>=?", @day).order(:start_time)
   end
 
   def new

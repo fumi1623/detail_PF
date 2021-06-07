@@ -3,7 +3,7 @@
 
 
 <div class="row">
-  <div class="col-3">
+  <div class="col-2">
     <% @users.each do |user| %>
       <div class="d-flex align-items-center">
         <div class="mx-auto">
@@ -13,7 +13,7 @@
       <p class="text-center"><%= user.name %></p>
     <% end %>
   </div>
-  <div class="col-9">
+  <div class="col-10">
     <p></p>
     <div class="group-calendar-box">
       <%= week_calendar(number_of_weeks: 2, events: @events) do |date, events| %>
@@ -26,8 +26,10 @@
           </div>
         <% end %>
         <% if events.present? %>
-          <div>
-            予定：<%= events.count %>件
+          <div class="group-show--day_count">
+            <%= link_to group_day_path(day: date) do %>
+              予定：<%= events.count %>件
+            <% end %>
           </div>
         <% end %>
       <% end %>

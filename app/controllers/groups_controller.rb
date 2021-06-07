@@ -12,7 +12,10 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.users << current_user
     @group.save
-    redirect_to groups_path
+    group_user = GroupUser.where(user_id: current_user.id, group_id: @group.id)
+    invitation = group_user.pluck(:invitation)
+
+    # redirect_to groups_path
   end
 
   def show
