@@ -5,3 +5,17 @@
 // .group-calendar-box {
 //   width: 80%;
 // }
+
+.calender-week--day {
+  height: 300px;
+}
+
+.group-calendar-box {
+  position: relative;
+}
+
+.group-show--day_count {
+  position: absolute;
+  bottom: 0;
+  right: 2px;
+}

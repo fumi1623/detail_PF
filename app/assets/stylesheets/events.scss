@@ -47,16 +47,16 @@
 
 .event-index--new_btn {
   margin: 26px 10px 0 10px;
-}
-
-.event-index--new_link {
   background-color: #c0c0c0;
-  padding: 6px 10px 6px 10px;
-  color: #212529;
-  font-size: 1rem;
   border: 2px solid #393d42;
 }
 
+.event-index--new_link {
+  color: #212529;
+  font-size: 1rem;
+}
+
+.event-index--new_btn:hover,
 .event-index--new_link:hover {
   text-decoration: none;
   color: #212529;
@@ -69,6 +69,10 @@
 
 .day {
   position: relative;
+}
+
+.event-index--day_dot {
+  // margin-top: 3px;
 }
 
 .event-index--day_count {
@@ -135,4 +139,30 @@
 .event-show--pin_name {
   display: inline-block;
   margin-right: 10px;
+}
+
+// event-day
+.event-day--main_box {
+  margin: 30px auto 0 auto;
+  width: 80%;
+}
+
+.event-day--event_box {
+  margin: 30px;
+  background-color: #e0e0e0;
+  padding: 10px;
+  border: 6px ridge rgba(57, 61, 80, .6);
+}
+
+.event-day--event_box_title {
+  display: inline-block;
+  padding: 6px;
+  background-color: #fcfcfc;
+  border: 6px ridge rgba(57, 61, 80, .6);
+}
+
+.event-day--event_name {
+  margin-top: 20px;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
 }

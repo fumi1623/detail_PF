@@ -2,7 +2,9 @@
 <div class="row event-index--main_box">
 
   <div class="col-2">
-    <h4 class="text-center event-index--new_btn"><%= link_to '予定を追加　＞', new_event_path, class: "event-index--new_link" %></h4>
+    <div class="text-center event-index--new_btn">
+      <%= link_to '予定を追加　＞', new_event_path, class: "btn event-index--new_link" %>
+    </div>
 
     <h4 class="text-center event-index--group">所属グループ</h4>
 
@@ -15,13 +17,20 @@
     <%= month_calendar events: @events do |date, events| %>
       <%= date.day %>
 
-        <% events.first(3).each do |event| %>
-          <div>
-            <%= link_to event_path(event) do %>
-              <%= event.name %>
-            <% end %>
-          </div>
-        <% end %>
+      <% events.first(3).each do |event| %>
+        <div>
+          <%= link_to event_path(event) do %>
+            <%= event.name %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if events.count >= 4 %>
+        <div class="text-center event-index--day_dot">
+          <i class="fas fa-ellipsis-v fa-xs"></i>
+        </div>
+      <% end %>
+
       <% if events.present? %>
         <div class="event-index--day_count">
           <%= link_to event_day_path(day: date) do %>
@@ -31,9 +40,11 @@
       <% end %>
     <% end %>
   </div>
-    <h4>直近の予定</h4>
-    <%= @now %>
   <div class="col-2">
+    <h4>本日の予定</h4>
+    <% @today_events.each do |event| %>
+      <%= event.name %>
+    <% end %>
   </div>
 
 </div>
