@@ -12,15 +12,24 @@ class GroupUsersController < ApplicationController
     group = Group.find(params[:id])
     group_user.destroy
     redirect_to group_path(group)
+  end
 
+  def accept
+    group_user = GroupUser.find(params[:id])
+    group_user.update(group_user_params)
+    group = group_user.group
+    redirect_to group_path(group)
+  end
+
+  def reject
+    group_user = GroupUser.find(params[:id])
+    group_user.destroy
+    redirect_to events_path
   end
 
   private
   def group_user_params
-    params.require(:group_user).permit(:user_id, :group_id)
-  end
-  def user_params
-    params.require(:user).permit(:id)
+    params.require(:group_user).permit(:user_id, :group_id, :invitation)
   end
 
 end

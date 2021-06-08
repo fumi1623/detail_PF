@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-2">
+
+  </div>
+  <div class="col-10 group-day--main_box">
+    <h2><%= @day.strftime('%Y/%m/%d') %>の予定</h2>
+    <div class="col-10 group-day--event_box">
+
+      <table class="table group-day--table">
+        <thead>
+          <tr>
+            <th class="group-day--table_title_time">時間</th>
+            <th>予定</th>
+            <th>ユーザー名</th>
+            <th>場所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @today_events.present? %>
+            <% @today_events.each do |event| %>
+              <tr>
+                <td class="group-day--table_time"><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
+                <td><%= event.name %></td>
+                <td><%= event.user.name %></td>
+                <% if event.place.present? %>
+                  <td><%= event.place %></td>
+                <% else %>
+                  <td>登録されていません</td>
+                <% end %>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td class="text-center" colspan="4">
+                予定はありません
+              </td>
+            </tr>
+          <% end %>
+
+            <tr class="group-day--table_before">
+              <th class="group-day--table_before_th">前日からの予定</th>
+            </tr>
+
+        <% if @before_events.present? %>
+          <% @before_events.each do |event| %>
+            <tr>
+              <td class="group-day--table_time"><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
+              <td><%= event.name %></td>
+              <td><%= event.user.name %></td>
+              <% if event.place.present? %>
+                <td><%= event.place %></td>
+              <% else %>
+                <td>登録されていません</td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td class="text-center" colspan="4">
+              予定はありません
+            </td>
+          </tr>
+        <% end %>
+
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
+

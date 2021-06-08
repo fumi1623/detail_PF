@@ -10,17 +10,17 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.users << current_user
+    @group.group_users << GroupUser.new({user: current_user, invitation: true})
     @group.save
-    group_user = GroupUser.where(user_id: current_user.id, group_id: @group.id)
-    invitation = group_user.pluck(:invitation)
 
-    # redirect_to groups_path
+    redirect_to groups_path
   end
 
   def show
     @group = Group.find_by(id: params[:id])
-    @users = @group.users
+    group_users = @group.group_users.where(invitation: true)
+    user_ids = group_users.pluck(:user_id)
+    @users = User.where(id: user_ids)
     @events = Event.where(user_id: @users.ids)
   end
 
@@ -43,6 +43,17 @@ class GroupsController < ApplicationController
   end
 
   def day
+    group = Group.find(params[:group_id])
+    users = group.users
+    events = Event.where(user_id: users.ids)
+    # カレンダーからクリックされた日付を取得
+    @day = Time.zone.parse("#{params[:day]}")
+    # クリックされた日付の０時以降に終わるもの（まだ終わってないもの）であり、
+    # ２４時以前に始まるもの（明日の０時より前に始まるもの）
+    @events = events.where("end_time>=? and start_time<?", @day, @day.tomorrow).order(:start_time)
+    # 前日から続いてるものと今日はじまるものを分ける
+    @before_events = @events.where("start_time<?", @day).order(:start_time)
+    @today_events = @events.where("start_time>=?", @day).order(:start_time)
   end
 
   private

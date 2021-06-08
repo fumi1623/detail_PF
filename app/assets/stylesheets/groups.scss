@@ -19,3 +19,30 @@
   bottom: 0;
   right: 2px;
 }
+
+// dayPage
+.group-day--main_box {
+  margin-top: 30px;
+}
+
+.group-day--event_box {
+  margin-top: 30px;
+  background-color: #e0e0e0;
+  padding: 0px !important;
+  height: 500px;
+  border: 6px ridge rgba(57, 61, 80, .6);
+}
+
+.group-day--table {
+  font-size: 1.5rem;
+}
+
+.group-day--table_time,
+.group-day--table_title_time,
+.group-day--table_before_th {
+  padding-left: 20px !important;
+}
+
+.group-day--table_before {
+  border-top: 6px ridge rgba(57, 61, 80, .6);
+}

@@ -7,17 +7,18 @@
     <% if user_signed_in? %>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><%= link_to "マイページ", my_page_users_path, class: "btn fas fa-child text-white" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn fas fa-sign-out-alt text-white" %></li>
+          <li class="nav-item"><%= link_to " 今月の予定", events_path, class: "btn fas fa-calendar-alt text-white" %></li>
+          <li class="nav-item"><%= link_to " マイページ", my_page_users_path, class: "btn fas fa-child text-white" %></li>
+          <li class="nav-item"><%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: "btn fas fa-sign-out-alt text-white" %></li>
         </ul>
       </div>
 
     <% else %>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><%= link_to "About",    about_path, class: "btn fas fa-question text-white" %></li>
-          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "btn fas fa-user text-white" %></li>
-          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "btn fas fa-sign-in-alt text-white" %></li>
+          <li class="nav-item"><%= link_to " About",    about_path, class: "btn fas fa-question text-white" %></li>
+          <li class="nav-item"><%= link_to " 新規登録", new_user_registration_path, class: "btn fas fa-user text-white" %></li>
+          <li class="nav-item"><%= link_to " ログイン", new_user_session_path, class: "btn fas fa-sign-in-alt text-white" %></li>
         </ul>
       </div>
     <% end %>
