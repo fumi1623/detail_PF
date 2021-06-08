@@ -27,7 +27,7 @@
         <% end %>
         <% if events.present? %>
           <div class="group-show--day_count">
-            <%= link_to group_day_path(day: date) do %>
+            <%= link_to group_day_path(day: date, group_id: @group.id) do %>
               予定：<%= events.count %>件
             <% end %>
           </div>

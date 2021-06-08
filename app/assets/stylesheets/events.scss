@@ -46,12 +46,14 @@
 }
 
 .event-index--new_btn {
-  margin: 26px 10px 0 10px;
+  width: 150px;
+  margin: 30px auto 0 auto;
   background-color: #c0c0c0;
   border: 2px solid #393d42;
 }
 
 .event-index--new_link {
+  padding: 4px;
   color: #212529;
   font-size: 1rem;
 }
@@ -67,12 +69,37 @@
   margin-top: 20px;
 }
 
-.day {
-  position: relative;
+.event-index--group_box {
+  margin-left: 10px;
+  margin-bottom: 30px;
 }
 
-.event-index--day_dot {
-  // margin-top: 3px;
+.event-index--group_link:hover {
+  opacity: 0.7;
+}
+
+.event-index--invitation_group_name {
+  margin: 16px auto 4px auto;
+}
+
+.event-index--invitation_accept {
+  display: inline-block;
+}
+
+.event-index--event_name_box {
+  height: 30px;
+}
+
+.event-index--event_name {
+  height: 20px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.day {
+  position: relative;
 }
 
 .event-index--day_count {
@@ -81,19 +108,30 @@
   bottom: 0;
 }
 
+.event-index--today_events {
+  margin-top: 30px;
+}
+
+.event-index--today_events_link:hover {
+  opacity: 0.7;
+}
+
+
 .event-show--main_box {
   margin-top: 30px;
 }
 
 .event-show--upper_left,
-.event-show--upper_right {
+.event-show--upper_right,
+.event-show--lower_right {
   margin: 20px;
   background-color: #e0e0e0;
   padding: 10px;
   border: 6px ridge rgba(57, 61, 80, .6);
 }
 
-.event-show--upper_right {
+.event-show--upper_right,
+.event-show--lower_right {
   margin-left: -10px;
 }
 
@@ -101,11 +139,6 @@
 .event-show--place {
   margin-top: 16px;
 }
-
-// .event-show--name_text,
-// .event-show--place_text {
-//   text-decoration: underline;
-// }
 
 .event-show--detail,
 .event-show--remarks {
@@ -115,6 +148,10 @@
 
 .event-show--detail_text {
   font-size: 1.5rem;
+}
+
+.event-show--delete_btn {
+  margin-left: 20px;
 }
 
 .event-show--map_form {
@@ -129,17 +166,38 @@
 }
 
 .event-show--map_index {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .event-show--pin_title {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  display: inline-block;
 }
 
 .event-show--pin_name {
   display: inline-block;
   margin-right: 10px;
+  font-size: 1.2rem;
 }
+
+.event-show--image_box {
+  display: inline-block;
+  margin: 16px;
+}
+
+.event-show--image_delete {
+  margin-left: 4px;
+  padding: 3px 6px 3px 6px;
+  border-radius: 4px;
+  vertical-align: top;
+}
+
+.event-show--image_delete:hover {
+  text-decoration: none;
+}
+
+
+
 
 // event-day
 .event-day--main_box {

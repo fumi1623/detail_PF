@@ -21,10 +21,7 @@ Rails.application.routes.draw do
     get 'day'
   end
 
-  # get 'groups/:id/day' => 'groups#day'
-  # post 'groups/:id/edit' => 'groups#delete_user'
-  # get 'groups/:id/edit/:id' => 'groups#delete_user'
-
   resources :group_users, only: [:create ,:destroy]
-  # delete 'group_users/:id' => 'group_users#destroy'
+  patch 'group_users/:id' => 'group_users#accept', as: :group_users_accept
+  get 'group_users/:id' => 'group_users#reject', as: :group_users_reject
 end

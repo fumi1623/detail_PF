@@ -16,28 +16,12 @@
       <div class="event-show--remarks">
         <h3>備考：<span class="event-show--detail_text"><%= simple_format(@event.remarks) %></span></h3>
       </div>
-
-      <div>
-        <div>
-          <h3>登録画像</h3>
-          <% if @event.images.present? %>
-            <% @event.images.each do |image| %>
-              <%= attachment_image_tag image, :image, :fill, 160, 160, size:'160x160' %>
-              <%= link_to "Destroy", event_image_path(image), method: :delete, class: "btn btn-danger " %>
-            <% end %>
-          <% else %>
-            画像はありません。
-          <% end %>
-        </div>
-        <div>
-          <%= form_with(model: @event, local: true) do |f| %>
-            <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
-            <%= f.submit "Add Image" %>
-          <% end %>
-        </div>
+      <div class="text-right">
+        <%= link_to '予定の変更', edit_event_path(@event.id), class: 'btn btn-outline-dark' %>
+        <%= link_to '予定の削除', event_path(@event.id), method: :delete, class: 'btn btn-outline-dark event-show--delete_btn' %>
       </div>
-
     </div>
+
   </div>
   <div class="col-6">
     <div class="event-show--upper_right">
@@ -57,26 +41,42 @@
       <div id="map"></div>
 
       <div class="event-show--map_index">
-        <h5 class="event-show--pin_title">登録したピン</h5>
-        <% @maps.each do |map| %>
-          <div class="event-show--pin_name"><i class="fas fa-map-marker-alt"></i><%= map.name %></div>
+        <h5 class="event-show--pin_title">登録したピン：</h5>
+        <% if @maps.present? %>
+          <% @maps.each do |map| %>
+            <div class="event-show--pin_name"><i class="fas fa-map-marker-alt"></i><%= map.name %></div>
+          <% end %>
+        <% else %>
+          ピンが登録されていません
         <% end %>
       </div>
     </div>
+
+    <div class="event-show--lower_right">
+      <h4>登録画像</h4>
+
+      <div>
+        <% if @event.images.present? %>
+          <% @event.images.each do |image| %>
+            <div class="event-show--image_box">
+              <%= attachment_image_tag image, :image, :fill, 160, 160, size:'160x160' %>
+              <%= link_to "", event_image_path(image), method: :delete, class: "btn-danger fas fa-backspace event-show--image_delete" %>
+            </div>
+          <% end %>
+        <% else %>
+          画像はありません。
+        <% end %>
+      </div>
+
+      <div><!-- model: @image -->
+        <%= form_with(model: @event, local: true) do |f| %>
+          <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
+          <%= f.submit "画像を登録" %>
+        <% end %>
+      </div>
+
+    </div>
   </div>
-</div>
-
-
-<div>
-  <%= link_to '編集する', edit_event_path(@event.id), class: 'btn btn-outline-success' %>
-  <%= link_to '削除する', event_path(@event.id), method: :delete, class: 'btn btn-outline-danger' %>
-</div>
-
-
-
-
-<div>
-
 </div>
 
 <!--以下googleMap情報-->

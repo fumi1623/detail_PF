@@ -1,22 +1,16 @@
 class EventsController < ApplicationController
 
   def index
-    # @events = Event.where(user_id: current_user.id).order(:start_time)
     @events = current_user.events.order(:start_time)
-    # group_ids = GroupUser.where(user_id: current_user.id).pluck(:group_id)
-    group_ids = current_user.group_users.pluck(:group_id)
-    @groups = Group.where(id: group_ids)
-
+    @true_group_users = current_user.group_users.where(invitation: true)
+    @false_group_users = current_user.group_users.where(invitation: false)
     @today_events = @events.where("end_time>=? and start_time<?", Date.today, Date.tomorrow).order(:start_time)
-
   end
 
   def day
     user_events = Event.where(user_id: current_user.id)
-    @day = DateTime.parse("#{params[:day]}T00:00:00Z").to_time
-    # @day = Time.zone.parse("#{params[:day]}T00:00:00Z").to_time
+    @day = Time.zone.parse("#{params[:day]}")
     @events = user_events.where("end_time>=? and start_time<?", @day, @day.tomorrow)
-
     @before_events = @events.where("start_time<?", @day).order(:start_time)
     @today_events = @events.where("start_time>=?", @day).order(:start_time)
   end
