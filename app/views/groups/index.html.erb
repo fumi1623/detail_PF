@@ -1,7 +1,33 @@
-<% @groups.each do |group| %>
-  <div>
-    <%= link_to group_path(group) do %>
-      <%= group.name %>
-    <% end %>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col">
+    <h4 class="group-index--title">所属グループ一覧</h4>
   </div>
-<% end %>
+</div>
+
+<div class="row">
+  <div class="col-2 text-center">
+    <%= link_to " グループを作る",    new_group_path, class: "btn btn-outline-dark" %>
+  </div>
+  <div class="col-8">
+    <table class="table text-nowrap table-responsive">
+      <tbody>
+        <% @groups.each do |group| %>
+          <tr>
+            <td class="group-index--group_name">
+              <%= link_to group_path(group) do %>
+                <%= group.name %>
+              <% end %>
+            </td>
+            <% group.users.each do |user| %>
+              <td class="group-index--user_name"><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %><%= user.name %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-2">
+
+  </div>
+</div>

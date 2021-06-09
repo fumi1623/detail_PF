@@ -6,6 +6,34 @@
 //   width: 80%;
 // }
 
+// index-page
+.group-index--title {
+  margin-top: 30px;
+}
+
+.group-show--group_member {
+  margin-top: 20px;
+}
+
+.group-show--invitation_member {
+  margin-top: 40px;
+}
+
+.group-index--group_name,
+.group-index--user_name {
+  width: 16.6%;
+}
+
+// show-page
+
+.group-show--title {
+  margin: 30px 20px 0 0;
+}
+
+.group-show--edit_btn {
+  padding: 0 12px 0 12px !important;
+}
+
 .calender-week--day {
   height: 300px;
 }

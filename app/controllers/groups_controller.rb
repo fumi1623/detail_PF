@@ -22,6 +22,10 @@ class GroupsController < ApplicationController
     user_ids = group_users.pluck(:user_id)
     @users = User.where(id: user_ids)
     @events = Event.where(user_id: @users.ids)
+
+    invitation_group_users = @group.group_users.where(invitation: false)
+    invitation_user_ids = invitation_group_users.pluck(:user_id)
+    @invitation_users = User.where(id: invitation_user_ids)
   end
 
   def edit
