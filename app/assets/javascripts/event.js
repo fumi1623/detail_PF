@@ -5,4 +5,8 @@ $(function() {
   });
 });
 
-
+$(function() {
+  $('.event-edit--question_icon').click(function() {
+    $('.event-edit--question_box').stop().fadeToggle(500);
+  });
+});

@@ -2,11 +2,12 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all.order(updated_at: :desc)
-  end
-
-  def new
     @group = Group.new
   end
+
+  # def new
+  #   @group = Group.new
+  # end
 
   def create
     @group = Group.new(group_params)

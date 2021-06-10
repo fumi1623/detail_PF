@@ -1,10 +1,44 @@
-<p><strong>本当に退会しますか？</strong></p>
-<p>
-  退会すると、会員情報や<br />
-  登録した予定などが閲覧できなくなります。<br />
-  退会する場合は、「退会する」をクリックしてください。
-  </p>
-<div>
-  <div><%= link_to "退会しない", my_page_users_path, class: "btn btn-block btn-outline-primary" %></div>
-  <div><%= link_to "退会する", out_users_path, method: :patch, class: "btn btn-block btn-outline-danger" %></div>
+<div class="row user-myPage--row">
+  <div class="col-2"></div>
+  <div class="col">
+    <h5 class="text-center">退会フォーム</h5>
+  </div>
+  <div class="col-2"></div>
 </div>
+
+<div class="row user-myPage--row">
+  <div class="col-2"></div>
+  <div class="col">
+    <h5 class="text-center"><p><strong>本当に退会しますか？</strong></p></h5>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+<div class="row user-myPage--row">
+  <div class="col-2"></div>
+  <div class="col">
+    <p class="text-center">
+      退会すると、会員情報や<br />
+      登録した予定などが閲覧できなくなります。<br />
+      退会する場合は、「退会する」をクリックしてください。
+    </p>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+<div class="row user-myPage--row">
+  <div class="col-4"></div>
+  <div class="col">
+    <%= link_to "退会しない", my_page_users_path, class: "btn btn-block btn-outline-primary" %>
+  </div>
+  <div class="col-4"></div>
+</div>
+
+<div class="row user-myPage--row">
+  <div class="col-4"></div>
+  <div class="col">
+    <%= link_to "退会する", out_users_path, method: :patch, class: "btn btn-block btn-outline-danger" %>
+  </div>
+  <div class="col-4"></div>
+</div>
+

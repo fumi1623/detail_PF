@@ -6,10 +6,9 @@
 </div>
 
 <div class="row">
-  <div class="col-2 text-center">
-    <%= link_to " グループを作る",    new_group_path, class: "btn btn-outline-dark" %>
+  <div class="col-2">
   </div>
-  <div class="col-8">
+  <div class="col-6">
     <table class="table text-nowrap table-responsive">
       <tbody>
         <% @groups.each do |group| %>
@@ -27,7 +26,13 @@
       </tbody>
     </table>
   </div>
-  <div class="col-2">
-
+  <div class="col-4">
+    <h5>グループ作成フォーム</h5>
+    <%= form_with( model: @group, local:true) do |f| %>
+      <div>
+        <%= f.text_field :name, placeholder: "グループ名", class: 'group-new--form' %>
+        <%= f.submit '新規登録', class: 'btn btn-sm btn-outline-success opinion_field' %>
+      </div>
+    <% end %>
   </div>
 </div>
