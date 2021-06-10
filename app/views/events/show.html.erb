@@ -44,7 +44,11 @@
         <h5 class="event-show--pin_title">登録したピン：</h5>
         <% if @maps.present? %>
           <% @maps.each do |map| %>
-            <div class="event-show--pin_name"><i class="fas fa-map-marker-alt"></i><%= map.name %></div>
+            <div class="event-show--pin_name">
+              <i class="fas fa-map-marker-alt"></i>
+              <%= map.name %>
+              <%= link_to "", event_map_path(map), method: :delete, class: "btn-danger fa-xs fas fa-backspace event-show--pin_delete" %>
+            </div>
           <% end %>
         <% else %>
           ピンが登録されていません
@@ -109,8 +113,8 @@
     <% @maps.each do |map| %>
     // google.maps.LatLngインスタンスを生成
     pos = new google.maps.LatLng(
-    <%=map.latitude%>, //latitude
-    <%=map.longitude%> //longitude
+    <%= map.latitude %>, //latitude
+    <%= map.longitude %> //longitude
     );
     default_marker = new google.maps.Marker({
     map: mapInstance,

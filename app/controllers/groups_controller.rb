@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
     group_users = @group.group_users.where(invitation: true)
     user_ids = group_users.pluck(:user_id)
     @users = User.where(id: user_ids)
-    @events = Event.where(user_id: @users.ids)
+    @events = Event.where(user_id: @users.ids, release: true)
 
     invitation_group_users = @group.group_users.where(invitation: false)
     invitation_user_ids = invitation_group_users.pluck(:user_id)
@@ -49,7 +49,7 @@ class GroupsController < ApplicationController
   def day
     group = Group.find(params[:group_id])
     users = group.users
-    events = Event.where(user_id: users.ids)
+    events = Event.where(user_id: users.ids, release: true)
     # カレンダーからクリックされた日付を取得
     @day = Time.zone.parse("#{params[:day]}")
     # クリックされた日付の０時以降に終わるもの（まだ終わってないもの）であり、

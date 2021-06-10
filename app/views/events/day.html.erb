@@ -1,57 +1,118 @@
 <div class="event-day--main_box">
   <h2><%= @day.strftime('%m/%d') %>の予定</h2>
+  <% if @events.present? %>
+    <table class="table">
+      <% if @today_events.present? %>
+        <thead class="thead-light">
+          <th>
+            <%= @day.strftime('%m/%d') %>から始まる予定
+          </th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @today_events.each do |event| %>
+            <tr>
+              <td><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
+              <td>
+                <%= link_to event_path(event) do %>
+                  <%= event.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if event.place.present? %>
+                  場所：<%= event.place %>
+                <% else %>
+                  場所：-
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
 
-  <%= @day %>
-  <% @events.each do |event| %>
-    <%= event.name %>
+      <% if @before_events.present? %>
+        <thead class="thead-light">
+          <th>
+            前日から続いている予定
+          </th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @before_events.each do |event| %>
+            <tr>
+              <td><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
+              <td>
+                <%= link_to event_path(event) do %>
+                  <%= event.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if event.place.present? %>
+                  場所：<%= event.place %>
+                <% else %>
+                  場所：-
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+    </table>
+  <% else %>
+    <h5 class="text-center">登録された予定はありません</h5>
   <% end %>
-
-
-
-
-  <div class="row">
-    <% if @today_events.present? %>
-    <div class="col-5 event-day--event_box">
-      <h4 class="event-day--event_box_title"><%= @day.strftime('%m/%d') %>スタート</h4>
-      <% @today_events.each do |event| %>
-        <h5 class="event-day--event_name">
-          <%= link_to event_path(event) do %>
-            <%= event.name %>
-          <% end %>
-        </h5>
-        <h5><%= event.start_time.strftime('%H:%M') %>　〜　<%= event.end_time.strftime('%H:%M') %></h5>
-        <h5>場所：
-          <% if event.place.present? %>
-            <%= event.place %>
-          <% else %>
-            登録されていません
-          <% end %>
-        </h5>
-      <% end %>
-    </div>
-    <% end %>
-    <div class="col-5 event-day--event_box">
-      <h4 class="event-day--event_box_title">前日から</h4>
-      <% @before_events.each do |event| %>
-        <h5 class="event-day--event_name">
-          <%= link_to event_path(event) do %>
-            <%= event.name %>
-          <% end %>
-        </h5>
-        <h5><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></h5>
-        <h5>場所：
-          <% if event.place.present? %>
-            <%= event.place %>
-          <% else %>
-            登録されていません
-          <% end %>
-        </h5>
-      <% end %>
-    </div>
-  </div>
 </div>
 
 
 
+<!--<div class="event-day--main_box">-->
+<!--  <h2><%= @day.strftime('%m/%d') %>の予定</h2>-->
 
+<!--  <%= @day %>-->
+<!--  <% @events.each do |event| %>-->
+<!--    <%= event.name %>-->
+<!--  <% end %>-->
 
+<!--  <div class="row">-->
+<!--    <% if @today_events.present? %>-->
+<!--    <div class="col-5 event-day--event_box">-->
+<!--      <h4 class="event-day--event_box_title"><%= @day.strftime('%m/%d') %>スタート</h4>-->
+<!--      <% @today_events.each do |event| %>-->
+<!--        <h5 class="event-day--event_name">-->
+<!--          <%= link_to event_path(event) do %>-->
+<!--            <%= event.name %>-->
+<!--          <% end %>-->
+<!--        </h5>-->
+<!--        <h5><%= event.start_time.strftime('%H:%M') %>　〜　<%= event.end_time.strftime('%H:%M') %></h5>-->
+<!--        <h5>場所：-->
+<!--          <% if event.place.present? %>-->
+<!--            <%= event.place %>-->
+<!--          <% else %>-->
+<!--            登録されていません-->
+<!--          <% end %>-->
+<!--        </h5>-->
+<!--      <% end %>-->
+<!--    </div>-->
+<!--    <% end %>-->
+<!--    <div class="col-5 event-day--event_box">-->
+<!--      <h4 class="event-day--event_box_title">前日から</h4>-->
+<!--      <% @before_events.each do |event| %>-->
+<!--        <h5 class="event-day--event_name">-->
+<!--          <%= link_to event_path(event) do %>-->
+<!--            <%= event.name %>-->
+<!--          <% end %>-->
+<!--        </h5>-->
+<!--        <h5><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></h5>-->
+<!--        <h5>場所：-->
+<!--          <% if event.place.present? %>-->
+<!--            <%= event.place %>-->
+<!--          <% else %>-->
+<!--            登録されていません-->
+<!--          <% end %>-->
+<!--        </h5>-->
+<!--      <% end %>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

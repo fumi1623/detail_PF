@@ -14,6 +14,10 @@ class MapsController < ApplicationController
   end
 
   def destroy
+    map = Map.find(params[:event_id])
+    event = map.event
+    map.destroy
+    redirect_to event_path(event)
   end
 
     # ストロングパラメーター

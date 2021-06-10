@@ -9,6 +9,11 @@
 
 <div class="row">
   <div class="col-2">
+
+    <div class="text-center event-index--new_btn">
+      <%= link_to '予定を追加　＞', new_event_path, class: "event-index--new_link" %>
+    </div>
+
     <h5 class="text-center group-show--group_member">グループメンバー</h5>
     <% @users.each do |user| %>
       <div class="d-flex align-items-center">
@@ -20,13 +25,18 @@
     <% end %>
 
     <h5 class="text-center group-show--invitation_member">招待中のユーザー</h5>
-    <% @invitation_users.each do |user| %>
-      <div class="d-flex align-items-center">
-        <div class="mx-auto">
-          <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+    <% if @invitation_users.present? %>
+      <% @invitation_users.each do |user| %>
+        <div class="d-flex align-items-center">
+          <div class="mx-auto">
+            <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+          </div>
+          <%= link_to '招待を止める', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "btn btn-outline-dark group-show--invitation_delete_btn" %>
         </div>
-      </div>
-      <p class="text-center"><%= user.name %></p>
+        <p class="text-left"><%= user.name %></p>
+      <% end %>
+    <% else %>
+      <p class="text-center">招待中ユーザーはいません</p>
     <% end %>
   </div>
   <div class="col-10">
@@ -34,13 +44,20 @@
     <div class="group-calendar-box">
       <%= week_calendar(number_of_weeks: 2, events: @events) do |date, events| %>
         <%= date.day %>
-        <% events.each do |event| %>
+        <% events.first(10).each do |event| %>
           <div>
             <%= link_to event_path(event) do %>
               <%= event.name %>
             <% end %>
           </div>
         <% end %>
+
+        <% if events.count >= 11 %>
+          <div class="text-left event-index--day_dot">
+            <i class="fas fa-ellipsis-v fa-xs"></i>
+          </div>
+        <% end %>
+
         <% if events.present? %>
           <div class="group-show--day_count">
             <%= link_to group_day_path(day: date, group_id: @group.id) do %>

@@ -1,16 +1,18 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">後でロゴを入れる</a>
+    <%= link_to "detail", root_path, class: "header-logo" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <% if user_signed_in? %>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><%= link_to " グループ", groups_path, class: "btn fas fa-users text-white" %></li>
           <li class="nav-item"><%= link_to " 今月の予定", events_path, class: "btn fas fa-calendar-alt text-white" %></li>
+          <li class="nav-item"><%= link_to " グループ", groups_path, class: "btn fas fa-users text-white" %></li>
           <li class="nav-item"><%= link_to " マイページ", my_page_users_path, class: "btn fas fa-child text-white" %></li>
           <li class="nav-item"><%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: "btn fas fa-sign-out-alt text-white" %></li>
+          <li class="nav-item text-white"><div class="header-user_info">ログイン中：<%= current_user.name %></div></li>
+          <li class="nav-item text-white"><div class="header-user_info">ユーザーID：<%= current_user.id %></div></li>
         </ul>
       </div>
 
