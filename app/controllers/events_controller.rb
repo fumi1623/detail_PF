@@ -58,6 +58,12 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def tag
+    tag = Tag.find(params[:id])
+    tag_relationships_event_ids = TagRelationship.where(tag_id: tag.id).pluck(:event_id)
+    @events = current_user.events.where(id: tag_relationships_event_ids)
+  end
+
   private
 
   def event_params

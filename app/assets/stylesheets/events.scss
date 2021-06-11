@@ -100,11 +100,14 @@
 }
 
 .event-index--event_name {
-  height: 20px;
+  height: 26px;
   width: 100px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: #7abcff;
+  padding: 2px;
+  color: #202020;
 }
 
 .day {
@@ -252,4 +255,9 @@
   margin-top: 20px;
   text-decoration-line: underline;
   text-decoration-style: dotted;
+}
+
+// tagページ
+.event-tag_main {
+  margin-top: 30px;
 }

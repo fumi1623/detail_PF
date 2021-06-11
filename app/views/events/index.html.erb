@@ -72,7 +72,9 @@
       <ul class="event-index--dropdown_menu">
         <% @tags.each do |tag| %>
           <li class="event-index--tag_li">
-            <%= tag.name %>
+            <%= link_to event_tag_path(id: tag.id), class: "btn event-index--today_events_link" do %>
+              <%= tag.name %>
+            <% end %>
           </li>
         <% end %>
       </ul>
