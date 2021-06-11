@@ -10,9 +10,11 @@
       <h5 class="text-left event-index--group">所属グループ</h5>
       <% if @true_group_users.present? %>
         <% @true_group_users.each do |group_user| %>
-          <%= link_to group_path(group_user.group), class: "btn text-left event-index--group_link" do %>
-            <div>・<%= group_user.group.name %></div>
-          <% end %>
+          <p>
+            <%= link_to group_path(group_user.group), class: "btn text-left event-index--group_link" do %>
+              ・<%= group_user.group.name %>
+            <% end %>
+          </p>
         <% end %>
       <% else %>
         <p class="text-left">・グループに所属していません</p>
@@ -34,11 +36,7 @@
       <% else %>
         <p class="text-left">・招待はありません</p>
       <% end %>
-
     </div>
-
-
-
   </div>
 
   <div class="col-8">
@@ -54,7 +52,7 @@
       <% end %>
 
       <% if events.count >= 4 %>
-        <div class="text-center event-index--day_dot">
+        <div class="text-left event-index--day_dot">
           <i class="fas fa-ellipsis-v fa-xs"></i>
         </div>
       <% end %>
@@ -71,9 +69,11 @@
   <div class="col-2">
     <h4 class="event-index--today_events">本日の予定</h4>
     <% @today_events.each do |event| %>
-      <%= link_to event_path(event), class: "btn event-index--today_events_link" do %>
-        <div>・<%= event.name %></div>
-      <% end %>
+      <p>
+        <%= link_to event_path(event), class: "btn event-index--today_events_link" do %>
+          ・<%= event.name %>
+        <% end %>
+      </p>
     <% end %>
   </div>
 

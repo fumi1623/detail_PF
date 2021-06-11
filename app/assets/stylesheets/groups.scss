@@ -24,6 +24,10 @@
   width: 16.6%;
 }
 
+.group-new--form {
+  margin-right: 20px;
+}
+
 // show-page
 
 .group-show--title {
@@ -31,6 +35,10 @@
 }
 
 .group-show--edit_btn {
+  padding: 0 12px 0 12px !important;
+}
+
+.group-show--invitation_delete_btn {
   padding: 0 12px 0 12px !important;
 }
 
@@ -54,10 +62,9 @@
 }
 
 .group-day--event_box {
-  margin-top: 30px;
+  margin: 30px 0 30px 0;
   background-color: #e0e0e0;
   padding: 0px !important;
-  height: 500px;
   border: 6px ridge rgba(57, 61, 80, .6);
 }
 
@@ -73,4 +80,15 @@
 
 .group-day--table_before {
   border-top: 6px ridge rgba(57, 61, 80, .6);
+}
+
+// editPage
+.group-edit--title,
+.group-edit--row {
+  margin-top: 30px;
+}
+
+.group-edit--name_form,
+.group-edit--invitation_form {
+  margin-right: 20px;
 }
