@@ -2,8 +2,11 @@ class EventsController < ApplicationController
 
   def index
     @events = current_user.events.order(:start_time)
-    @true_group_users = current_user.group_users.where(invitation: true)
-    @false_group_users = current_user.group_users.where(invitation: false)
+    event_ids = @events.pluck(:id)  #ユーザーの持つイベントのTagを抽出
+    tag_relationships_tag_ids = TagRelationship.where(event_id: event_ids).pluck(:tag_id)
+    @tags = Tag.where(id: tag_relationships_tag_ids)  #ここまでTagの記述
+    @true_group_users = current_user.group_users.where(invitation: true)  #所属グループ
+    @false_group_users = current_user.group_users.where(invitation: false)  #招待を受けているグループ
     @today_events = @events.where("end_time>=? and start_time<?", Date.today, Date.tomorrow).order(:start_time)
   end
 
@@ -22,7 +25,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
+    tag_list = params[:event][:tag_ids].split(',')
     @event.save
+    @event.save_tags(tag_list)
     redirect_to events_path
   end
 
@@ -36,11 +41,14 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @tag_list = @event.tags.pluck(:name).join(",")
   end
 
   def update
     @event = Event.find(params[:id])
+    tag_list = params[:event][:tag_ids].split(",")
     @event.update(event_params)
+    @event.save_tags(tag_list)
     redirect_to event_path(@event)
   end
 

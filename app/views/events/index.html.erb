@@ -1,4 +1,3 @@
-
 <div class="row event-index--main_box">
 
   <div class="text-center col-2">
@@ -67,6 +66,18 @@
     <% end %>
   </div>
   <div class="col-2">
+
+    <nav>
+      <h5 class="event-index--tag_title">タグ一覧  <i class="fas fa-chevron-circle-down"></i></h5>
+      <ul class="event-index--dropdown_menu">
+        <% @tags.each do |tag| %>
+          <li class="event-index--tag_li">
+            <%= tag.name %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+
     <h4 class="event-index--today_events">本日の予定</h4>
     <% @today_events.each do |event| %>
       <p>

@@ -121,14 +121,28 @@
   margin-top: 30px;
 }
 
-// .event-index--today_events_link {
-//   display: inline;
-// }
-
 .event-index--today_events_link:hover {
   opacity: 0.7;
 }
 
+.event-index--tag_title {
+ margin-top: 30px;
+}
+
+.event-index--tag_title:hover {
+  opacity: 0.7;
+}
+
+
+.event-index--dropdown_menu {
+  padding-left: 8px;
+}
+
+.event-index--tag_li {
+  list-style: none;
+}
+
+// showページ
 
 .event-show--main_box {
   margin-top: 30px;
