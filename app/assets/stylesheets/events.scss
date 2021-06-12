@@ -48,15 +48,47 @@
   border: 1px solid #262626;
 }
 
+.event-new--small_form {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .event-new--form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .event-new--form {
+    display: none;
+  }
+
+  .event-new--small_form {
+    display: block;
+  }
+}
+
 // indexページ
 
 .event-index--main_box {
+  margin: 30px auto 0 auto;
+}
+
+// leftSide
+.event-index--side {
+  margin-left: 30px;
+}
+
+.event-index--today_events_box,
+.event-index--new_btn_box,
+.event-index--group_box,
+.event-index--invitation_group,
+.event-index--tags_box {
   margin-top: 30px;
 }
 
 .event-index--new_btn {
   width: 150px;
-  margin: 30px auto 0 auto;
   background-color: #c0c0c0;
   border: 2px solid #393d42;
 }
@@ -74,29 +106,76 @@
   opacity: 0.8;
 }
 
-.event-index--group {
-  margin-top: 20px;
-}
-
-.event-index--group_box {
-  margin-left: 10px;
-  margin-bottom: 30px;
-}
-
-.event-index--group_link:hover {
+.event-index--today_event_title:hover,
+.event-index--tag_title:hover,
+.event-index--group_title:hover,
+.event-index--invitation_group_title:hover,
+.event-index--today_events_link_text:hover,
+.event-index--group_link:hover,
+.event-index--tag_link:hover {
   opacity: 0.7;
 }
 
+.event-index--today_events_link:hover {
+  text-decoration: none;
+}
+
+.event-index--today_events_link_text {
+  background: #7abcff;
+  padding: 4px 8px 4px 8px;
+  color: #202020;
+  border-radius: 4px;
+  height: 30px;
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-index--dropdown_menu {
+  padding-left: 8px;
+}
+
+.event-index--tag_li {
+  list-style: none;
+}
+
+.event-index--group_name {
+  width: 180px;
+}
+
+.event-index--invitation_group_box {
+  padding-left: 12px;
+}
+
 .event-index--invitation_group_name {
-  margin: 16px auto 4px auto;
+  width: 180px;
+  margin-bottom: 4px;
+}
+
+.event-index--invitation_btn_box {
+  margin-bottom: 20px;
+  width: 180px;
 }
 
 .event-index--invitation_accept {
   display: inline-block;
 }
 
+
+.icon_rotate {
+  transform: rotate(90deg);
+  transition: all 0.2s;
+}
+
+// calendarSide
+
 .event-index--event_name_box {
   height: 30px;
+}
+
+.event-index--event_name_box:hover {
+  opacity: 0.8;
 }
 
 .event-index--event_name {
@@ -110,6 +189,10 @@
   color: #202020;
 }
 
+.event-index--event_link:hover {
+  text-decoration: none;
+}
+
 .day {
   position: relative;
 }
@@ -120,30 +203,59 @@
   bottom: 0;
 }
 
-.event-index--today_events {
-  margin-top: 30px;
-}
-
-.event-index--today_events_link:hover {
-  opacity: 0.7;
-}
-
-.event-index--tag_title {
- margin-top: 30px;
-}
-
-.event-index--tag_title:hover {
-  opacity: 0.7;
+.event-index--day_link:hover {
+  text-decoration: none;
 }
 
 
-.event-index--dropdown_menu {
-  padding-left: 8px;
+
+@media screen and (max-width: 1200px) {
+  .event-index--side {
+    display: flex;
+    justify-content: space-around;
+  }
+  .event-index--group_box {
+    width: 180px;
+  }
+  .event-index--calendar_box {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-.event-index--tag_li {
-  list-style: none;
+@media screen and (max-width: 992px) {
+
+  .event-index--side {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+
+  .event-index--today_events_box,
+  .event-index--new_btn_box,
+  .event-index--group_box,
+  .event-index--invitation_group,
+  .event-index--tags_box {
+    margin-top: 16px;
+    width: 270px;
+  }
+
+  .event-index--group_link {
+    padding: 0 !important;
+  }
+
+  .event-index--calendar_box {
+    width: 900px;
+    border: 2px solid #a9a9a9;
+    margin: 20px 20px 0 20px;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
+
 }
+
+
+
 
 // showページ
 
