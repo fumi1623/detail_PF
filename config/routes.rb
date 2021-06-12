@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy]
   end
   get 'event/day' => 'events#day'
+  get 'event/tag' => 'events#tag'
 
   resources :groups, only: [:index, :new, :create, :show, :edit, :update] do
     get 'day'

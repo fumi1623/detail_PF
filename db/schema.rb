@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_030342) do
-
-  create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
-    t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2021_06_11_082911) do
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
@@ -60,6 +52,22 @@ ActiveRecord::Schema.define(version: 2021_06_07_030342) do
     t.text "address"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tag_relationships", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "tag_id"], name: "index_tag_relationships_on_event_id_and_tag_id", unique: true
+    t.index ["event_id"], name: "index_tag_relationships_on_event_id"
+    t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

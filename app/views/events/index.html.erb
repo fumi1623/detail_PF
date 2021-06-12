@@ -1,80 +1,105 @@
-
 <div class="row event-index--main_box">
 
-  <div class="text-center col-2">
-    <div class="text-center event-index--new_btn">
-      <%= link_to '予定を追加　＞', new_event_path, class: "event-index--new_link" %>
+  <div class="col-xl-3 col-md-11 event-index--side">
+    <!--予定の追加部分-->
+    <div class="event-index--new_btn_box">
+      <div class="text-center event-index--new_btn">
+        <%= link_to '予定を追加　＞', new_event_path, class: "event-index--new_link" %>
+      </div>
     </div>
-
-    <div class="text-left event-index--group_box">
-      <h5 class="text-left event-index--group">所属グループ</h5>
-      <% if @true_group_users.present? %>
-        <% @true_group_users.each do |group_user| %>
-          <p>
-            <%= link_to group_path(group_user.group), class: "btn text-left event-index--group_link" do %>
-              ・<%= group_user.group.name %>
+    <!--今日の予定部分-->
+    <div class="event-index--today_events_box">
+      <h5 class="event-index--today_event_title">本日の予定  <i class="fas fa-chevron-circle-right today-events-icon"></i></h5>
+      <div class="event-index--today_event_box">
+        <% @today_events.each do |event| %>
+          <%= link_to event_path(event), class: "event-index--today_events_link" do %>
+            <p class="event-index--today_events_link_text text-left"><%= event.name %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <!--タグ一覧部分-->
+    <div class="event-index--tags_box">
+      <nav>
+        <h5 class="event-index--tag_title">タグ一覧  <i class="fas fa-chevron-circle-right tag-index-icon"></i></h5>
+        <ul class="event-index--dropdown_menu">
+          <% if @tags.present? %>
+            <% @tags.each do |tag| %>
+              <li class="event-index--tag_li">
+                <%= link_to event_tag_path(id: tag.id), class: "btn event-index--tag_link" do %>
+                  <i class="fas fa-tag"></i>  <%= tag.name %>
+                <% end %>
+              </li>
             <% end %>
-          </p>
+          <% else %>
+            <p>登録されていません</p>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+    <!--所属グループ部分-->
+    <div class="event-index--group_box">
+      <h5 class="event-index--group_title">所属グループ  <i class="fas fa-chevron-circle-right group-index-icon"></i></h5>
+      <div class="event-index--group_link_box">
+        <% if @true_group_users.present? %>
+          <% @true_group_users.each do |group_user| %>
+            <%= link_to group_path(group_user.group), class: "btn event-index--group_link" do %>
+              <p class="event-index--group_name"><%= group_user.group.name %></p>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>グループに所属していません</p>
         <% end %>
-      <% else %>
-        <p class="text-left">・グループに所属していません</p>
+      </div>
+    </div>
+    <!--承認待ちグループ部分-->
+    <div class="event-index--invitation_group">
+      <h5 class="event-index--invitation_group_title">招待を受けているグループ  <i class="fas fa-chevron-circle-right invitation-index-icon"></i></h5>
+      <div class="event-index--invitation_group_box">
+        <% if @false_group_users.present? %>
+          <% @false_group_users.each do |group_user| %>
+            <p class="event-index--invitation_group_name"><%= group_user.group.name %></p>
+            <div class="event-index--invitation_btn_box">
+              <%= form_with(model: group_user, url:group_users_accept_path(id: group_user.id) ,class: "event-index--invitation_accept" ,local: true) do |f| %>
+                <%= f.hidden_field :invitation, :value => true %>
+                <%= f.submit "承認", class: "btn btn-sm btn-outline-success" %>
+              <% end %>
+              <%= link_to "拒否", group_users_reject_path(id: group_user.id), class: "btn btn-sm btn-outline-dark"  %>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-left">招待はありません</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-8 col-lg-11 event-index--calendar_box">
+    <div class="event-index--calendar_box_inside">
+      <%= month_calendar events: @events do |date, events| %>
+        <%= date.day %>
+
+        <% events.first(3).each do |event| %>
+          <div class="event-index--event_name_box">
+            <%= link_to event_path(event), class: "event-index--event_link" do %>
+              <p class="event-index--event_name"><%= event.name %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if events.count >= 4 %>
+          <div class="text-left event-index--day_dot">
+            <i class="fas fa-ellipsis-v fa-xs"></i>
+          </div>
+        <% end %>
+
+        <% if events.present? %>
+          <div class="event-index--day_count">
+            <%= link_to event_day_path(day: date), class: "event-index--day_link" do %>
+              予定：<%= events.count %>件
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-
-    <div class="text-left event-index--group_box">
-      <h5 class="text-left">招待を受けているグループ</h5>
-
-      <% if @false_group_users.present? %>
-        <% @false_group_users.each do |group_user| %>
-          <p class="event-index--invitation_group_name">・<%= group_user.group.name %></p>
-          <%= form_with(model: group_user, url:group_users_accept_path(id: group_user.id) ,class: "event-index--invitation_accept" ,local: true) do |f| %>
-            <%= f.hidden_field :invitation, :value => true %>
-            <%= f.submit "承認", class: "btn btn-sm btn-outline-success" %>
-          <% end %>
-          <%= link_to "拒否", group_users_reject_path(id: group_user.id), class: "btn btn-sm btn-outline-dark"  %>
-        <% end %>
-      <% else %>
-        <p class="text-left">・招待はありません</p>
-      <% end %>
-    </div>
   </div>
-
-  <div class="col-8">
-    <%= month_calendar events: @events do |date, events| %>
-      <%= date.day %>
-
-      <% events.first(3).each do |event| %>
-        <div class="event-index--event_name_box">
-          <%= link_to event_path(event), class: "" do %>
-            <p class="event-index--event_name"><%= event.name %></p>
-          <% end %>
-        </div>
-      <% end %>
-
-      <% if events.count >= 4 %>
-        <div class="text-left event-index--day_dot">
-          <i class="fas fa-ellipsis-v fa-xs"></i>
-        </div>
-      <% end %>
-
-      <% if events.present? %>
-        <div class="event-index--day_count">
-          <%= link_to event_day_path(day: date) do %>
-            予定：<%= events.count %>件
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="col-2">
-    <h4 class="event-index--today_events">本日の予定</h4>
-    <% @today_events.each do |event| %>
-      <p>
-        <%= link_to event_path(event), class: "btn event-index--today_events_link" do %>
-          ・<%= event.name %>
-        <% end %>
-      </p>
-    <% end %>
-  </div>
-
-</div>

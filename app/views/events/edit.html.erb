@@ -39,6 +39,12 @@
           </td>
         </tr>
         <tr>
+          <th>タグ</th>
+          <td>
+            <%= form.text_field :tag_ids, value: @tag_list, placeholder: "複数つけるには「,」で区切ってください。", :size => "60*30" %>
+          </td>
+        </tr>
+        <tr>
           <th></th>
           <td><%= form.submit %></td>
         </tr>
