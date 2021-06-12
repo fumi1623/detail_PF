@@ -11,10 +11,14 @@
     <div class="event-index--today_events_box">
       <h5 class="event-index--today_event_title">本日の予定  <i class="fas fa-chevron-circle-right today-events-icon"></i></h5>
       <div class="event-index--today_event_box">
-        <% @today_events.each do |event| %>
-          <%= link_to event_path(event), class: "event-index--today_events_link" do %>
-            <p class="event-index--today_events_link_text text-left"><%= event.name %></p>
+        <% if @today_events.present? %>
+          <% @today_events.each do |event| %>
+            <%= link_to event_path(event), class: "event-index--today_events_link" do %>
+              <p class="event-index--today_events_link_text text-left"><%= event.name %></p>
+            <% end %>
           <% end %>
+        <% else %>
+          <p>登録されていません</p>
         <% end %>
       </div>
     </div>

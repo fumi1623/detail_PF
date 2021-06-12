@@ -47,8 +47,10 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     @event.update(event_params)
-    tag_list = params[:event][:tag_ids].split(",")
-    @event.save_tags(tag_list)
+    if params[:event][:tag_ids].present?
+      tag_list = params[:event][:tag_ids].split(",")
+      @event.save_tags(tag_list)
+    end
     redirect_to event_path(@event)
   end
 
