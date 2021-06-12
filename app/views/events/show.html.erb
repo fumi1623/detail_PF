@@ -1,44 +1,47 @@
-<div class="row event-show--main_box">
-  <div class="col-6">
-    <div class="event-show--upper_left">
+<main class="row event-show--main_box d-flex justify-content-around">
+  <!--予定の登録内容-->
+  <div class="col-lg-6">
+    <div class="event-show--event_box">
       <div>
         <h3><%= @event.start_time.strftime('%m/%d %H:%M:%S') %> ~ <%= @event.end_time.strftime('%m/%d %H:%M:%S') %></h3>
       </div>
       <div class="event-show--name">
-        <h3>予定：<span class="event-show--name_text"><%= @event.name %></span></h3>
+        <h3>予定</h3>
+        <p class="event-show--name_text"><%= @event.name %></p>
       </div>
       <div class="event-show--place">
-        <h3>場所：<span class="event-show--place_text"><%= @event.place %></span></h3>
+        <h3>場所</h3>
+        <p class="event-show--place_text"><%= @event.place %></p>
       </div>
       <div class="event-show--detail">
-        <h3>詳細：<span class="event-show--detail_text"><%= simple_format(@event.detail) %></span></h3>
+        <h3>詳細</h3>
+        <p class="event-show--detail_text"><%= simple_format(@event.detail) %></p>
       </div>
       <div class="event-show--remarks">
-        <h3>備考：<span class="event-show--detail_text"><%= simple_format(@event.remarks) %></span></h3>
+        <h3>備考</h3>
+        <p class="event-show--detail_text"><%= simple_format(@event.remarks) %></p>
       </div>
-      <div class="text-right">
+      <div class="event-show--event_btn text-right">
         <%= link_to '予定の変更', edit_event_path(@event.id), class: 'btn btn-outline-dark' %>
         <%= link_to '予定の削除', event_path(@event.id), method: :delete, class: 'btn btn-outline-dark event-show--delete_btn' %>
       </div>
     </div>
-
   </div>
-  <div class="col-6">
-    <div class="event-show--upper_right">
+  <!--MapとImage関連-->
+  <div class="col-lg-5">
+    <div class="event-show--map_content">
       <h4>Map</h4>
-
-      <div>
+      <div class="event-show--map_box">
         <input id="address" type="textbox" value="">
         <input type="button" value="検索" onclick="codeAddress()">
+        <div class="event-show--map" id="map"></div>
         <%= form_with(model:[@event, @map], html:{class: "event-show--map_form"},local: true) do |f| %>
-        <input type="hidden" name="map[address]" id="hidden_address">
-        <%= f.label :name, "ピンの名前" %>
-        <%= f.text_field :name %>
-        <%= f.submit "保存" %>
+          <input type="hidden" name="map[address]" id="hidden_address">
+          <%= f.label :name, "ピンの登録" %>
+          <%= f.text_field :name %>
+          <%= f.submit "保存" %>
         <% end %>
       </div>
-
-      <div id="map"></div>
 
       <div class="event-show--map_index">
         <h5 class="event-show--pin_title">登録したピン：</h5>
@@ -56,9 +59,8 @@
       </div>
     </div>
 
-    <div class="event-show--lower_right">
-      <h4>登録画像</h4>
-
+    <div class="event-show--image_content">
+      <h4 class="event-show--image_title">登録画像</h4>
       <div>
         <% if @event.images.present? %>
           <% @event.images.each do |image| %>
@@ -72,16 +74,16 @@
         <% end %>
       </div>
 
-      <div><!-- model: @image -->
+      <div class="event-show--image_form">
         <%= form_with(model: @event, local: true) do |f| %>
           <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
-          <%= f.submit "画像を登録" %>
+          <%= f.submit "画像を登録", class: "event-show--image_form_btn" %>
         <% end %>
       </div>
 
     </div>
   </div>
-</div>
+</main>
 
 <!--以下googleMap情報-->
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>

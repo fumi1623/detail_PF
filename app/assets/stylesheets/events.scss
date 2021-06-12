@@ -48,23 +48,9 @@
   border: 1px solid #262626;
 }
 
-.event-new--small_form {
-  display: none;
-}
-
-@media screen and (max-width: 992px) {
-  .event-new--form {
-    width: 90%;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .event-new--form {
-    display: none;
-  }
-
-  .event-new--small_form {
-    display: block;
+    margin: 10px 20px 10px 20px;
   }
 }
 
@@ -254,88 +240,51 @@
 
 }
 
-
-
-
 // showページ
 
 .event-show--main_box {
   margin-top: 30px;
 }
 
-.event-show--upper_left,
-.event-show--upper_right,
-.event-show--lower_right {
-  margin: 20px;
-  background-color: #e0e0e0;
-  padding: 10px;
-  border: 6px ridge rgba(57, 61, 80, .6);
-}
-
-.event-show--upper_right,
-.event-show--lower_right {
-  margin-left: -10px;
-}
-
 .event-show--name,
-.event-show--place {
-  margin-top: 16px;
-}
-
+.event-show--place,
 .event-show--detail,
-.event-show--remarks {
-  margin-top: 20px;
-  height: 250px;
+.event-show--remarks,
+.event-show--event_btn,
+.event-show--map_box,
+.event-show--image_title {
+  margin-top: 30px;
 }
 
-.event-show--detail_text {
-  font-size: 1.5rem;
+.event-show--map,
+.event-show--map_form,
+.event-show--map_index,
+.event-show--image_form,
+.event-show--image_form_btn {
+  margin-top: 10px;
 }
 
-.event-show--delete_btn {
-  margin-left: 20px;
-}
-
-.event-show--map_form {
-  margin-left: 20px;
+.event-show--map_form,
+.event-show--pin_title,
+.event-show--pin_name,
+.event-show--image_box {
   display: inline-block;
 }
 
-
-#map {
+.event-show--map {
   width: 90%;
   height: 280px;
 }
 
-.event-show--map_index {
-  margin-top: 10px;
-}
-
-.event-show--pin_title {
-  margin-bottom: 4px;
-  display: inline-block;
-}
-
 .event-show--pin_name {
-  display: inline-block;
-  margin-right: 10px;
   font-size: 1.2rem;
-}
-
-.event-show--image_box {
-  display: inline-block;
-  margin: 16px;
+  margin-right: 10px;
 }
 
 .event-show--pin_delete,
 .event-show--image_delete {
-  margin-left: 4px;
-  padding: 3px 6px 3px 6px;
+  padding: 4px;
   border-radius: 4px;
-}
-
-.event-show--image_delete {
-  vertical-align: top;
 }
 
 .event-show--pin_delete:hover,
@@ -343,30 +292,62 @@
   text-decoration: none;
 }
 
-// event-day
+.event-show--image_box {
+  margin: 0 16px 16px 0;
+}
+
+.event-show--image_delete {
+  vertical-align: top;
+}
+
+.event-show--image_form {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 992px) {
+
+  .event-show--event_box,
+  .event-show--map_content,
+  .event-show--image_content {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .event-show--map_content,
+  .event-show--image_content {
+    margin-top: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #c0c0c0;
+  }
+
+  .event-show--map {
+    width: 100%;
+  }
+
+}
+
+
+// dayページ
 .event-day--main_box {
   margin: 30px auto 0 auto;
   width: 80%;
 }
 
-.event-day--event_box {
-  margin: 30px;
-  background-color: #e0e0e0;
-  padding: 10px;
-  border: 6px ridge rgba(57, 61, 80, .6);
+.event-day--table {
+  margin-top: 30px;
 }
 
-.event-day--event_box_title {
-  display: inline-block;
-  padding: 6px;
-  background-color: #fcfcfc;
-  border: 6px ridge rgba(57, 61, 80, .6);
+.event-day--event_link {
+  color: #202020;
 }
 
-.event-day--event_name {
-  margin-top: 20px;
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
+.event-day--event_link:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+
 }
 
 // tagページ
