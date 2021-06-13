@@ -1,72 +1,78 @@
-<div class="row">
-  <div class="col-2"></div>
-  <div class="col-5 d-flex align-items-end">
-    <h4 class="group-show--title"><%= @group.name %></h4>
-    <%= link_to '編集する', edit_group_path(@group.id), class: 'btn btn-outline-dark group-show--edit_btn' %>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-2">
-
-    <div class="text-center event-index--new_btn">
-      <%= link_to '予定を追加　＞', new_event_path, class: "event-index--new_link" %>
+<main class="group-show--main">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-lg-9 d-flex align-items-end">
+      <h4 class="group-show--title"><%= @group.name %></h4>
+      <%= link_to '', edit_group_path(@group.id), class: 'fas fa-cog btn btn-outline-dark group-show--edit_btn' %>
     </div>
+  </div>
 
-    <h5 class="text-center group-show--group_member">グループメンバー</h5>
-    <% @users.each do |user| %>
-      <div class="d-flex align-items-center">
-        <div class="mx-auto">
-          <%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size:'80x80' %>
+  <div class="row">
+    <!--sideBar-->
+    <div class="col-lg-2 group-show--side">
+      <!--予定追加部分-->
+      <div class="group-show--event_new_btn">
+        <%= link_to '予定を追加　＞', new_event_path, class: "group-show--event_new_link" %>
+      </div>
+      <!--メンバー部分-->
+      <h5 class="group-show--group_member_title"><i class="fas fa-user"></i> メンバー  <i class="fas fa-chevron-circle-right group-member-icon"></i></h5>
+      <div class="group-show--group_member_box">
+        <% @users.each do |user| %>
+          <div class="group-show--group_member d-lg-flex align-items-center">
+            <div class="mx-auto">
+              <%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size:'80x80' %>
+            </div>
+          </div>
+          <p class="text-lg-center group-show--group_member_name"><%= user.name %></p>
+        <% end %>
+        <!--招待中メンバー部分-->
+        <h5 class="group-show--invitation_member_title text-center">招待中  <i class="fas fa-chevron-circle-right group-invitation-icon"></i></h5>
+        <div class="group-show--invitation_member_box">
+          <% if @invitation_users.present? %>
+            <% @invitation_users.each do |user| %>
+              <div class="group-show--invitation_member_img">
+                <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+                <%= link_to '', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "fas fa-user-minus btn btn-outline-dark group-show--invitation_delete_btn" %>
+              </div>
+              <p class="group-show--invitation_member_name text-left"><%= user.name %></p>
+            <% end %>
+          <% else %>
+            <p class="text-center">招待中ユーザーはいません</p>
+          <% end %>
         </div>
       </div>
-      <p class="text-center"><%= user.name %></p>
-    <% end %>
+    </div>
 
-    <h5 class="text-center group-show--invitation_member">招待中のユーザー</h5>
-    <% if @invitation_users.present? %>
-      <% @invitation_users.each do |user| %>
-        <div class="d-flex align-items-center">
-          <div class="mx-auto">
-            <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
-          </div>
-          <%= link_to '招待を止める', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "btn btn-outline-dark group-show--invitation_delete_btn" %>
-        </div>
-        <p class="text-left"><%= user.name %></p>
-      <% end %>
-    <% else %>
-      <p class="text-center">招待中ユーザーはいません</p>
-    <% end %>
-  </div>
-  <div class="col-10">
-    <p></p>
-    <div class="group-calendar-box">
-      <%= week_calendar(number_of_weeks: 2, events: @events) do |date, events| %>
-        <%= date.day %>
-        <% events.first(10).each do |event| %>
-          <div>
-            <%= link_to event_path(event) do %>
-              <%= event.name %>
-            <% end %>
-          </div>
-        <% end %>
+    <div class="col-lg-9 group-show--calendar-section">
+      <!--カレンダー部分-->
+      <div class="group-show--calendar-box">
+        <%= week_calendar(number_of_weeks: 2, events: @events) do |date, events| %>
+          <%= date.day %>
+          <% events.first(10).each do |event| %>
+            <div class="group-show--event_name_box">
+              <%= link_to event_path(event), class: "group-show--event_link" do %>
+                <p class="group-show--event_name"><%= event.name %></p>
+              <% end %>
+            </div>
+          <% end %>
 
-        <% if events.count >= 11 %>
-          <div class="text-left event-index--day_dot">
-            <i class="fas fa-ellipsis-v fa-xs"></i>
-          </div>
-        <% end %>
+          <% if events.count >= 11 %>
+            <div class="text-left event-index--day_dot">
+              <i class="fas fa-ellipsis-v fa-xs"></i>
+            </div>
+          <% end %>
 
-        <% if events.present? %>
-          <div class="group-show--day_count">
-            <%= link_to group_day_path(day: date, group_id: @group.id) do %>
-              予定：<%= events.count %>件
-            <% end %>
-          </div>
+          <% if events.present? %>
+            <div class="group-show--day_count">
+              <%= link_to group_day_path(day: date, group_id: @group.id) do %>
+                予定：<%= events.count %>件
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+
+</main>
 

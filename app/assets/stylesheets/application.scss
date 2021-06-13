@@ -24,6 +24,10 @@ html, body {
   margin: 0;
 }
 
+.content {
+  overflow: hidden;
+}
+
 .header-logo {
   margin-left: 20px;
   padding: 0 16px 0 12px;
@@ -62,3 +66,7 @@ html, body {
   height: 160px;
 }
 
+.icon_rotate {
+  transform: rotate(90deg);
+  transition: all 0.2s;
+}

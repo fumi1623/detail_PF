@@ -1,19 +1,19 @@
-<h2 class="text-center user-login--title">ログインフォーム</h2>
+<h3 class="text-center user-login--title">ログインフォーム</h3>
 
 <%= form_with model: @user, url: user_session_path, local: true do |f| %>
 <div class="d-flex justify-content-center">
-  <div class="user-login--form">
+  <div class="user-login--form table-responsive-md">
     <table class="table table-bordered">
       <tbody>
-        <tr>
+        <tr scope="row">
           <th><%= f.label :"eメールアドレス" %></th>
           <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください", :size => "60*30" %></td>
         </tr>
-        <tr>
+        <tr scope="row">
           <th><%= f.label :パスワード %></th>
           <td><%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワードを入力してください", :size => "60*30" %></td>
         </tr>
-        <tr>
+        <tr scope="row">
           <th>
             <% if devise_mapping.rememberable? %>
               <div class="field">

@@ -1,66 +1,72 @@
-<div class="event-day--main_box">
-  <h2><%= @day.strftime('%m/%d') %>の予定</h2>
+<main class="event-day--main_box">
+  <h3><%= @day.strftime('%m/%d') %>の予定</h3>
   <% if @events.present? %>
-    <table class="table">
-      <% if @today_events.present? %>
-        <thead class="thead-light">
-          <th>
-            <%= @day.strftime('%m/%d') %>から始まる予定
-          </th>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <% @today_events.each do |event| %>
-            <tr>
-              <td><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
-              <td>
-                <%= link_to event_path(event) do %>
-                  <%= event.name %>
-                <% end %>
-              </td>
-              <td>
-                <% if event.place.present? %>
-                  場所：<%= event.place %>
-                <% else %>
-                  場所：-
-                <% end %>
-              </td>
+    <div class="table-responsive-md">
+      <table class="table">
+        <% if @today_events.present? %>
+          <thead class="thead-light">
+            <tr scope="row">
+              <th>
+                <%= @day.strftime('%m/%d') %>から始まる予定
+              </th>
+              <th></th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
-      <% end %>
+          </thead>
+          <tbody>
+            <% @today_events.each do |event| %>
+              <tr scope="row">
+                <td class="text-nowrap"><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
+                <td class="text-nowrap">
+                  <%= link_to event_path(event) do %>
+                    <%= event.name %>
+                  <% end %>
+                </td>
+                <td class="text-nowrap">
+                  <% if event.place.present? %>
+                    場所：<%= event.place %>
+                  <% else %>
+                    場所：-
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
 
-      <% if @before_events.present? %>
-        <thead class="thead-light">
-          <th>
-            前日から続いている予定
-          </th>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <% @before_events.each do |event| %>
-            <tr>
-              <td><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
-              <td>
-                <%= link_to event_path(event) do %>
-                  <%= event.name %>
-                <% end %>
-              </td>
-              <td>
-                <% if event.place.present? %>
-                  場所：<%= event.place %>
-                <% else %>
-                  場所：-
-                <% end %>
-              </td>
+        <% if @before_events.present? %>
+          <thead class="thead-light">
+            <tr scope="row">
+              <th>
+                前日から続いている予定
+              </th>
+              <th></th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
-      <% end %>
-    </table>
+          </thead>
+          <tbody>
+            <% @before_events.each do |event| %>
+              <tr scope="row">
+                <td class="text-nowrap"><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
+                <td class="text-nowrap">
+                  <%= link_to event_path(event) do %>
+                    <%= event.name %>
+                  <% end %>
+                </td>
+                <td class="text-nowrap">
+                  <% if event.place.present? %>
+                    場所：<%= event.place %>
+                  <% else %>
+                    場所：-
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
   <% else %>
     <h5 class="text-center">登録された予定はありません</h5>
   <% end %>
-</div>
+</main>

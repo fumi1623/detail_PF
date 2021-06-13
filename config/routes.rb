@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'event/day' => 'events#day'
   get 'event/tag' => 'events#tag'
 
-  resources :groups, only: [:index, :new, :create, :show, :edit, :update] do
+  resources :groups, only: [:index, :create, :show, :edit, :update] do
     get 'day'
   end
 
