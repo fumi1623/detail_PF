@@ -149,10 +149,6 @@
 }
 
 
-.icon_rotate {
-  transform: rotate(90deg);
-  transition: all 0.2s;
-}
 
 // calendarSide
 
@@ -346,11 +342,19 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 768px) {
-
-}
-
 // tagページ
 .event-tag_main {
   margin-top: 30px;
+}
+
+@media screen and (max-width: 992px) {
+
+  .event-tag--calendar_box {
+    width: 900px;
+    border: 2px solid #a9a9a9;
+    margin: 20px auto 0 auto;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
+
 }

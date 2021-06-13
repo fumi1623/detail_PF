@@ -1,22 +1,6 @@
-// Place all the styles related to the groups controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-// .group-calendar-box {
-//   width: 80%;
-// }
-
 // index-page
 .group-index--title {
   margin-top: 30px;
-}
-
-.group-show--group_member {
-  margin-top: 20px;
-}
-
-.group-show--invitation_member {
-  margin-top: 40px;
 }
 
 .group-index--group_name,
@@ -28,32 +12,121 @@
   margin-right: 20px;
 }
 
-// show-page
 
-.group-show--title {
-  margin: 30px 20px 0 0;
+@media screen and (max-width: 768px) {
+  .group-index--main {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+// show-page
+.group-show--main,
+.group-show--group_member_title,
+.group-show--invitation_member {
+  margin-top: 30px;
 }
 
 .group-show--edit_btn {
-  padding: 0 12px 0 12px !important;
+  margin: 0 0 8px 10px;
+}
+
+.group-show--side,
+.group-show--calendar-box {
+  margin-top: 16px;
+}
+
+.group-show--side {
+  margin-left: 30px;
+}
+
+.group-show--event_new_btn {
+  width: 150px;
+  background-color: #c0c0c0;
+  border: 2px solid #393d42;
+}
+
+.group-show--event_new_link {
+  padding: 4px;
+  color: #212529;
+  font-size: 1rem;
+}
+
+.group-show--event_new_btn:hover,
+.group-show--event_new_link:hover {
+  text-decoration: none;
+  color: #212529;
+  opacity: 0.8;
+}
+
+.group-show--title,
+.group-show--group_member,
+.group-show--group_member_name,
+.group-show--invitation_member_img,
+.group-show--invitation_member_name {
+  padding-left: 20px;
 }
 
 .group-show--invitation_delete_btn {
-  padding: 0 12px 0 12px !important;
+  padding: 4px !important;
 }
 
+// カレンダー部分
 .calender-week--day {
   height: 300px;
 }
 
+.group-show--event_name_box {
+  height: 30px;
+}
+
+.group-show--event_name_box:hover {
+  opacity: 0.8;
+}
+
+.group-show--event_name {
+  height: 26px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #7abcff;
+  padding: 2px;
+  color: #202020;
+}
+
+.group-show--event_link {
+  text-decoration: none;
+}
+
 .group-calendar-box {
   position: relative;
+  width: 100%;
 }
 
 .group-show--day_count {
   position: absolute;
   bottom: 0;
   right: 2px;
+}
+
+@media screen and (max-width: 992px) {
+
+  .group-show--calendar-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #c0c0c0;
+  }
+
+  .group-show--calendar-box {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    overflow: hidden;
+    overflow-x: scroll;
+    border: 2px solid #a9a9a9;
+  }
+
 }
 
 // dayPage
@@ -91,4 +164,10 @@
 .group-edit--name_form,
 .group-edit--invitation_form {
   margin-right: 20px;
+}
+
+@media screen and (max-width: 431px) {
+  .group-edit--row {
+    padding-left: 20px;
+  }
 }

@@ -28,7 +28,7 @@
         <tr scope="row">
           <th class="text-nowrap"><%= form.label :"グループメンバーへの公開設定" %></th>
           <td class="event-edit--release">
-            <%= form.select :release, [['非公開',0],['公開',1]], { include_blank: true, selected: 0 } %>　<i class="far fa-question-circle event-edit--question_icon" id="questionBtn"></i>
+            <%= form.select :release, options_for_select([['非公開', 0], ['公開', 1]], @event.release) %>　<i class="far fa-question-circle event-edit--question_icon" id="questionBtn"></i>
             <div class="event-edit--question_box" id="eventEditQuestion">
               <div class="event-edit--question_t"></div>
               <p class="event-edit--question_text">

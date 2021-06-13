@@ -10,7 +10,7 @@
     <%= form_with(model: @group, local: true) do |f| %>
       <div>
         <%= f.label :"グループ名", class:"group-edit--name_form" %>
-        <%= f.text_field :name, class:"group-edit--name_form" %>
+        <%= f.text_field :name, :size => "40*20", class:"group-edit--name_form" %>
         <%= f.submit "グループ名変更" %>
       </div>
     <% end %>
@@ -18,10 +18,10 @@
 </div>
 <div class="row group-edit--row">
   <div class="col-2"></div>
-  <div class="col-8">
+  <div class="col-8 table-responsive-md">
     <table class="table">
       <thead class="thead-light">
-        <tr>
+        <tr scope="row">
           <th>グループメンバー</th>
           <th></th>
           <th></th>
@@ -29,16 +29,16 @@
       </thead>
       <tbody>
         <% @group.users.each do |user| %>
-          <tr>
-            <td>ユーザー名：<%= user.name %></td>
-            <td>ユーザーID：<%= user.id %></td>
-            <td>
+          <tr scope="row">
+            <td class="text-nowrap">ユーザー名：<%= user.name %></td>
+            <td class="text-nowrap">ユーザーID：<%= user.id %></td>
+            <td class="text-nowrap">
               <%= link_to 'メンバーから外す', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "btn btn-outline-danger" %>
             </td>
           </tr>
         <% end %>
-          <tr>
-            <td colspan="3">
+          <tr scope="row">
+            <td  class="text-nowrap" colspan="3">
               <%= form_with(model: [@group, @new_group_user], url: group_users_path, local: true) do |form| %>
                 <%= form.label :"ユーザーID", class:"group-edit--invitation_form" %>
                 <%= form.text_field :user_id, class:"group-edit--invitation_form" %>

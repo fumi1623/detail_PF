@@ -77,12 +77,12 @@
       </div>
     </div>
   </div>
-
+<!--カレンダー部分-->
   <div class="col-xl-8 col-lg-11 event-index--calendar_box">
     <div class="event-index--calendar_box_inside">
       <%= month_calendar events: @events do |date, events| %>
         <%= date.day %>
-
+        <!--日付の中に表示する予定-->
         <% events.first(3).each do |event| %>
           <div class="event-index--event_name_box">
             <%= link_to event_path(event), class: "event-index--event_link" do %>
@@ -90,13 +90,13 @@
             <% end %>
           </div>
         <% end %>
-
+        <!--４つ以上なら3点で省略-->
         <% if events.count >= 4 %>
           <div class="text-left event-index--day_dot">
             <i class="fas fa-ellipsis-v fa-xs"></i>
           </div>
         <% end %>
-
+        <!--その日の予定数-->
         <% if events.present? %>
           <div class="event-index--day_count">
             <%= link_to event_day_path(day: date), class: "event-index--day_link" do %>
