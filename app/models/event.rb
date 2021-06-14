@@ -7,21 +7,27 @@ class Event < ApplicationRecord
   has_many  :tags, through: :tag_relationships
   accepts_attachments_for :images, attachment: :image, append: true
 
+# バリデーション
   validates :name, presence: true, length: { maximum: 20 }
   validates :place, length: { maximum: 20 }
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validate :start_time_check
+  # validate :start_time_check
   validate :end_time_check
 
-  def start_time_check
-    errors.add(:start_time, "は現在の日時より遅い時間を選択してください") if self.start_time < Time.current
-  end
+  # def start_time_check
+  #   if start_time.present?
+  #     errors.add(:start_time, "は現在の日時より遅い時間を選択してください") if self.start_time < Time.current
+  #   end
+  # end
 
   def end_time_check
-    errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time
+    if start_time.present? && end_time.present?
+      errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.end_time < self.start_time
+    end
   end
 
+# タグ機能
   def save_tags(save_event_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?  #タグがあればnameを抽出
     old_tags = current_tags - save_event_tags

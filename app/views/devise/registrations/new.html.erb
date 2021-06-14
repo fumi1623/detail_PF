@@ -1,14 +1,17 @@
 <h3 class="text-center user-new--title">新規会員登録フォーム</h3>
 
 <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <!--<%= render "devise/shared/error_messages", resource: resource %>-->
 <div class="d-flex justify-content-center">
   <div class="col-11 user-new--form table-responsive-md">
     <table class="table table-bordered">
       <tbody>
         <tr scope="row">
           <th class="text-nowrap"><%= f.label :ユーザーネーム %></th>
-          <td><%= f.text_field :name, autofocus: true, placeholder: "ユーザー名", :size => "60*30" %></td>
+          <td>
+            <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名", :size => "60*30" %>
+            <%= render "devise/shared/error_messages", resource: resource, attribute: :name %>
+          </td>
         </tr>
         <tr scope="row">
           <th class="text-nowrap"><%= f.label :"eメールアドレス" %></th>
@@ -17,9 +20,6 @@
         <tr scope="row">
           <th><%= f.label :"パスワード(6文字以上に設定してください)" %></th>
           <td>
-            <!--<% if @minimum_password_length %>-->
-            <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
-            <!--<% end %><br />-->
             <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを入力してください", :size => "60*30" %>
           </td>
         </tr>

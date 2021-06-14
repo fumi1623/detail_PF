@@ -26,9 +26,12 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     tag_list = params[:event][:tag_ids].split(',')
-    @event.save
-    @event.save_tags(tag_list)
-    redirect_to events_path
+    if @event.save
+      @event.save_tags(tag_list)
+      redirect_to events_path
+    else
+      render "new"
+    end
   end
 
   def show
@@ -46,12 +49,15 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update(event_params)
-    if params[:event][:tag_ids].present?
-      tag_list = params[:event][:tag_ids].split(",")
-      @event.save_tags(tag_list)
+    if @event.update(event_params)
+      if params[:event][:tag_ids].present?
+        tag_list = params[:event][:tag_ids].split(",")
+        @event.save_tags(tag_list)
+      end
+      redirect_to event_path(@event)
+    else
+      render "edit"
     end
-    redirect_to event_path(@event)
   end
 
   def destroy
@@ -71,10 +77,5 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:user_id, :name, :detail, :remarks, :start_time, :end_time, :place, :release, images_images: [])
   end
-
-
-  # def group_user_params
-  #   params.require(:group_user).permit(:user_id, :group_id)
-  # end
 
 end
