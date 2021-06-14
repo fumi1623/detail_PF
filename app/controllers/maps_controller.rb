@@ -3,8 +3,11 @@ class MapsController < ApplicationController
     event = Event.find(params[:event_id])
     map = event.maps.new(map_params)
     map.event_id = event.id
-    map.save
-    redirect_to event_path(event)
+    if map.save
+      redirect_to event_path(event)
+    else
+      render "events/show"
+    end
   end
 
   def edit

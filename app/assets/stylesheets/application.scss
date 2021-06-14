@@ -71,7 +71,12 @@ html, body {
   transition: all 0.2s;
 }
 
-.error_message_p {
-  margin: 4px 0 0 0;
-  padding-left: 4px;
+.error_message_text {
+  margin-top: 4px;
+  padding: 4px 8px;
+  display: inline;
+}
+
+.field_with_errors {
+  display: inline;
 }

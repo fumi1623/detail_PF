@@ -2,11 +2,17 @@ ja:
   activerecord:
     models:
       form: "フォーム"
+      group_user: 'グルプ'
     attributes:
       event:
-        name:               "タイトル"
-        place:              "場所"
-        start_time:         "開始時刻"
-        end_time:           "終了時刻"
-        detail:             "詳細"
-        remarks:            "備考"
+        name: "タイトル"
+        place: "場所"
+        start_time: "開始時刻"
+        end_time: "終了時刻"
+        detail: "詳細"
+        remarks: "備考"
+      group:
+        name:  "グループ名"
+      group_user:
+        user: 'user'
+        user_id: "user_id"

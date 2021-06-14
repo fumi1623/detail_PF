@@ -1,15 +1,22 @@
 class GroupsController < ApplicationController
 
   def index
-    @groups = Group.all.order(updated_at: :desc)
+    # ログイン中のユーザーが所属するグループのみ抽出
+    group_ids = current_user.group_users.pluck(:group_id)
+    @groups = Group.where(id: group_ids).order(updated_at: :desc)
     @group = Group.new
   end
 
   def create
     @group = Group.new(group_params)
-    @group.group_users << GroupUser.new({user: current_user, invitation: true})
-    @group.save
-    redirect_to groups_path
+    @group.group_users << GroupUser.new({user: current_user, invitation: true}) #作成したユーザーは招待済みにする
+    if @group.save
+      redirect_to groups_path
+    else
+      group_ids = current_user.group_users.pluck(:group_id)
+      @groups = Group.where(id: group_ids).order(updated_at: :desc)
+      render "index"
+    end
   end
 
   def show
@@ -31,13 +38,18 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @group.update(group_params)
-    redirect_to group_path(@group)
+    if @group.update(group_params)
+      redirect_to group_path(@group)
+    else
+      group = Group.find(params[:id])
+      @group.name = group.name
+      @new_group_user = GroupUser.new
+      render "edit"
+    end
   end
 
   def delete_user
     @group = Group.find(params[:id])
-    # @group.users >>
     @group.update(group_params)
     redirect_to group_path(@group)
   end

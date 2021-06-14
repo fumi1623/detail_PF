@@ -10,6 +10,7 @@
 
 .group-new--form {
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 
 
@@ -164,6 +165,13 @@
 .group-edit--name_form,
 .group-edit--invitation_form {
   margin-right: 20px;
+}
+
+.group-edit--flash {
+  display: inline;
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
 }
 
 @media screen and (max-width: 431px) {

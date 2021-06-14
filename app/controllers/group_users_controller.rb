@@ -2,9 +2,13 @@ class GroupUsersController < ApplicationController
 
   def create
     @new_group_user = GroupUser.new(group_user_params)
-    @new_group_user.save
     @group = Group.find(params[:group_user][:group_id])
-    redirect_to group_path(@group)
+    if @new_group_user.save
+      redirect_to group_path(@group)
+    else
+      flash.now[:member] = "有効なユーザーを入力してください"
+      render "groups/edit"
+    end
   end
 
   def destroy

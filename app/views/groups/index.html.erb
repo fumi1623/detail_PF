@@ -39,7 +39,7 @@
             <%= f.submit '作成', class: 'btn btn-sm btn-outline-success opinion_field' %>
           </div>
         <% end %>
-        
+        <%= render "layouts/error_messages", model: @group, attribute: :name %>
       </div>
     </div>
   </div>
