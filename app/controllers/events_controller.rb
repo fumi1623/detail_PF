@@ -35,16 +35,30 @@ class EventsController < ApplicationController
   end
 
   def show
+    #current.userが持つgroup_uerのgroup.idと@event.userの持つつgroup_uerのgroup.idに一致するものがあれば
     @event = Event.find(params[:id])
-    @map = Map.new
-    @maps =Map.where(event_id: @event.id)
-    @map_pin = @maps.first
-    @image = Image.new
+    c_group_ids = current_user.group_users.pluck(:group_id)  #ログインユーザーの所属してるグループID
+    e_group_ids = @event.user.group_users.pluck(:group_id)  #イベントのユーザーの所属してるグループID
+    group_match = c_group_ids & e_group_ids  #上２つの重複を探す
+    # ログインユーザーと投稿ユーザーが一致 or (公開設定かつ同一のグループに所属している)
+    if @event.user == current_user || (@event.release == true && group_match.empty? == false)
+      @map = Map.new
+      @maps =Map.where(event_id: @event.id)
+      @map_pin = @maps.first
+      @image = Image.new
+    else
+      redirect_to "/events"
+    end
   end
 
   def edit
     @event = Event.find(params[:id])
     @tag_list = @event.tags.pluck(:name).join(",")
+    if @event.user == current_user  #アクセス制限
+      render "edit"
+    else
+      redirect_to "/events"
+    end
   end
 
   def update
@@ -62,8 +76,12 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    @event.destroy
-    redirect_to events_path
+    if @event.user == current_user  #アクセス制限
+      @event.destroy
+      redirect_to events_path
+    else
+      redirect_to "/events"
+    end
   end
 
   def tag

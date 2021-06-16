@@ -12,15 +12,8 @@ class Event < ApplicationRecord
   validates :place, length: { maximum: 20 }
   validates :start_time, presence: true
   validates :end_time, presence: true
-  # validate :start_time_check
   validate :end_time_check
-
-  # def start_time_check
-  #   if start_time.present?
-  #     errors.add(:start_time, "は現在の日時より遅い時間を選択してください") if self.start_time < Time.current
-  #   end
-  # end
-
+# 終了が開始より早くならないこと
   def end_time_check
     if start_time.present? && end_time.present?
       errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.end_time < self.start_time
