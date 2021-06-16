@@ -34,7 +34,7 @@
             <td class="text-nowrap">ユーザー名：<%= user.name %></td>
             <td class="text-nowrap">ユーザーID：<%= user.id %></td>
             <td class="text-nowrap">
-              <%= link_to 'メンバーから外す', group_user_path(user.id), method: :delete, class: "btn btn-outline-danger" %>
+              <%= link_to 'メンバーから外す', group_user_path(group_user: {user_id: user.id}, id: @group.id), method: :delete, class: "btn btn-outline-danger" %>
             </td>
           </tr>
         <% end %>
@@ -42,8 +42,8 @@
             <td  class="text-nowrap" colspan="3">
 
               <%= form_with(model: [@group, @new_group_user], url: group_users_path, local: true) do |form| %>
-                <%= form.label :"ユーザーID", class:"group-edit--invitation_form" %>
-                <%= form.text_field :user_id, class:"group-edit--invitation_form" %>
+                <%= form.label :"ユーザーを追加", class:"group-edit--invitation_form" %>
+                <%= form.text_field :user_id, class:"group-edit--invitation_form", :size => "40*20", placeholder: "ユーザーIDを入力してください"  %>
                 <%= form.hidden_field :group_id, value: @group.id %>
                 <%= form.submit "招待を送る" %>
               <% end %>

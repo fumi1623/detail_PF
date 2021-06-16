@@ -7,6 +7,8 @@ class GroupUsersController < ApplicationController
       redirect_to group_path(@group)
     else
       flash.now[:member] = "有効なユーザーを入力してください"
+      @group = Group.find(params[:group_user][:group_id])
+      @new_group_user = GroupUser.new
       render "groups/edit"
     end
   end

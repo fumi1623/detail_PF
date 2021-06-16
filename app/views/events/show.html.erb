@@ -22,8 +22,10 @@
         <p class="event-show--detail_text"><%= simple_format(@event.remarks) %></p>
       </div>
       <div class="event-show--event_btn text-right">
-        <%= link_to '予定の変更', edit_event_path(@event.id), class: 'btn btn-outline-dark' %>
-        <%= link_to '予定の削除', event_path(@event.id), method: :delete, class: 'btn btn-outline-dark event-show--delete_btn' %>
+        <% if @event.user == current_user %>
+          <%= link_to '予定の変更', edit_event_path(@event.id), class: 'btn btn-outline-dark' %>
+          <%= link_to '予定の削除', event_path(@event.id), method: :delete, class: 'btn btn-outline-dark event-show--delete_btn' %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -32,14 +34,18 @@
     <div class="event-show--map_content">
       <h4>Map</h4>
       <div class="event-show--map_box">
-        <input id="address" type="textbox" value="">
-        <input type="button" value="検索" onclick="codeAddress()">
-        <div class="event-show--map" id="map"></div>
-        <%= form_with(model:[@event, @map], html:{class: "event-show--map_form"},local: true) do |f| %>
-          <input type="hidden" name="map[address]" id="hidden_address">
-          <%= f.label :name, "ピンの登録" %>
-          <%= f.text_field :name %>
-          <%= f.submit "保存" %>
+        <% if @event.user == current_user %>
+          <input id="address" type="textbox" value="">
+          <input type="button" value="検索" onclick="codeAddress()">
+        <% end %>
+        <div class="event-show--map" id="map"></div>  <!--map本体-->
+        <% if @event.user == current_user %>
+          <%= form_with(model:[@event, @map], html:{class: "event-show--map_form"},local: true) do |f| %>
+            <input type="hidden" name="map[address]" id="hidden_address">
+            <%= f.label :name, "ピンの登録" %>
+            <%= f.text_field :name %>
+            <%= f.submit "保存" %>
+          <% end %>
         <% end %>
       </div>
 
@@ -75,9 +81,11 @@
       </div>
 
       <div class="event-show--image_form">
-        <%= form_with(model: @event, local: true) do |f| %>
-          <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
-          <%= f.submit "画像を登録", class: "event-show--image_form_btn" %>
+        <% if @event.user == current_user %>
+          <%= form_with(model: @event, local: true) do |f| %>
+            <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
+            <%= f.submit "画像を登録", class: "event-show--image_form_btn" %>
+          <% end %>
         <% end %>
       </div>
 
