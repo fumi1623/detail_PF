@@ -34,7 +34,7 @@
             <td class="text-nowrap">ユーザー名：<%= user.name %></td>
             <td class="text-nowrap">ユーザーID：<%= user.id %></td>
             <td class="text-nowrap">
-              <%= link_to 'メンバーから外す', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "btn btn-outline-danger" %>
+              <%= link_to 'メンバーから外す', group_user_path(group_user: {user_id: user.id}, id: @group.id), method: :delete, class: "btn btn-outline-danger" %>
             </td>
           </tr>
         <% end %>
