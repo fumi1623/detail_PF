@@ -4,6 +4,7 @@ class MapsController < ApplicationController
     map = event.maps.new(map_params)
     map.event_id = event.id
     if map.save
+      flash[:success] = "ピンが登録されました"
       redirect_to event_path(event)
     else
       render "events/show"

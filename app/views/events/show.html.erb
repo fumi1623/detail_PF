@@ -1,3 +1,7 @@
+<% if flash[:success].present? %>
+  <p class="alert alert-success" role="alert"><%= flash[:success] %></p>
+<% end %>
+
 <main class="row event-show--main_box d-flex justify-content-around">
   <!--予定の登録内容-->
   <div class="col-lg-6">
@@ -36,7 +40,7 @@
       <div class="event-show--map_box">
         <% if @event.user == current_user %>
           <input id="address" type="textbox" value="">
-          <input type="button" value="検索" onclick="codeAddress()">
+          <input type="button" value="検索" name="検索" onclick="codeAddress()">
         <% end %>
         <div class="event-show--map" id="map"></div>  <!--map本体-->
         <% if @event.user == current_user %>

@@ -28,6 +28,7 @@ class EventsController < ApplicationController
     tag_list = params[:event][:tag_ids].split(',')
     if @event.save
       @event.save_tags(tag_list)
+      flash[:success] = "予定が登録されました"
       redirect_to events_path
     else
       render "new"
@@ -68,6 +69,7 @@ class EventsController < ApplicationController
         tag_list = params[:event][:tag_ids].split(",")
         @event.save_tags(tag_list)
       end
+      flash[:success] = "予定が更新されました"
       redirect_to event_path(@event)
     else
       render "edit"
