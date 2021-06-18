@@ -1,5 +1,8 @@
-<div class="row event-index--main_box">
+<% if flash[:success].present? %>
+  <p class="alert alert-success" role="alert"><%= flash[:success] %></p>
+<% end %>
 
+<div class="row event-index--main_box">
   <div class="col-xl-3 col-md-11 event-index--side">
     <!--予定の追加部分-->
     <div class="event-index--new_btn_box">

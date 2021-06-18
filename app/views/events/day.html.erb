@@ -47,7 +47,7 @@
               <tr>
                 <td><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
                 <td>
-                  <%= link_to event_path(event) do %>
+                  <%= link_to event_path(event), class: "event-day--event_link" do %>
                     <%= event.name %>
                   <% end %>
                 </td>
