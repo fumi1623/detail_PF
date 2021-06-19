@@ -1,3 +1,6 @@
+<% if flash[:success].present? %>
+  <p class="alert alert-success" role="alert"><%= flash[:success] %></p>
+<% end %>
 <main class="group-index--main">
   <div class="row">
     <div class="col-md-1"></div>

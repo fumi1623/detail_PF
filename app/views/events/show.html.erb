@@ -1,6 +1,9 @@
 <% if flash[:success].present? %>
   <p class="alert alert-success" role="alert"><%= flash[:success] %></p>
 <% end %>
+<% if flash[:danger].present? %>
+  <p class="alert alert-danger" role="alert"><%= flash[:danger] %></p>
+<% end %>
 
 <main class="row event-show--main_box d-flex justify-content-around">
   <!--予定の登録内容-->
@@ -170,7 +173,7 @@
         let hidden_address = document.getElementById('hidden_address');
         hidden_address.setAttribute("value", inputAddress);
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        alert('有効な文字を入力してください。');
       }
     });
   }
