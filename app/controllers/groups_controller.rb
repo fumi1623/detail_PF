@@ -9,8 +9,9 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.group_users << GroupUser.new({user: current_user, invitation: true}) #作成したユーザーは招待済みにする
     if @group.save
+      group_user = @group.group_users.new(user: current_user, invitation: true) # 作成したユーザーは招待済みにする
+      group_user.save
       redirect_to groups_path
     else
       group_ids = current_user.group_users.pluck(:group_id)

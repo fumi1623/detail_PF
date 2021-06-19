@@ -7,7 +7,8 @@ class MapsController < ApplicationController
       flash[:success] = "ピンが登録されました"
       redirect_to event_path(event)
     else
-      render "events/show"
+      flash[:danger] = "ピンが登録できませんでした"
+      redirect_to event_path(event)
     end
   end
 

@@ -64,6 +64,13 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    #画像の空投稿の場合、eventが渡ってこないので、そのままリダイレクト
+    if params[:event].blank?
+      flash[:danger] = "画像が登録できませんでした。"
+      redirect_to event_path(@event)
+      return
+    end
+
     if @event.update(event_params)
       if params[:event][:tag_ids].present?
         tag_list = params[:event][:tag_ids].split(",")
@@ -95,7 +102,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :name, :detail, :remarks, :start_time, :end_time, :place, :release, images_images: [])
+     params.require(:event).permit(:user_id, :name, :detail, :remarks, :start_time, :end_time, :place, :release, images_images: [])
   end
 
 end
