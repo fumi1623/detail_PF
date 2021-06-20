@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-
   describe 'バリデーションテスト' do
     subject { group.valid? }
     let(:group) { build(:group) }
@@ -34,5 +33,4 @@ RSpec.describe Group, type: :model do
       end
     end
   end
-
 end

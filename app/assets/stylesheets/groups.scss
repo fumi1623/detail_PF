@@ -8,11 +8,18 @@
   width: 16.6%;
 }
 
-.group-new--form {
+.group-index--form {
   margin-right: 20px;
   margin-bottom: 10px;
 }
 
+.group-index--user_invitation {
+  margin-left: 4px;
+  background: #008437;
+  padding: 4px 8px 4px 8px;
+  border-radius: 2px;
+  color: #f8f8f8;
+}
 
 @media screen and (max-width: 768px) {
   .group-index--main {

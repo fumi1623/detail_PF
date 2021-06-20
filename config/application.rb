@@ -20,6 +20,5 @@ module Detail
 
     config.time_zone = 'Asia/Tokyo'
     config.active_record.default_timezone = :local
-
   end
 end

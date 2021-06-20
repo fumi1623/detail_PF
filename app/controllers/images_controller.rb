@@ -1,5 +1,4 @@
 class ImagesController < ApplicationController
-
   def create
     event = Event.find(params[:event_id])
     image = Image.new(image_params)
@@ -20,6 +19,4 @@ class ImagesController < ApplicationController
   def image_params
     params.require(:image).permit(:event_id, :image_id)
   end
-
-
 end

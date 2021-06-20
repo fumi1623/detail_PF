@@ -14,9 +14,8 @@ RSpec.describe Map, type: :system do
     before do
       visit event_path(event)
     end
-    it '表示内容の確認'  do
+    it '表示内容の確認' do
       expect(page).to have_content map.name
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Map, type: :model do
-
   describe 'バリデーションテスト' do
     subject { map.valid? }
     let(:user) { create(:user) }
@@ -55,5 +54,4 @@ RSpec.describe Map, type: :model do
       end
     end
   end
-
 end

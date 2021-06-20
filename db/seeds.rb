@@ -10,6 +10,6 @@
   User.create!(
     name: "ネーム#{n + 1}",
     email: "test#{n + 1}@test.com",
-    password: "123456"
+    password: '123456'
   )
 end

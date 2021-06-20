@@ -1,3 +1,4 @@
+// イベント情報管理フォーム
 .event-new--title,
 .event-edit--title {
   margin-top: 30px;
@@ -148,10 +149,7 @@
   display: inline-block;
 }
 
-
-
 // calendarSide
-
 .event-index--event_name_box {
   height: 30px;
 }
@@ -189,8 +187,6 @@
   text-decoration: none;
 }
 
-
-
 @media screen and (max-width: 1200px) {
   .event-index--side {
     display: flex;
@@ -206,13 +202,11 @@
 }
 
 @media screen and (max-width: 992px) {
-
   .event-index--side {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
   }
-
   .event-index--today_events_box,
   .event-index--new_btn_box,
   .event-index--group_box,
@@ -221,11 +215,9 @@
     margin-top: 16px;
     width: 270px;
   }
-
   .event-index--group_link {
     padding: 0 !important;
   }
-
   .event-index--calendar_box {
     width: 900px;
     border: 2px solid #a9a9a9;
@@ -233,11 +225,9 @@
     overflow: hidden;
     overflow-x: scroll;
   }
-
 }
 
 // showページ
-
 .event-show--main_box {
   margin-top: 30px;
 }
@@ -301,27 +291,22 @@
 }
 
 @media screen and (max-width: 992px) {
-
   .event-show--event_box,
   .event-show--map_content,
   .event-show--image_content {
     width: 90%;
     margin: 0 auto;
   }
-
   .event-show--map_content,
   .event-show--image_content {
     margin-top: 12px;
     padding-top: 16px;
     border-top: 1px solid #c0c0c0;
   }
-
   .event-show--map {
     width: 100%;
   }
-
 }
-
 
 // dayページ
 .event-day--main_box {
@@ -348,7 +333,6 @@
 }
 
 @media screen and (max-width: 992px) {
-
   .event-tag--calendar_box {
     width: 900px;
     border: 2px solid #a9a9a9;
@@ -356,5 +340,4 @@
     overflow: hidden;
     overflow-x: scroll;
   }
-
 }

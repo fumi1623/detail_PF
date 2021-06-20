@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
   def index
     # ログイン中のユーザーが所属するグループのみ抽出
     group_ids = current_user.group_users.pluck(:group_id)
@@ -12,12 +11,12 @@ class GroupsController < ApplicationController
     if @group.save
       group_user = @group.group_users.new(user: current_user, invitation: true) # 作成したユーザーは招待済みにする
       group_user.save
-      flash[:success] = "グループが登録されました"
+      flash[:success] = 'グループが登録されました'
       redirect_to groups_path
     else
       group_ids = current_user.group_users.pluck(:group_id)
       @groups = Group.where(id: group_ids).order(updated_at: :desc)
-      render "index"
+      render 'index'
     end
   end
 
@@ -25,12 +24,16 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
     group_users = @group.group_users.where(invitation: true)
     user_ids = group_users.pluck(:user_id)
-    @users = User.where(id: user_ids)
-    @events = Event.where(user_id: @users.ids, release: true)
-
-    invitation_group_users = @group.group_users.where(invitation: false)
-    invitation_user_ids = invitation_group_users.pluck(:user_id)
-    @invitation_users = User.where(id: invitation_user_ids)
+    if user_ids.include?(current_user.id)
+      @users = User.where(id: user_ids)
+      @events = Event.where(user_id: @users.ids, release: true)
+      invitation_group_users = @group.group_users.where(invitation: false)
+      invitation_user_ids = invitation_group_users.pluck(:user_id)
+      @invitation_users = User.where(id: invitation_user_ids)
+    else
+      flash[:faile] = 'グループに所属していません'
+      redirect_to groups_path
+    end
   end
 
   def edit
@@ -46,7 +49,7 @@ class GroupsController < ApplicationController
       group = Group.find(params[:id])
       @group.name = group.name
       @new_group_user = GroupUser.new
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -61,18 +64,18 @@ class GroupsController < ApplicationController
     users = group.users
     events = Event.where(user_id: users.ids, release: true)
     # カレンダーからクリックされた日付を取得
-    @day = Time.zone.parse("#{params[:day]}")
+    @day = Time.zone.parse(params[:day].to_s)
     # クリックされた日付の０時以降に終わるもの（まだ終わってないもの）であり、
     # ２４時以前に始まるもの（明日の０時より前に始まるもの）
-    @events = events.where("end_time>=? and start_time<?", @day, @day.tomorrow).order(:start_time)
+    @events = events.where('end_time>=? and start_time<?', @day, @day.tomorrow).order(:start_time)
     # 前日から続いてるものと今日はじまるものを分ける
-    @before_events = @events.where("start_time<?", @day).order(:start_time)
-    @today_events = @events.where("start_time>=?", @day).order(:start_time)
+    @before_events = @events.where('start_time<?', @day).order(:start_time)
+    @today_events = @events.where('start_time>=?', @day).order(:start_time)
   end
 
   private
+
   def group_params
     params.require(:group).permit(:name)
   end
-
 end

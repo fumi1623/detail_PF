@@ -16,8 +16,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def quit
-  end
+  def quit; end
 
   def out
     user = current_user
@@ -28,5 +27,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :email)
   end
-
 end

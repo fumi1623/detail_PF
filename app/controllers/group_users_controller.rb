@@ -1,15 +1,15 @@
 class GroupUsersController < ApplicationController
-
   def create
     @new_group_user = GroupUser.new(group_user_params)
     @group = Group.find(params[:group_user][:group_id])
     if @new_group_user.save
+      flash[:success] = '招待を送りました'
       redirect_to group_path(@group)
     else
-      flash.now[:member] = "有効なユーザーを入力してください"
+      flash.now[:member] = '有効なユーザーを入力してください'
       @group = Group.find(params[:group_user][:group_id])
       @new_group_user = GroupUser.new
-      render "groups/edit"
+      render 'groups/edit'
     end
   end
 
@@ -34,8 +34,8 @@ class GroupUsersController < ApplicationController
   end
 
   private
+
   def group_user_params
     params.require(:group_user).permit(:user_id, :group_id, :invitation)
   end
-
 end

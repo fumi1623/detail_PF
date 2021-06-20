@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :system do
-
   describe 'トップ画面のテスト' do
     before do
       visit root_path
@@ -125,19 +124,19 @@ RSpec.describe User, type: :system do
       context '表示内容の確認' do
         it 'Homeリンクが表示される: 左上のリンクが「detail」である' do
           home_link = find_all('a')[0].native.inner_text
-          expect(home_link).to match "detail"
+          expect(home_link).to match 'detail'
         end
         it 'eventsリンクが表示される: 左から2番目のリンクが「今月の予定」である' do
           events_link = find_all('a')[1].native.inner_text
-          expect(events_link).to match "今月の予定"
+          expect(events_link).to match '今月の予定'
         end
         it 'groupsリンクが表示される: 左から3番目のリンクが「グループ」である' do
           groups_link = find_all('a')[2].native.inner_text
-          expect(groups_link).to match "グループ"
+          expect(groups_link).to match 'グループ'
         end
         it 'MyPageリンクが表示される: 左から4番目のリンクが「マイページ」である' do
           my_page_link = find_all('a')[3].native.inner_text
-          expect(my_page_link).to match "マイページ"
+          expect(my_page_link).to match 'マイページ'
         end
         it 'ログインユーザーの名前が表示される' do
           expect(page).to have_content user.name
@@ -157,7 +156,7 @@ RSpec.describe User, type: :system do
         end
         it '編集ページへのリンクがある' do
           user_edit_link = find_all('a')[5].native.inner_text
-          expect(user_edit_link).to match "編集する"
+          expect(user_edit_link).to match '編集する'
         end
       end
       context 'リンク移動のテスト' do
@@ -203,8 +202,6 @@ RSpec.describe User, type: :system do
           expect(current_path).to eq '/users/my_page'
         end
       end
-
     end
   end
-
 end
