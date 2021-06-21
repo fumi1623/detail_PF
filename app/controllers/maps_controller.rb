@@ -4,18 +4,11 @@ class MapsController < ApplicationController
     map = event.maps.new(map_params)
     map.event_id = event.id
     if map.save
-      flash[:success] = "ピンが登録されました"
-      redirect_to event_path(event)
+      flash[:success] = 'ピンが登録されました'
     else
-      flash[:danger] = "ピンが登録できませんでした"
-      redirect_to event_path(event)
+      flash[:danger] = 'ピンが登録できませんでした'
     end
-  end
-
-  def edit
-  end
-
-  def update
+    redirect_to event_path(event)
   end
 
   def destroy
@@ -25,9 +18,7 @@ class MapsController < ApplicationController
     redirect_to event_path(event)
   end
 
-    # ストロングパラメーター
   def map_params
     params.require(:map).permit(:name, :address, :latitude, :longitude)
   end
-
 end

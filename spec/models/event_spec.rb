@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-
   describe 'バリデーションテスト' do
     subject { event.valid? }
     let(:user) { create(:user) }
@@ -86,5 +85,4 @@ RSpec.describe Event, type: :model do
       end
     end
   end
-
 end

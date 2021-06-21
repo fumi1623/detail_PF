@@ -28,6 +28,7 @@ html, body {
   overflow: hidden;
 }
 
+// ヘッダー関連
 .header-logo {
   margin-left: 20px;
   padding: 0 16px 0 12px;
@@ -48,6 +49,7 @@ html, body {
   padding: 3px 12px 6px 12px;
 }
 
+// フッター関連
 .content {
   min-height: 100%;
   margin: 0 0 -70px 0;
@@ -62,15 +64,13 @@ html, body {
   margin: 20px 0 20px 0;
 }
 
-.calender-month--day {
-  height: 160px;
-}
-
+// メニューアイコン
 .icon_rotate {
   transform: rotate(90deg);
   transition: all 0.2s;
 }
 
+// エラーメッセージ
 .error_message_text {
   margin-top: 4px;
   padding: 4px 8px;
@@ -79,4 +79,14 @@ html, body {
 
 .field_with_errors {
   display: inline;
+}
+
+// カレンダー関連
+.calendar-month--title {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.calender-month--day {
+  height: 160px;
 }

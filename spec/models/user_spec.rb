@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   describe 'バリデーションテスト' do
     subject { user.valid? }
     let!(:other_user) { create(:user) }
@@ -9,7 +8,7 @@ RSpec.describe User, type: :model do
 
     context 'nameカラム' do
       it '空欄でないこと' do
-        user.name = ""
+        user.name = ''
         is_expected.to eq false
       end
       it '1文字では×' do

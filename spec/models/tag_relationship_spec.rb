@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe TagRelationship, type: :model do
-
   describe 'アソシエーションのテスト' do
     context 'eventモデルとの関係' do
       it 'N:1となっている' do
@@ -14,5 +13,4 @@ RSpec.describe TagRelationship, type: :model do
       end
     end
   end
-
 end

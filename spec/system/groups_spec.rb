@@ -96,8 +96,10 @@ RSpec.describe Group, type: :system do
         expect(page).to have_content other_user.name
       end
       it '各メンバーの削除リンクが表示される' do
-        expect(page).to have_link 'メンバーから外す', href: group_user_path(group_user: {user_id: user.id}, id: group.id)
-        expect(page).to have_link 'メンバーから外す', href: group_user_path(group_user: {user_id: other_user.id}, id: group.id)
+        expect(page).to have_link 'メンバーから外す',
+                                  href: group_user_path(group_user: { user_id: user.id }, id: group.id)
+        expect(page).to have_link 'メンバーから外す',
+                                  href: group_user_path(group_user: { user_id: other_user.id }, id: group.id)
       end
       it 'ユーザーを追加するフォームが表示される' do
         expect(page).to have_field 'group_user[user_id]'
@@ -113,10 +115,29 @@ RSpec.describe Group, type: :system do
         click_button 'グループ名変更'
         expect(group.reload.name).not_to eq @old_group_name
       end
+      it 'メンバーの追加ができる' do
+        fill_in 'group_user[user_id]', with: third_user.id
+        expect { click_button '招待を送る' }.to change(GroupUser.all, :count).by(1)
+        expect(current_path).to eq '/groups/' + group.id.to_s
+        expect(page).to have_content '招待を送りました'
+      end
     end
-
-
-
+    context 'グループ編集失敗のテスト' do
+      it 'name空欄はエラー' do
+        fill_in 'group[name]', with: ''
+        click_button 'グループ名変更'
+        expect(page).to have_content 'グループ名を入力してください'
+      end
+      it 'ユーザーID空欄はエラー' do
+        fill_in 'group_user[user_id]', with: ''
+        click_button '招待を送る'
+        expect(page).to have_content '有効なユーザーを入力してください'
+      end
+      it '存在しないユーザーIDはエラー' do
+        fill_in 'group_user[user_id]', with: '4'
+        click_button '招待を送る'
+        expect(page).to have_content '有効なユーザーを入力してください'
+      end
+    end
   end
-
 end

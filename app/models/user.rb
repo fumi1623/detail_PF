@@ -9,5 +9,4 @@ class User < ApplicationRecord
   has_many :groups, through: :group_users
 
   validates :name, presence: true, length: { minimum: 2, maximum: 15 }
-
 end

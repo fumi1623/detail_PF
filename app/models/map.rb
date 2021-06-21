@@ -1,5 +1,4 @@
 class Map < ApplicationRecord
-
   belongs_to :event
 
   validates :latitude, :longitude, :address, presence: true
@@ -7,5 +6,4 @@ class Map < ApplicationRecord
 
   geocoded_by :address
   before_validation :geocode
-
 end

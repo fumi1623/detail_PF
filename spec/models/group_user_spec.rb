@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GroupUser, type: :model do
-
   describe 'バリデーションテスト' do
     subject { group_user.valid? }
     let(:user) { create(:user) }
@@ -50,5 +49,4 @@ RSpec.describe GroupUser, type: :model do
       end
     end
   end
-
 end

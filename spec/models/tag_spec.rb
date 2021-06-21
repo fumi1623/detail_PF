@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-
   describe 'バリデーションテスト' do
     subject { tag.valid? }
     let(:tag) { build(:tag) }
@@ -34,5 +33,4 @@ RSpec.describe Tag, type: :model do
       end
     end
   end
-
 end

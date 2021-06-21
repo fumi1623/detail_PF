@@ -1,6 +1,11 @@
 <% if flash[:success].present? %>
   <p class="alert alert-success" role="alert"><%= flash[:success] %></p>
 <% end %>
+<% if flash[:faile].present? %>
+  <p class="alert alert-danger" role="alert"><%= flash[:faile] %></p>
+<% end %>
+
+
 <main class="group-index--main">
   <div class="row">
     <div class="col-md-1"></div>
@@ -13,35 +18,13 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
-      <% if @groups.present? %>
-      <table class="table text-nowrap table-responsive">
-        <tbody>
-          <% @groups.each do |group| %>
-            <tr>
-              <td class="group-index--group_name">
-                <%= link_to group_path(group) do %>
-                  <%= group.name %>
-                <% end %>
-              </td>
-              <% group.users.each do |user| %>
-                <td class="group-index--user_name"><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %><%= user.name %></td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <% else %>
-        <p>・グループに所属していません</p>
-      <% end %>
+      <div id="groups_area">
+        <%= render "groups/group_index" %>
+      </div>
       <!--新規フォーム部分-->
       <div>
         <h5>グループを作成する</h5>
-        <%= form_with( model: @group, local:true) do |f| %>
-          <div>
-            <%= f.text_field :name, placeholder: "グループ名", class: 'group-new--form' %>
-            <%= f.submit '作成', class: 'btn btn-sm btn-outline-success opinion_field' %>
-          </div>
-        <% end %>
+        <%= render "groups/group_new_form" %>
         <%= render "layouts/error_messages", model: @group, attribute: :name %>
       </div>
     </div>

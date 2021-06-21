@@ -1,0 +1,6 @@
+<%= form_with model: @group do |f| %>
+  <div>
+    <%= f.text_field :name, placeholder: "グループ名", class: 'group-index--form' %>
+    <%= f.submit '作成', class: 'btn btn-sm btn-outline-success opinion_field' %>
+  </div>
+<% end %>
