@@ -36,7 +36,11 @@ class EventsController < ApplicationController
 
   def show
     # current.userが持つgroup_uerのgroup.idと@event.userの持つつgroup_uerのgroup.idに一致するものがあれば
-    @event = Event.find(params[:id])
+    @event = Event.find_by_id(params[:id])
+    if @event == nil  #存在しないIDなら一覧画面に飛ばす
+      redirect_to '/events'
+      return
+    end
     c_group_ids = current_user.group_users.pluck(:group_id) # ログインユーザーの所属してるグループID
     e_group_ids = @event.user.group_users.pluck(:group_id) # イベントのユーザーの所属してるグループID
     group_match = c_group_ids & e_group_ids # 上２つの重複を探す
@@ -52,7 +56,11 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = Event.find_by_id(params[:id])
+    if @event == nil  #存在しないIDなら一覧画面に飛ばす
+      redirect_to '/events'
+      return
+    end
     @tag_list = @event.tags.pluck(:name).join(',')
     if @event.user == current_user # アクセス制限
       render 'edit'
