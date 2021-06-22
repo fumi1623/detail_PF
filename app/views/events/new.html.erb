@@ -1,4 +1,20 @@
 <main>
   <h2 class="text-center event-new--title">予定の追加</h2>
+
+  <h6 class="event-new--preset_title">プリセット一覧</h6>
+  <div class="event-new--preset_box">
+    <% @presets.each_with_index do |preset, i| %>
+      <div class="event-new--preset_name" id="preset_<%= i %>">
+        <%= preset.name %>
+      </div>
+      <div>
+        
+      </div>
+    <% end %>
+    <div>
+      <%= link_to "プリセットの登録", new_preset_path, class: "" %>
+    </div>
+  </div>
+
   <%= render "event_form" %>
 </main>

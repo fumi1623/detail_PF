@@ -1,0 +1,49 @@
+<main>
+  <h2 class="text-center">プリセットの登録</h2>
+  
+  <%= form_with(model: @preset, local: true) do |form| %>
+  <div class="row d-flex justify-content-center">
+    <div class="col-11 event-new--form table-responsive-md">
+      <table class="table table-bordered">
+        <tbody>
+          <tr scope="row">
+            <th class="text-nowrap"><%= form.label :"予定のタイトル" %></th>
+            <td>
+              <%= form.text_field :name, autofocus: true, placeholder: "◯◯会議 , ◯◯に行く , 20文字以内で入力してください。", :size => "60*30" %>
+            </td>
+          </tr>
+          <tr scope="row">
+            <th class="text-nowrap"><%= form.label :"場所" %></th>
+            <td>
+              <%= form.text_field :place, :size => "60*30", placeholder: "後から予定の場所をMAPでも登録できます" %>
+            </td>
+          </tr>
+          <tr scope="row">
+            <th class="text-nowrap"><%= form.label :"予定の詳細" %></th>
+            <td>
+              <%= form.text_area :detail, size: "60x5" %>
+            </td>
+          </tr>
+          <tr scope="row">
+            <th class="text-nowrap"><%= form.label :"備考" %></th>
+            <td>
+              <%= form.text_area :remarks, size: "60x3", placeholder: "◯◯を持っていく！" %>
+            </td>
+          </tr>
+          <tr scope="row">
+            <th class="text-nowrap"><%= form.label :"グループメンバーへの公開設定" %></th>
+            <td class="event-new--release">
+              <%= form.select :release, [['非公開',0],['公開',1]], { selected: @preset.release } %>
+            </td>
+          </tr>
+          <tr scope="row">
+            <th></th>
+            <td><%= form.submit %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% end %>
+  
+</main>
