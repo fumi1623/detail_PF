@@ -58,6 +58,19 @@ $(function() {
   })
 })
 
+// プリセット関連
+$(function() {
+  $('.event-new--preset').hide();
+});
+
+$(function() {
+  $('.event-new--preset_title').click(function() {
+    $('.preset-index-icon').toggleClass('icon_rotate');
+    $('.event-new--preset').slideToggle();
+  })
+})
+
+
 $(function() {
   for (let n = 0; n < gon.presets.length; n++) {
     $('#preset_' + n).click(function() {

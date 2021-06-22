@@ -1,9 +1,9 @@
 <main>
-  <h2 class="text-center">プリセットの登録</h2>
-  
+  <h3 class="text-center preset-new--title">プリセットの登録</h3>
+
   <%= form_with(model: @preset, local: true) do |form| %>
   <div class="row d-flex justify-content-center">
-    <div class="col-11 event-new--form table-responsive-md">
+    <div class="col-11 preset-new--form table-responsive-md">
       <table class="table table-bordered">
         <tbody>
           <tr scope="row">
@@ -27,7 +27,7 @@
           <tr scope="row">
             <th class="text-nowrap"><%= form.label :"備考" %></th>
             <td>
-              <%= form.text_area :remarks, size: "60x3", placeholder: "◯◯を持っていく！" %>
+              <%= form.text_area :remarks, size: "60x3", placeholder: "" %>
             </td>
           </tr>
           <tr scope="row">
@@ -45,5 +45,5 @@
     </div>
   </div>
   <% end %>
-  
+
 </main>

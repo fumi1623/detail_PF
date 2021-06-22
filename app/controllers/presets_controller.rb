@@ -12,6 +12,13 @@ class PresetsController < ApplicationController
   end
 
   def destroy
+    @preset = Preset.find(params[:id])
+    if @preset.user == current_user  # アクセス制限
+      @preset.destroy
+      redirect_to new_event_path
+    else
+      redirect_to new_event_path
+    end
   end
 
   private
