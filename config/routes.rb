@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'event/day' => 'events#day'
   get 'event/tag' => 'events#tag'
 
+  resources :presets, only: %i[new create destroy]
+
   resources :groups, only: %i[index create show edit update] do
     get 'day'
   end

@@ -1,7 +1,73 @@
 // イベント情報管理フォーム
+
+.event-new--preset_title,
+.event-new--preset {
+  margin-left: 5%;
+}
+
+.event-new--preset_title:hover {
+  opacity: 0.7;
+}
+
+.event-new--preset_box {
+  width: 200px;
+}
+
+.event-new--preset_name {
+  background-color: #e0e0e0;
+  margin: 8px 2px 8px 12px;
+  padding: 6px 10px 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-new--preset_name:first-child {
+  margin-left: 0;
+}
+
+.event-new--preset_name:hover {
+  opacity: 0.7;
+}
+
+.event-new--preset_link,
+.event-new--preset_delete_btn {
+  padding: 4px 6px;
+}
+
+.event-new--preset_delete_btn {
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.event-new--preset_delete_btn:hover {
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.event-new--preset_link_box {
+  margin-top: 10px;
+}
+
+.event-new--preset_link {
+  color: #212529;
+}
+
+.event-new--preset_link:hover {
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+
+
 .event-new--title,
 .event-edit--title {
   margin-top: 30px;
+}
+
+.event-form {
+  margin-top: 20px;
 }
 
 .event-new--release,

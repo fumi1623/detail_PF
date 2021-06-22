@@ -19,6 +19,8 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @presets = current_user.presets
+    gon.presets = @presets
   end
 
   def create
