@@ -140,24 +140,10 @@
   margin-top: 30px;
 }
 
-.event-index--new_btn {
-  width: 150px;
-  background-color: #c0c0c0;
-  border: 2px solid #393d42;
+.event-index--new_link_text {
+  font-size: 1.2rem;
 }
 
-.event-index--new_link {
-  padding: 4px;
-  color: #212529;
-  font-size: 1rem;
-}
-
-.event-index--new_btn:hover,
-.event-index--new_link:hover {
-  text-decoration: none;
-  color: #212529;
-  opacity: 0.8;
-}
 
 .event-index--today_event_title:hover,
 .event-index--tag_title:hover,
