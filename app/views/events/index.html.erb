@@ -8,8 +8,10 @@
     <div class="col-xl-3 col-md-11 event-index--side">
       <!--予定の追加部分-->
       <div class="event-index--new_btn_box">
-        <div class="text-center event-index--new_btn">
-          <%= link_to '予定を追加　＞', new_event_path, class: "event-index--new_link" %>
+        <div class="event-index--new_btn">
+          <%= link_to new_event_path, class: "event-index--new_link btn btn-sm btn-outline-success" do %>
+            <span class="event-index--new_link_text">予定を追加　</span><i class="fas fa-plus-circle event-index--new_link_text"></i>
+          <% end %>
         </div>
       </div>
       <!--今日の予定部分-->
