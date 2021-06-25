@@ -22,7 +22,7 @@
               </div>
             <% end %>
           </th>
-          <td><%= f.submit "ログイン", :class=>"user-login--form--btn" %></td>
+          <td><%= f.submit "ログイン", :class=>"user-login--form__btn" %></td>
         </tr>
       </tbody>
     </table>
@@ -30,13 +30,13 @@
 </div>
 <% end %>
 
-<div>
-  <p class="user-login--forget_text text-center">
-    ・パスワードをお忘れの方は
-    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-      <%= link_to "こちら", new_password_path(resource_name) %>
-    <% end %>
-    から確認をお願いいたします。
-  </p>
-</div>
+<!--<div>-->
+<!--  <p class="user-login--forget_text text-center">-->
+<!--    ・パスワードをお忘れの方は-->
+<!--    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>-->
+<!--      <%= link_to "こちら", new_password_path(resource_name) %>-->
+<!--    <% end %>-->
+<!--    から確認をお願いいたします。-->
+<!--  </p>-->
+<!--</div>-->
 

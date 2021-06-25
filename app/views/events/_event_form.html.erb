@@ -1,6 +1,6 @@
 <%= form_with(model: @event, class: "event-form", local: true) do |form| %>
-<div class="row d-flex justify-content-center">
-  <div class="col-11 event-new--form table-responsive-md">
+<div class="row event-add--form d-flex justify-content-center">
+  <div class="col-11 table-responsive-md">
     <table class="table table-bordered">
       <tbody>
         <tr scope="row">
@@ -47,11 +47,11 @@
         </tr>
         <tr scope="row">
           <th class="text-nowrap"><%= form.label :"グループメンバーへの公開設定" %></th>
-          <td class="event-new--release">
-            <%= form.select :release, [['非公開',0],['公開',1]], { selected: @event.release } %>　<i class="far fa-question-circle event-new--question_icon" id="questionBtn"></i>
-            <div class="event-new--question_box" id="eventNewQuestion">
-              <div class="event-new--question_t"></div>
-              <p class="event-new--question_text">
+          <td class="event-form__release">
+            <%= form.select :release, [['非公開',0],['公開',1]], { selected: @event.release } %>　<i class="far fa-question-circle event-form__release__q-icon" id="questionBtn"></i>
+            <div class="event-form__release__q-box" id="eventNewQuestion">
+              <div class="event-form__release__q-box__balloon"></div>
+              <p class="event-form__release__q-box__text">
                 「公開」にした場合、あなたが所属するグループメンバーがこの予定を閲覧できるようになります。</br>
                 この設定は後から変更が出来ます。
               </p>
