@@ -1,4 +1,4 @@
-<main class="event-day--main_box">
+<main class="event-day--main">
   <h3><%= @day.strftime('%m/%d') %>の予定</h3>
   <% if @events.present? %>
     <div class="table-responsive-md">
@@ -18,7 +18,7 @@
               <tr scope="row">
                 <td class="text-nowrap"><%= event.start_time.strftime('%m/%d %H:%M') %>　〜　<%= event.end_time.strftime('%m/%d %H:%M') %></td>
                 <td>
-                  <%= link_to event_path(event), class: "event-day--event_link" do %>
+                  <%= link_to event_path(event), class: "event-day--table__event-link" do %>
                     <%= event.name %>
                   <% end %>
                 </td>

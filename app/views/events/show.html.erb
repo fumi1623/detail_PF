@@ -8,46 +8,46 @@
 <main class="row event-show--main_box d-flex justify-content-around">
   <!--予定の登録内容-->
   <div class="col-lg-6">
-    <div class="event-show--event_box">
+    <div class="event-show--event-box">
       <div>
         <h3><%= @event.start_time.strftime('%m/%d %H:%M:%S') %> ~ <%= @event.end_time.strftime('%m/%d %H:%M:%S') %></h3>
       </div>
-      <div class="event-show--name">
+      <div class="event-show--event-box__name">
         <h3>予定</h3>
-        <p class="event-show--name_text"><%= @event.name %></p>
+        <p class="event-show-event-box__name__text"><%= @event.name %></p>
       </div>
-      <div class="event-show--place">
+      <div class="event-show--event-box__place">
         <h3>場所</h3>
-        <p class="event-show--place_text"><%= @event.place %></p>
+        <p class="event-show--event-box__place_text"><%= @event.place %></p>
       </div>
-      <div class="event-show--detail">
+      <div class="event-show--event-box__detail">
         <h3>詳細</h3>
-        <p class="event-show--detail_text"><%= simple_format(@event.detail) %></p>
+        <p class="event-show--event-box__detail__text"><%= simple_format(@event.detail) %></p>
       </div>
-      <div class="event-show--remarks">
+      <div class="event-show--event-box__remarks">
         <h3>備考</h3>
-        <p class="event-show--detail_text"><%= simple_format(@event.remarks) %></p>
+        <p class="event-show--event-box__remarks__text"><%= simple_format(@event.remarks) %></p>
       </div>
-      <div class="event-show--event_btn text-right">
+      <div class="event-show--event-box__event-btn text-right">
         <% if @event.user == current_user %>
           <%= link_to '予定の変更', edit_event_path(@event.id), class: 'btn btn-outline-dark' %>
-          <%= link_to '予定の削除', event_path(@event.id), method: :delete, class: 'btn btn-outline-dark event-show--delete_btn' %>
+          <%= link_to '予定の削除', event_path(@event.id), method: :delete, class: 'btn btn-outline-dark' %>
         <% end %>
       </div>
     </div>
   </div>
   <!--MapとImage関連-->
   <div class="col-lg-5">
-    <div class="event-show--map_content">
+    <div class="event-show--map">
       <h4>Map</h4>
-      <div class="event-show--map_box">
+      <div class="event-show--map__map-box">
         <% if @event.user == current_user %>
           <input id="address" type="textbox" value="">
           <input type="button" value="検索" name="検索" onclick="codeAddress()">
         <% end %>
-        <div class="event-show--map" id="map"></div>  <!--map本体-->
+        <div class="event-show--map__map-box__map" id="map"></div>  <!--map本体-->
         <% if @event.user == current_user %>
-          <%= form_with(model:[@event, @map], html:{class: "event-show--map_form"},local: true) do |f| %>
+          <%= form_with(model:[@event, @map], html:{class: "event-show--map__map-box__form"},local: true) do |f| %>
             <input type="hidden" name="map[address]" id="hidden_address">
             <%= f.label :name, "ピンの登録" %>
             <%= f.text_field :name %>
@@ -55,15 +55,14 @@
           <% end %>
         <% end %>
       </div>
-
-      <div class="event-show--map_index">
-        <h5 class="event-show--pin_title">登録したピン：</h5>
+      <div class="event-show--map__pin">
+        <h5 class="event-show--map__pin__title">登録したピン：</h5>
         <% if @maps.present? %>
           <% @maps.each do |map| %>
-            <div class="event-show--pin_name">
+            <div class="event-show--map__pin__box">
               <i class="fas fa-map-marker-alt"></i>
               <%= map.name %>
-              <%= link_to "", event_map_path(map), method: :delete, class: "btn-danger fa-xs fas fa-backspace event-show--pin_delete" %>
+              <%= link_to "", event_map_path(map), method: :delete, class: "btn-danger fa-xs fas fa-backspace event-show--map__pin__box__delete" %>
             </div>
           <% end %>
         <% else %>
@@ -72,14 +71,14 @@
       </div>
     </div>
 
-    <div class="event-show--image_content">
-      <h4 class="event-show--image_title">登録画像</h4>
+    <div class="event-show--image">
+      <h4 class="event-show--image__title">登録画像</h4>
       <div>
         <% if @event.images.present? %>
           <% @event.images.each do |image| %>
-            <div class="event-show--image_box">
+            <div class="event-show--image__box">
               <%= attachment_image_tag image, :image, :fill, 160, 160, size:'160x160' %>
-              <%= link_to "", event_image_path(image), method: :delete, class: "btn-danger fas fa-backspace event-show--image_delete" %>
+              <%= link_to "", event_image_path(image), method: :delete, class: "btn-danger fas fa-backspace event-show--image__box__delete" %>
             </div>
           <% end %>
         <% else %>
@@ -87,11 +86,11 @@
         <% end %>
       </div>
 
-      <div class="event-show--image_form">
+      <div class="event-show--image__form">
         <% if @event.user == current_user %>
           <%= form_with(model: @event, local: true) do |f| %>
             <%= f.attachment_field :images_images, multiple: true, placeholder: "追加画像", class: "" %>
-            <%= f.submit "画像を登録", class: "event-show--image_form_btn" %>
+            <%= f.submit "画像を登録", class: "event-show--image__form__btn" %>
           <% end %>
         <% end %>
       </div>
