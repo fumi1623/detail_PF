@@ -74,16 +74,16 @@ $(function() {
 $(function() {
   for (let n = 0; n < gon.presets.length; n++) {
     $('#preset_' + n).click(function() {
-      $('#event_name').val()
-      $('#event_place').val()
-      $('#event_detail').val()
-      $('#event_remarks').val()
+      $('#event_name').val();
+      $('#event_place').val();
+      $('#event_detail').val();
+      $('#event_remarks').val();
 
-      $('#event_name').val(gon.presets[n].name)
-      $('#event_place').val(gon.presets[n].place)
-      $('#event_detail').val(gon.presets[n].detail)
-      $('#event_remarks').val(gon.presets[n].remarks)
-    })
+      $('#event_name').val(gon.presets[n].name);
+      $('#event_place').val(gon.presets[n].place);
+      $('#event_detail').val(gon.presets[n].detail);
+      $('#event_remarks').val(gon.presets[n].remarks);
+    });
   }
-})
+});
 
