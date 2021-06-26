@@ -1,3 +1,4 @@
+// ログイン画面
 .user-new--title,
 .user-login--title {
   margin-top: 30px;
@@ -7,21 +8,20 @@
 .user-login--form {
   margin-top: 30px;
   width: 75%;
+
+  &__btn {
+    width: 120px;
+    height: 40px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+  &__btn:hover {
+    color: #f9f9f9;
+    background-color: #3f3f3f;
+  }
 }
 
-.user-new--form--btn,
-.user-login--form--btn {
-  width: 120px;
-  height: 40px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-}
 
-.user-new--form--btn:hover,
-.user-login--form--btn:hover  {
-  color: #f9f9f9;
-  background-color: #202020;
-}
 
 .user-new--login_text,
 .user-login--registration_text,
@@ -30,6 +30,6 @@
   margin-top: 15px;
 }
 
-.user-myPage--row {
-  margin-top: 30px;
-}
+// .user-myPage--row {
+//   margin-top: 30px;
+// }

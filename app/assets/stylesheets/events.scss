@@ -1,395 +1,507 @@
 // イベント情報管理フォーム
 
-.event-new--preset_title,
-.event-new--preset {
-  margin-left: 5%;
-}
-
-.event-new--preset_title:hover {
-  opacity: 0.7;
-}
-
-.event-new--preset_box {
-  width: 200px;
-}
-
-.event-new--preset_name {
-  background-color: #e0e0e0;
-  margin: 8px 2px 8px 12px;
-  padding: 6px 10px 6px 10px;
-  border-radius: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.event-new--preset_name:first-child {
-  margin-left: 0;
-}
-
-.event-new--preset_name:hover {
-  opacity: 0.7;
-}
-
-.event-new--preset_link,
-.event-new--preset_delete_btn {
-  padding: 4px 6px;
-}
-
-.event-new--preset_delete_btn {
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.event-new--preset_delete_btn:hover {
-  text-decoration: none;
-  opacity: 0.7;
-}
-
-.event-new--preset_link_box {
-  margin-top: 10px;
-}
-
-.event-new--preset_link {
-  color: #212529;
-}
-
-.event-new--preset_link:hover {
-  text-decoration: none;
-  opacity: 0.7;
-}
-
-
-
 .event-new--title,
 .event-edit--title {
   margin-top: 30px;
 }
 
+.event-new--preset_title {
+  margin-left: 5%;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.preset {
+  margin-left: 5%;
+
+  &__index {
+    width: 200px;
+
+    &__box {
+      &__name {
+        background-color: #e0e0e0;
+        margin: 8px 2px 8px 12px;
+        padding: 6px 10px 6px 10px;
+        border-radius: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      &__delete__btn {
+        padding: 4px 6px;
+        border-radius: 4px;
+        margin-right: 10px;
+        &:hover {
+          text-decoration: none;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  &__link-box {
+    margin-top: 10px;
+
+    &__link {
+      padding: 4px 6px;
+      color: #212529;
+      &:hover {
+        text-decoration: none;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+// イベントフォーム関連
 .event-form {
   margin-top: 20px;
-}
 
-.event-new--release,
-.event-edit--release {
-  position: relative;
-}
+  &__release {
+    position: relative;
 
-.event-new--question_icon,
-.event-edit--question_icon {
-  font-size: 1.3rem;
-}
+    &__q-icon {
+      font-size: 1.3rem;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    &__q-box {
+      display: none;
 
-.event-new--question_icon:hover,
-.event-edit--question_icon:hover {
-  opacity: 0.7;
-}
-
-.event-new--question_box,
-.event-edit--question_box {
-  display: none;
-}
-
-.event-new--question_t,
-.event-edit--question_t {
-  position: absolute;
-  top: 8px;
-  left: 122px;
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-right: 25px solid #262626;
-  border-bottom: 15px solid transparent;
-
-}
-
-.event-new--question_text,
-.event-edit--question_text {
-  position: absolute;
-  top: 8px;
-  left: 140px;
-  margin: 0;
-  padding: 4px;
-  max-width: 80%;
-  background-color: #f5f5f5;
-  border: 1px solid #262626;
+      &__balloon {
+        position: absolute;
+        top: 8px;
+        left: 122px;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-right: 25px solid #262626;
+        border-bottom: 15px solid transparent;
+      }
+      &__text {
+        position: absolute;
+        top: 8px;
+        left: 140px;
+        margin: 0;
+        padding: 4px;
+        max-width: 80%;
+        background-color: #f5f5f5;
+        border: 1px solid #262626;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .event-new--form {
+  .event-add--form {
     margin: 10px 20px 10px 20px;
   }
 }
 
 // indexページ
+.event-index-- {
+  &main_box {
+    margin: 30px auto 0 auto;
+  }
+  // leftSide
+  &side {
+    margin-left: 30px;
+  }
+  // 予定追加部分
+  &new_link {
+    margin-top: 30px;
 
-.event-index--main_box {
-  margin: 30px auto 0 auto;
+    &__text {
+      font-size: 1.2rem;
+    }
+  }
+  // 本日の予定
+  &today {
+    margin-top: 30px;
+
+    &__title {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    &__box {
+      &__link {
+        &:hover {
+          text-decoration: none;
+        }
+        &__text {
+          background: #7abcff;
+          padding: 4px 8px 4px 8px;
+          color: #202020;
+          border-radius: 4px;
+          height: 30px;
+          width: 160px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+  // タグ部分
+  &tag {
+    margin-top: 30px;
+
+    &__title {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    &__menu {
+      padding-left: 8px;
+
+      &__li {
+        list-style: none;
+
+        &__link {
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+  // 所属グループ部分
+  &group {
+    margin-top: 30px;
+
+    &__title {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    &__box {
+      &__name {
+        width: 180px;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  // 承認待ちグループ部分
+  &invitation {
+    margin-top: 30px;
+
+    &__title {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    &__box {
+      padding-left: 12px;
+
+      &__name {
+        width: 180px;
+        margin-bottom: 4px;
+      }
+      &__btn {
+        margin-bottom: 20px;
+        width: 180px;
+
+        &__accept {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  // カレンダー部分
+  &calendar {
+    &__inside {
+      &__name-box {
+        height: 30px;
+
+        &:hover {
+          opacity: 0.8;
+        }
+        &__link {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+        &__name {
+          height: 26px;
+          width: 100px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          background: #7abcff;
+          padding: 2px;
+          color: #202020;
+        }
+      }
+      &__day-count {
+        position: absolute;
+        right: 2px;
+        bottom: 0;
+
+        &__link {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
 }
 
-// leftSide
-.event-index--side {
-  margin-left: 30px;
-}
-
-.event-index--today_events_box,
-.event-index--new_btn_box,
-.event-index--group_box,
-.event-index--invitation_group,
-.event-index--tags_box {
-  margin-top: 30px;
-}
-
-.event-index--new_link_text {
-  font-size: 1.2rem;
-}
-
-
-.event-index--today_event_title:hover,
-.event-index--tag_title:hover,
-.event-index--group_title:hover,
-.event-index--invitation_group_title:hover,
-.event-index--today_events_link_text:hover,
-.event-index--group_link:hover,
-.event-index--tag_link:hover {
-  opacity: 0.7;
-}
-
-.event-index--today_events_link:hover {
-  text-decoration: none;
-}
-
-.event-index--today_events_link_text {
-  background: #7abcff;
-  padding: 4px 8px 4px 8px;
-  color: #202020;
-  border-radius: 4px;
-  height: 30px;
-  width: 160px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.event-index--dropdown_menu {
-  padding-left: 8px;
-}
-
-.event-index--tag_li {
-  list-style: none;
-}
-
-.event-index--group_name {
-  width: 180px;
-}
-
-.event-index--invitation_group_box {
-  padding-left: 12px;
-}
-
-.event-index--invitation_group_name {
-  width: 180px;
-  margin-bottom: 4px;
-}
-
-.event-index--invitation_btn_box {
-  margin-bottom: 20px;
-  width: 180px;
-}
-
-.event-index--invitation_accept {
-  display: inline-block;
-}
-
-// calendarSide
-.event-index--event_name_box {
-  height: 30px;
-}
-
-.event-index--event_name_box:hover {
-  opacity: 0.8;
-}
-
-.event-index--event_name {
-  height: 26px;
-  width: 100px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: #7abcff;
-  padding: 2px;
-  color: #202020;
-}
-
-.event-index--event_link:hover {
-  text-decoration: none;
-}
-
-.day {
+.day {  // シンプルカレンダーのmonthの１日のbox
   position: relative;
 }
 
-.event-index--day_count {
-  position: absolute;
-  right: 2px;
-  bottom: 0;
-}
-
-.event-index--day_link:hover {
-  text-decoration: none;
-}
-
 @media screen and (max-width: 1200px) {
-  .event-index--side {
-    display: flex;
-    justify-content: space-around;
-  }
-  .event-index--group_box {
-    width: 180px;
-  }
-  .event-index--calendar_box {
-    margin-left: auto;
-    margin-right: auto;
+  .event-index-- {
+    &side {
+      display: flex;
+      justify-content: space-around;
+    }
+    &group {
+      width: 180px;
+    }
+    &calendar {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
 @media screen and (max-width: 992px) {
-  .event-index--side {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
+  .event-index-- {
+    &side {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    &new_link {
+      margin: 16px 30px 0 0;
+      height: 38px;
+    }
+    &today,
+    &tag,
+    &group,
+    &invitation {
+      margin-top: 16px;
+      min-width: 200px;
+    }
+    &group {
+      &__box {
+        &__link {
+          padding: 0 !important;
+        }
+      }
+    }
+    &calendar {
+      width: 900px;
+      border: 2px solid #a9a9a9;
+      margin: 20px 20px 0 20px;
+      overflow: hidden;
+      overflow-x: scroll;
+    }
   }
-  .event-index--today_events_box,
-  .event-index--new_btn_box,
-  .event-index--group_box,
-  .event-index--invitation_group,
-  .event-index--tags_box {
-    margin-top: 16px;
-    width: 270px;
-  }
-  .event-index--group_link {
-    padding: 0 !important;
-  }
-  .event-index--calendar_box {
-    width: 900px;
-    border: 2px solid #a9a9a9;
-    margin: 20px 20px 0 20px;
-    overflow: hidden;
-    overflow-x: scroll;
+}
+
+@media screen and (max-width: 554px) {
+  .event-index-- {
+    &side {
+      display: block;
+    }
   }
 }
 
 // showページ
-.event-show--main_box {
-  margin-top: 30px;
-}
+.event-show-- {
+  &main_box {
+    margin-top: 30px;
+  }
+  &event-box {
+    &__name,
+    &__place,
+    &__detail,
+    &__remarks,
+    &event-btn {
+      margin-top: 30px;
+    }
+  }
+  &map__map-box {
+    margin-top: 30px;
 
-.event-show--name,
-.event-show--place,
-.event-show--detail,
-.event-show--remarks,
-.event-show--event_btn,
-.event-show--map_box,
-.event-show--image_title {
-  margin-top: 30px;
-}
+    &__map {
+      margin-top: 10px;
+      width: 90%;
+      height: 280px;
+    }
+    &__form {
+      margin-top: 10px;
+      display: inline-block;
+    }
+  }
+  &map__pin {
+    margin-top: 10px;
 
-.event-show--map,
-.event-show--map_form,
-.event-show--map_index,
-.event-show--image_form,
-.event-show--image_form_btn {
-  margin-top: 10px;
-}
+    &__title {
+      display: inline-block;
+    }
+    &__box {
+      display: inline-block;
+      font-size: 1.2rem;
+      margin-right: 10px;
 
-.event-show--map_form,
-.event-show--pin_title,
-.event-show--pin_name,
-.event-show--image_box {
-  display: inline-block;
-}
+      &__delete {
+        padding: 4px;
+        border-radius: 4px;
 
-.event-show--map {
-  width: 90%;
-  height: 280px;
-}
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
 
-.event-show--pin_name {
-  font-size: 1.2rem;
-  margin-right: 10px;
-}
+  &image {
+    &__title {
+      margin-top: 30px;
+    }
+    &__box {
+      margin: 0 16px 16px 0;
+      display: inline-block;
 
-.event-show--pin_delete,
-.event-show--image_delete {
-  padding: 4px;
-  border-radius: 4px;
-}
+      &__delete {
+        padding: 4px;
+        vertical-align: top;
+        border-radius: 4px;
 
-.event-show--pin_delete:hover,
-.event-show--image_delete:hover {
-  text-decoration: none;
-}
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    &__form {
+      margin: 10px 0 20px 0;
 
-.event-show--image_box {
-  margin: 0 16px 16px 0;
-}
-
-.event-show--image_delete {
-  vertical-align: top;
-}
-
-.event-show--image_form {
-  margin-bottom: 20px;
+      &__btn {
+        margin-top: 10px;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 992px) {
-  .event-show--event_box,
-  .event-show--map_content,
-  .event-show--image_content {
-    width: 90%;
-    margin: 0 auto;
-  }
-  .event-show--map_content,
-  .event-show--image_content {
-    margin-top: 12px;
-    padding-top: 16px;
-    border-top: 1px solid #c0c0c0;
-  }
-  .event-show--map {
-    width: 100%;
+  .event-show-- {
+    &event-box {
+      width: 90%;
+      margin: 0 auto;
+    }
+    &map {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #c0c0c0;
+
+      &__map-box__map {
+        width: 100%;
+      }
+    }
+    &image {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #c0c0c0;
+    }
   }
 }
 
 // dayページ
-.event-day--main_box {
-  margin: 30px auto 0 auto;
-  width: 80%;
-}
+.event-day-- {
+  &main {
+    margin: 30px auto 0 auto;
+    width: 80%;
+  }
+  &table {
+    margin-top: 30px;
 
-.event-day--table {
-  margin-top: 30px;
-}
+    &__event-link {
+      color: #202020;
 
-.event-day--event_link {
-  color: #202020;
-}
-
-.event-day--event_link:hover {
-  text-decoration: none;
-  opacity: 0.8;
+      &:hover {
+        text-decoration: none;
+        opacity: 0.8;
+      }
+    }
+  }
 }
 
 // tagページ
-.event-tag_main {
-  margin-top: 30px;
+.event-tag-- {
+  &main {
+    margin-top: 30px;
+  }
+  // カレンダー部分
+  &calendar {
+    &__inside {
+      &__name-box {
+        height: 30px;
+
+        &:hover {
+          opacity: 0.8;
+        }
+        &__link {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+        &__name {
+          height: 26px;
+          width: 100px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          background: #7abcff;
+          padding: 2px;
+          color: #202020;
+        }
+      }
+      &__day-count {
+        position: absolute;
+        right: 2px;
+        bottom: 0;
+
+        &__link {
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 992px) {
-  .event-tag--calendar_box {
+
+  .event-tag--calendar {
     width: 900px;
     border: 2px solid #a9a9a9;
-    margin: 20px auto 0 auto;
+    margin: 20px 10px 0 10px;
     overflow: hidden;
     overflow-x: scroll;
   }
+
 }

@@ -7,21 +7,17 @@
     <!--メニュー部分-->
     <div class="col-xl-3 col-md-11 event-index--side">
       <!--予定の追加部分-->
-      <div class="event-index--new_btn_box">
-        <div class="event-index--new_btn">
-          <%= link_to new_event_path, class: "event-index--new_link btn btn-sm btn-outline-success" do %>
-            <span class="event-index--new_link_text">予定を追加　</span><i class="fas fa-plus-circle event-index--new_link_text"></i>
-          <% end %>
-        </div>
-      </div>
+        <%= link_to new_event_path, class: "event-index--new_link btn btn-sm btn-outline-success" do %>
+          <span class="event-index--new_link__text">予定を追加　</span><i class="fas fa-plus-circle event-index--new_link__text"></i>
+        <% end %>
       <!--今日の予定部分-->
-      <div class="event-index--today_events_box">
-        <h5 class="event-index--today_event_title">本日の予定  <i class="fas fa-chevron-circle-right today-events-icon"></i></h5>
-        <div class="event-index--today_event_box">
+      <div class="event-index--today">
+        <h5 class="event-index--today__title">本日の予定  <i class="fas fa-chevron-circle-right today-events-icon"></i></h5>
+        <div class="event-index--today__box">
           <% if @today_events.present? %>
             <% @today_events.each do |event| %>
-              <%= link_to event_path(event), class: "event-index--today_events_link" do %>
-                <p class="event-index--today_events_link_text text-left"><%= event.name %></p>
+              <%= link_to event_path(event), class: "event-index--today__box__link" do %>
+                <p class="event-index--today__box__link__text text-left"><%= event.name %></p>
               <% end %>
             <% end %>
           <% else %>
@@ -30,14 +26,14 @@
         </div>
       </div>
       <!--タグ一覧部分-->
-      <div class="event-index--tags_box">
+      <div class="event-index--tag">
         <nav>
-          <h5 class="event-index--tag_title">タグ一覧  <i class="fas fa-chevron-circle-right tag-index-icon"></i></h5>
-          <ul class="event-index--dropdown_menu">
+          <h5 class="event-index--tag__title">タグ一覧  <i class="fas fa-chevron-circle-right tag-index-icon"></i></h5>
+          <ul class="event-index--tag__menu">
             <% if @tags.present? %>
               <% @tags.each do |tag| %>
-                <li class="event-index--tag_li">
-                  <%= link_to event_tag_path(id: tag.id), class: "btn event-index--tag_link" do %>
+                <li class="event-index--tag__menu__li">
+                  <%= link_to event_tag_path(id: tag.id), class: "btn event-index--tag__menu__li__link" do %>
                     <i class="fas fa-tag"></i>  <%= tag.name %>
                   <% end %>
                 </li>
@@ -49,13 +45,13 @@
         </nav>
       </div>
       <!--所属グループ部分-->
-      <div class="event-index--group_box">
-        <h5 class="event-index--group_title">所属グループ  <i class="fas fa-chevron-circle-right group-index-icon"></i></h5>
-        <div class="event-index--group_link_box">
+      <div class="event-index--group">
+        <h5 class="event-index--group__title">所属グループ  <i class="fas fa-chevron-circle-right group-index-icon"></i></h5>
+        <div class="event-index--group__box">
           <% if @true_group_users.present? %>
             <% @true_group_users.each do |group_user| %>
-              <%= link_to group_path(group_user.group), class: "btn event-index--group_link" do %>
-                <p class="event-index--group_name"><%= group_user.group.name %></p>
+              <%= link_to group_path(group_user.group), class: "btn event-index--group__box__link" do %>
+                <p class="event-index--group__box__name"><%= group_user.group.name %></p>
               <% end %>
             <% end %>
           <% else %>
@@ -64,14 +60,14 @@
         </div>
       </div>
       <!--承認待ちグループ部分-->
-      <div class="event-index--invitation_group">
-        <h5 class="event-index--invitation_group_title">招待を受けているグループ  <i class="fas fa-chevron-circle-right invitation-index-icon"></i></h5>
-        <div class="event-index--invitation_group_box">
+      <div class="event-index--invitation">
+        <h5 class="event-index--invitation__title">招待を受けているグループ  <i class="fas fa-chevron-circle-right invitation-index-icon"></i></h5>
+        <div class="event-index--invitation__box">
           <% if @false_group_users.present? %>
             <% @false_group_users.each do |group_user| %>
-              <p class="event-index--invitation_group_name"><%= group_user.group.name %></p>
-              <div class="event-index--invitation_btn_box">
-                <%= form_with(model: group_user, url:group_users_accept_path(id: group_user.id) ,class: "event-index--invitation_accept" ,local: true) do |f| %>
+              <p class="event-index--invitation__box__name"><%= group_user.group.name %></p>
+              <div class="event-index--invitation__box__btn">
+                <%= form_with(model: group_user, url:group_users_accept_path(id: group_user.id) ,class: "event-index--invitation__box__btn__accept" ,local: true) do |f| %>
                   <%= f.hidden_field :invitation, :value => true %>
                   <%= f.submit "承認", class: "btn btn-sm btn-outline-success" %>
                 <% end %>
@@ -85,15 +81,15 @@
       </div>
     </div>
   <!--カレンダー部分-->
-    <div class="col-xl-8 col-lg-11 event-index--calendar_box">
-      <div class="event-index--calendar_box_inside">
+    <div class="col-xl-8 col-lg-11 event-index--calendar">
+      <div class="event-index--calendar__inside">
         <%= month_calendar events: @events do |date, events| %>
           <%= date.day %>
           <!--日付の中に表示する予定-->
           <% events.first(3).each do |event| %>
-            <div class="event-index--event_name_box">
-              <%= link_to event_path(event), class: "event-index--event_link" do %>
-                <p class="event-index--event_name"><%= event.name %></p>
+            <div class="event-index--calendar__inside__name-box">
+              <%= link_to event_path(event), class: "event-index--calendar__inside__name-box__link" do %>
+                <p class="event-index--calendar__inside__name-box__name"><%= event.name %></p>
               <% end %>
             </div>
           <% end %>
@@ -105,8 +101,8 @@
           <% end %>
           <!--その日の予定数-->
           <% if events.present? %>
-            <div class="event-index--day_count">
-              <%= link_to event_day_path(day: date), class: "event-index--day_link" do %>
+            <div class="event-index--calendar__inside__day-count">
+              <%= link_to event_day_path(day: date), class: "event-index--calendar__inside__day-count__link" do %>
                 予定：<%= events.count %>件
               <% end %>
             </div>

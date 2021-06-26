@@ -15,58 +15,58 @@ $(function() {
 // indexページ
 
 $(function() {
-  $('.event-index--today_event_box').hide();
+  $('.event-index--today__box').hide();
 });
 
 $(function() {
-  $('.event-index--group_link_box').hide();
+  $('.event-index--tag__menu').hide();
 });
 
 $(function() {
-  $('.event-index--dropdown_menu').hide();
+  $('.event-index--group__box').hide();
 });
 
 $(function() {
-  $('.event-index--invitation_group_box').hide();
+  $('.event-index--invitation__box').hide();
 });
 
 $(function() {
-  $('.event-index--today_event_title').click(function() {
+  $('.event-index--today__title').click(function() {
     $('.today-events-icon').toggleClass('icon_rotate');
-    $('.event-index--today_event_box').slideToggle();
+    $('.event-index--today__box').slideToggle();
   });
 });
 
 $(function() {
-  $('.event-index--tag_title').click(function() {
+  $('.event-index--tag__title').click(function() {
     $('.tag-index-icon').toggleClass('icon_rotate');
-    $('.event-index--dropdown_menu').slideToggle();
+    $('.event-index--tag__menu').slideToggle();
   })
 })
 
 $(function() {
-  $('.event-index--group_title').click(function() {
+  $('.event-index--group__title').click(function() {
     $('.group-index-icon').toggleClass('icon_rotate');
-    $('.event-index--group_link_box').slideToggle();
+    $('.event-index--group__box').slideToggle();
   })
 })
 
 $(function() {
-  $('.event-index--invitation_group_title').click(function() {
+  $('.event-index--invitation__title').click(function() {
     $('.invitation-index-icon').toggleClass('icon_rotate');
-    $('.event-index--invitation_group_box').slideToggle();
+    $('.event-index--invitation__box').slideToggle();
   })
 })
 
 // プリセット関連
 $(function() {
-  $('.event-new--preset').hide();
+  $('.preset').hide();
 });
 
 $(function() {
   $('.event-new--preset_title').click(function() {
     $('.preset-index-icon').toggleClass('icon_rotate');
-    $('.event-new--preset').slideToggle();
+    $('.preset').slideToggle();
   })
 })
 

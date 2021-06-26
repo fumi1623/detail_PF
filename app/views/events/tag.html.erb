@@ -1,28 +1,28 @@
-<div class="row event-tag_main">
+<div class="row event-tag--main">
   <div class="col-lg-2"></div>
-  <div class="col-lg-8 col-md-11 event-tag--calendar_box">
+  <div class="col-lg-8 col-md-11 event-tag--calendar">
     <h4 class="text-left"><i class="fas fa-tag"></i>  <%= @tag.name %></h4>
-    <div class="event-tag--calendar_box_inside">
+    <div class="event-tag--calendar__inside">
       <%= month_calendar events: @events do |date, events| %>
         <%= date.day %>
         <!--日付の中に表示する予定-->
         <% events.first(3).each do |event| %>
-          <div class="event-index--event_name_box">
-            <%= link_to event_path(event), class: "" do %>
-              <p class="event-index--event_name"><%= event.name %></p>
+          <div class="event-tag--calendar__inside__name-box">
+            <%= link_to event_path(event), class: "event-tag--calendar__inside__name-box__link" do %>
+              <p class="event-tag--calendar__inside__name-box__name"><%= event.name %></p>
             <% end %>
           </div>
         <% end %>
         <!--４つ以上なら3点で省略-->
         <% if events.count >= 4 %>
-          <div class="text-left event-index--day_dot">
+          <div class="text-left event-tag--day_dot">
             <i class="fas fa-ellipsis-v fa-xs"></i>
           </div>
         <% end %>
         <!--その日の予定数-->
         <% if events.present? %>
-          <div class="event-index--day_count">
-            <%= link_to event_day_path(day: date) do %>
+          <div class="event-tag--calendar__inside__day-count">
+            <%= link_to event_day_path(day: date), class: "event-tag--calendar__inside__day-count__link" do %>
               予定：<%= events.count %>件
             <% end %>
           </div>
