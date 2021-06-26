@@ -21,26 +21,26 @@
         <% end %>
       </div>
       <!--メンバー部分-->
-      <h5 class="group-show--group_member_title"><i class="fas fa-user"></i> メンバー  <i class="fas fa-chevron-circle-right group-member-icon"></i></h5>
-      <div class="group-show--group_member_box">
+      <h5 class="group-show--member-title"><i class="fas fa-user"></i> メンバー  <i class="fas fa-chevron-circle-right group-member-icon"></i></h5>
+      <div class="group-show--member-box">
         <% @users.each do |user| %>
-          <div class="group-show--group_member d-lg-flex align-items-center">
+          <div class="group-show--member-box__member d-lg-flex align-items-center">
             <div class="mx-auto">
               <%= attachment_image_tag user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size:'80x80' %>
             </div>
           </div>
-          <p class="text-lg-center group-show--group_member_name"><%= user.name %></p>
+          <p class="text-lg-center group-show--member-box__name"><%= user.name %></p>
         <% end %>
         <!--招待中メンバー部分-->
-        <h5 class="group-show--invitation_member_title text-center">招待中  <i class="fas fa-chevron-circle-right group-invitation-icon"></i></h5>
-        <div class="group-show--invitation_member_box">
+        <h5 class="group-show--invitation-title text-center">招待中  <i class="fas fa-chevron-circle-right group-invitation-icon"></i></h5>
+        <div class="group-show--invitation-title__box">
           <% if @invitation_users.present? %>
             <% @invitation_users.each do |user| %>
-              <div class="group-show--invitation_member_img">
+              <div class="group-show--invitation-title__box__img">
                 <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
-                <%= link_to '', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "fas fa-user-minus btn btn-outline-dark group-show--invitation_delete_btn" %>
+                <%= link_to '', group_user_path(group_user: {user_id: user.id}), method: :delete, class: "fas fa-user-minus btn btn-outline-dark group-show--invitation-title__box__delete-btn" %>
               </div>
-              <p class="group-show--invitation_member_name text-left"><%= user.name %></p>
+              <p class="group-show--invitation-title__box__name text-left"><%= user.name %></p>
             <% end %>
           <% else %>
             <p class="text-center">招待中ユーザーはいません</p>
@@ -49,15 +49,15 @@
       </div>
     </div>
 
-    <div class="col-lg-9 group-show--calendar-section">
+    <div class="col-lg-9 group-show--calendar">
       <!--カレンダー部分-->
       <div class="group-show--calendar-box">
         <%= week_calendar(number_of_weeks: 2, events: @events) do |date, events| %>
           <%= date.day %>
           <% events.first(10).each do |event| %>
-            <div class="group-show--event_name_box">
-              <%= link_to event_path(event), class: "group-show--event_link" do %>
-                <p class="group-show--event_name"><%= event.name %></p>
+            <div class="group-show--event">
+              <%= link_to event_path(event), class: "group-show--event__link" do %>
+                <p class="group-show--event__link__name"><%= event.name %></p>
               <% end %>
             </div>
           <% end %>
@@ -69,7 +69,7 @@
           <% end %>
 
           <% if events.present? %>
-            <div class="group-show--day_count">
+            <div class="group-show--day-count">
               <%= link_to group_day_path(day: date, group_id: @group.id) do %>
                 予定：<%= events.count %>件
               <% end %>

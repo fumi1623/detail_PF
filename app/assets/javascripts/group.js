@@ -1,22 +1,22 @@
 /* global $ */
 $(function() {
-  $('.group-show--group_member_box').hide();
+  $('.group-show--member-box').hide();
 });
 
 $(function() {
-  $('.group-show--invitation_member_box').hide();
+  $('.group-show--invitation-title__box').hide();
 });
 
 $(function() {
-  $('.group-show--group_member_title').click(function() {
+  $('.group-show--member-title').click(function() {
     $('.group-member-icon').toggleClass('icon_rotate');
-    $('.group-show--group_member_box').slideToggle();
+    $('.group-show--member-box').slideToggle();
   });
 });
 
 $(function() {
-  $('.group-show--invitation_member_title').click(function() {
+  $('.group-show--invitation-title').click(function() {
     $('.group-invitation-icon').toggleClass('icon_rotate');
-    $('.group-show--invitation_member_box').slideToggle();
+    $('.group-show--invitation-title__box').slideToggle();
   });
 });

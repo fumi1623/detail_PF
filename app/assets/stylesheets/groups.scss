@@ -1,24 +1,26 @@
 // index-page
-.group-index--title {
-  margin-top: 30px;
-}
+.group-index-- {
+  &title {
+    margin-top: 30px;
+  }
+  &group_name {
+    width: 16.6%;
+  }
+  &user_name {
+    width: 16.6%;
 
-.group-index--group_name,
-.group-index--user_name {
-  width: 16.6%;
-}
-
-.group-index--form {
-  margin-right: 20px;
-  margin-bottom: 10px;
-}
-
-.group-index--user_invitation {
-  margin-left: 4px;
-  background: #008437;
-  padding: 4px 8px 4px 8px;
-  border-radius: 2px;
-  color: #f8f8f8;
+    &__invitation {
+      margin-left: 4px;
+      background: #008437;
+      padding: 4px 8px 4px 8px;
+      border-radius: 2px;
+      color: #f8f8f8;
+    }
+  }
+  &new-form {
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -29,148 +31,157 @@
 }
 
 // show-page
-.group-show--main,
-.group-show--group_member_title,
-.group-show--invitation_member {
-  margin-top: 30px;
-}
+.group-show-- {
+  &main {
+    margin-top: 30px;
+  }
+  &title {
+    padding-left: 20px;
+  }
+  &edit_btn {
+    margin: 0 0 8px 10px;
+  }
+  &side {
+    margin-top: 16px;
+    margin-left: 30px;
+  }
+  &member-title {
+    margin-top: 30px;
+  }
+  &member-box {
+    &__member {
+      padding-left: 20px;
+    }
+    &__name {
+      padding-left: 20px;
+    }
+  }
+  &invitation-title {
+    &__box {
+      &__img {
+        padding-left: 20px;
+      }
+      &__delete-btn {
+        padding: 4px !important;
+      }
+      &__name {
+        padding-left: 20px;
+      }
+    }
+  }
+  &calendar-box {
+    margin-top: 16px;
+  }
+  // カレンダー部分
+  &calendar-box {
 
-.group-show--edit_btn {
-  margin: 0 0 8px 10px;
-}
+  }
+  &event {
+    height: 30px;
 
-.group-show--side,
-.group-show--calendar-box {
-  margin-top: 16px;
+    &:hover {
+      opacity: 0.8;
+    }
+    &__link {
+      &__name {
+        height: 26px;
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background: #7abcff;
+        padding: 2px;
+        color: #202020;
+        text-decoration: none;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  &day-count {
+    position: absolute;
+    bottom: 0;
+    right: 2px;
+  }
 }
-
-.group-show--side {
-  margin-left: 30px;
-}
-
-.group-show--event_new_btn:hover,
-.group-show--event_new_link:hover {
-  text-decoration: none;
-  color: #212529;
-  opacity: 0.8;
-}
-
-.group-show--title,
-.group-show--group_member,
-.group-show--group_member_name,
-.group-show--invitation_member_img,
-.group-show--invitation_member_name {
-  padding-left: 20px;
-}
-
-.group-show--invitation_delete_btn {
-  padding: 4px !important;
-}
-
-// カレンダー部分
 .calender-week--day {
   height: 300px;
 }
 
-.group-show--event_name_box {
-  height: 30px;
-}
-
-.group-show--event_name_box:hover {
-  opacity: 0.8;
-}
-
-.group-show--event_name {
-  height: 26px;
-  width: 100px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: #7abcff;
-  padding: 2px;
-  color: #202020;
-}
-
-.group-show--event_link {
-  text-decoration: none;
-}
-
-.group-calendar-box {
-  position: relative;
-  width: 100%;
-}
-
-.group-show--day_count {
-  position: absolute;
-  bottom: 0;
-  right: 2px;
-}
-
 @media screen and (max-width: 992px) {
 
-  .group-show--calendar-section {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #c0c0c0;
+  .group-show-- {
+    &calendar {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #c0c0c0;
+    }
+    &calendar-box {
+      margin-left: auto;
+      margin-right: auto;
+      width: 95%;
+      overflow: hidden;
+      overflow-x: scroll;
+      border: 2px solid #a9a9a9;
+    }
   }
-
-  .group-show--calendar-box {
-    margin-left: auto;
-    margin-right: auto;
-    width: 95%;
-    overflow: hidden;
-    overflow-x: scroll;
-    border: 2px solid #a9a9a9;
-  }
-
 }
 
 // dayPage
-.group-day--main_box {
-  margin-top: 30px;
-}
+.group-day-- {
+  &main {
+    margin: 30px auto 0 auto;
+    width: 80%;
+  }
+  &table {
+    margin-top: 30px;
 
-.group-day--event_box {
-  margin: 30px 0 30px 0;
-  background-color: #e0e0e0;
-  padding: 0px !important;
-  border: 6px ridge rgba(57, 61, 80, .6);
-}
+    &__event-link {
+      color: #202020;
 
-.group-day--table {
-  font-size: 1.5rem;
-}
-
-.group-day--table_time,
-.group-day--table_title_time,
-.group-day--table_before_th {
-  padding-left: 20px !important;
-}
-
-.group-day--table_before {
-  border-top: 6px ridge rgba(57, 61, 80, .6);
+      &:hover {
+        text-decoration: none;
+        opacity: 0.8;
+      }
+    }
+  }
 }
 
 // editPage
-.group-edit--title,
-.group-edit--row {
-  margin-top: 30px;
+.group-edit-- {
+  &title {
+    margin-top: 30px;
+  }
+  &name-form {
+    margin-top: 30px;
+  }
+  &__label,
+  &__field {
+    margin-right: 20px;
+  }
+  &table {
+    margin-top: 20px;
+  }
+  &invitation-form {
+    margin-right: 20px;
+  }
+  &flash {
+    display: inline;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
 }
 
-.group-edit--name_form,
-.group-edit--invitation_form {
-  margin-right: 20px;
-}
-
-.group-edit--flash {
-  display: inline;
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #ffeeba;
+@media screen and (max-width: 660px) {
+  .group-edit--name-form__btn {
+    margin: 10px 0 10px 0;
+  }
 }
 
 @media screen and (max-width: 431px) {
-  .group-edit--row {
-    padding-left: 20px;
+  .group-edit--name-form {
+    margin-left: 40px !important;
   }
 }
