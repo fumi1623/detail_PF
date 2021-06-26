@@ -48,7 +48,8 @@
         <tr scope="row">
           <th class="text-nowrap"><%= form.label :"グループメンバーへの公開設定" %></th>
           <td class="event-form__release">
-            <%= form.select :release, [['非公開',0],['公開',1]], { selected: @event.release } %>　<i class="far fa-question-circle event-form__release__q-icon" id="questionBtn"></i>
+            <%= form.select :release, [['非公開',0],['公開',1]], selected: @release %>　<i class="far fa-question-circle event-form__release__q-icon" id="questionBtn"></i>
+
             <div class="event-form__release__q-box" id="eventNewQuestion">
               <div class="event-form__release__q-box__balloon"></div>
               <p class="event-form__release__q-box__text">

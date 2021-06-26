@@ -63,6 +63,11 @@ class EventsController < ApplicationController
       redirect_to '/events'
       return
     end
+    if @event.release == true  #公開設定のセレクトボックスの初期値用に1or0に変換
+      @release = 1
+    else
+      @release = 0
+    end
     @tag_list = @event.tags.pluck(:name).join(',')
     if @event.user == current_user # アクセス制限
       render 'edit'
