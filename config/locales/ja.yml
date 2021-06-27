@@ -2,7 +2,7 @@ ja:
   activerecord:
     models:
       form: "フォーム"
-      group_user: 'グルプ'
+      group_user: 'グループ'
     attributes:
       event:
         name: "タイトル"

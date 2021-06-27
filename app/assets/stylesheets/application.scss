@@ -78,11 +78,21 @@ html, body {
 .error_message_text {
   margin-top: 4px;
   padding: 4px 8px;
-  display: inline;
+  display: inline-block;
 }
 
 .field_with_errors {
   display: inline;
+}
+
+.login_error {
+  margin-left: 10px;
+  padding: 4px;
+  border-radius: 4px;
+  display: inline-block;
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
 }
 
 // カレンダー関連

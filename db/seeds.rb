@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # User
-User.create(name: "甲田 守男", email: "CMbyN@test.com", password: "pAGDAiRZ")
+User.create(name: "甲田 守男", email: "test_user@test.com", password: "pAGDAiRZ")
 User.create(name: "新美 敏哉", email: "YYaTg@test.net", password: "ULGMAnCV")
 User.create(name: "東野 竹志", email: "fb6qwr1I0p@sample.com", password: "oEQH49DJ")
 User.create(name: "城間 眞", email: "t84Ld7Qgxi@sample.co.jp", password: "rw52ivhv")
@@ -180,7 +180,7 @@ TagRelationship.create(event_id: "7", tag_id: "1")
 TagRelationship.create(event_id: "8", tag_id: "1")
 TagRelationship.create(event_id: "9", tag_id: "1")
 TagRelationship.create(event_id: "10", tag_id: "1")
-TagRelationship.create(event_id: "12", tag_id: "1")
+TagRelationship.create(event_id: "11", tag_id: "1")
 TagRelationship.create(event_id: "12", tag_id: "1")
 TagRelationship.create(event_id: "13", tag_id: "1")
 TagRelationship.create(event_id: "14", tag_id: "1")

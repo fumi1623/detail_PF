@@ -4,16 +4,24 @@
   <h6 class="event-new--preset_title">プリセット一覧  <i class="fas fa-chevron-circle-right preset-index-icon"></i></h6>
   <div class="preset">
     <div class="preset__index d-flex flex-wrap flex-lg-nowrap">
-      <% @presets.each_with_index do |preset, i| %>
-        <div class="preset__index__box d-flex align-items-center">
-          <div class="preset__index__box__name" id="preset_<%= i %>">
-            <%= preset.name %>
+      <% if @presets.present? %>
+        <% @presets.each_with_index do |preset, i| %>
+          <div class="preset__index__box d-flex align-items-center">
+            <div class="preset__index__box__name" id="preset_<%= i %>">
+              <%= preset.name %>
+            </div>
+            <div class="preset__index__box__delete">
+              <%= link_to "", preset_path(preset), method: :delete, class: "btn-danger fas fa-backspace preset__index__box__delete__btn" %>
+            </div>
           </div>
-          <div class="preset__index__box__delete">
-            <%= link_to "", preset_path(preset), method: :delete, class: "btn-danger fas fa-backspace preset__index__box__delete__btn" %>
-          </div>
-        </div>
+        <% end %>
+      <% else %>
+        <p>
+          プリセットが</br>
+          登録されていません。
+          </p>
       <% end %>
+
     </div>
     <div class="preset__link-box">
       <%= link_to "  プリセットの登録", new_preset_path, class: "fas fa-plus-circle preset__link-box__link" %>
