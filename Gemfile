@@ -45,7 +45,7 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.2'
+
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -80,6 +80,8 @@ gem 'refile', require: 'refile/rails', github: 'refile/refile'
 gem 'refile-mini_magick'
 gem 'simple_calendar', '~> 2.0'
 gem 'gon'
+
+gem 'listen', '>= 3.0.5', '< 3.2'
 
 gem 'dotenv-rails'
 group :production do
