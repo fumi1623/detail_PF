@@ -1,8 +1,8 @@
-<main class="event-day--main_box">
+<main class="group-day--main">
   <h3><%= @day.strftime('%m/%d') %>の予定</h3>
   <% if @events.present? %>
     <div class="table-responsive-md">
-      <table class="table">
+      <table class="table group-day--table">
         <% if @today_events.present? %>
           <thead class="thead-light">
             <tr scope="row">

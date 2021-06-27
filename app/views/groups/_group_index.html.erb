@@ -13,7 +13,7 @@
             <%= attachment_image_tag group_user.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
             <%= group_user.user.name %>
             <% if group_user.invitation == false %>
-              <span class="group-index--user_invitation">
+              <span class="group-index--user_name__invitation">
                 招待中
               </span>
             <% end %>

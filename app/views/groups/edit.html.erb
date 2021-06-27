@@ -4,20 +4,20 @@
     <h4 class="group-edit--title"><%= @group.name %></h4>
   </div>
 </div>
-<div class="row group-edit--row">
+<div class="row group-edit--name-form">
   <div class="col-2"></div>
   <div class="col">
     <%= form_with(model: @group, local: true) do |f| %>
       <div>
-        <%= f.label :"グループ名", class:"group-edit--name_form" %>
-        <%= f.text_field :name, :size => "40*20", class:"group-edit--name_form" %>
-        <%= f.submit "グループ名変更" %>
+        <%= f.label :"グループ名", class:"group-edit--name-form__label" %>
+        <%= f.text_field :name, :size => "40*20", class:"group-edit--name-form__field" %>
+        <%= f.submit "グループ名変更", class:"group-edit--name-form__btn" %>
       </div>
     <% end %>
     <%= render "layouts/error_messages", model: @group, attribute: :name %>
   </div>
 </div>
-<div class="row group-edit--row">
+<div class="row group-edit--table">
   <div class="col-2"></div>
   <div class="col-8 table-responsive-md">
     <table class="table">
@@ -42,8 +42,8 @@
             <td  class="text-nowrap" colspan="3">
 
               <%= form_with(model: [@group, @new_group_user], url: group_users_path, local: true) do |form| %>
-                <%= form.label :"ユーザーを追加", class:"group-edit--invitation_form" %>
-                <%= form.text_field :user_id, class:"group-edit--invitation_form", :size => "40*20", placeholder: "ユーザーIDを入力してください"  %>
+                <%= form.label :"ユーザーを追加", class:"group-edit--invitation-form" %>
+                <%= form.text_field :user_id, class:"group-edit--invitation-form", :size => "40*20", placeholder: "ユーザーIDを入力してください"  %>
                 <%= form.hidden_field :group_id, value: @group.id %>
                 <%= form.submit "招待を送る" %>
               <% end %>

@@ -1,9 +1,10 @@
-.preset-new--title {
-  margin-top: 30px;
-}
-
-.preset-new--form {
-  margin-top: 20px;
+.preset-new-- {
+  &title {
+    margin-top: 30px;
+  }
+  &form {
+    margin-top: 20px;
+  }
 }
 
 @media screen and (max-width: 768px) {

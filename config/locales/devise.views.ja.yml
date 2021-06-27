@@ -27,7 +27,7 @@ ja:
         remember_me: "次回から自動的にログイン"
     models:
       user: "ユーザー"
-      group_user: "group_user"
+      group_user: "グループユーザー"
   devise:
     confirmations:
       new:

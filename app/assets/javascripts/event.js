@@ -1,14 +1,7 @@
 /* global $ */
-/* global gon */
 $(function() {
-  $('.event-new--question_icon').click(function() {
-    $('.event-new--question_box').stop().fadeToggle(500);
-  });
-});
-
-$(function() {
-  $('.event-edit--question_icon').click(function() {
-    $('.event-edit--question_box').stop().fadeToggle(500);
+  $('.event-form__release__q-icon').click(function() {
+    $('.event-form__release__q-box').stop().fadeToggle(500);
   });
 });
 
@@ -70,7 +63,7 @@ $(function() {
   })
 })
 
-
+/* global gon */
 $(function() {
   for (let n = 0; n < gon.presets.length; n++) {
     $('#preset_' + n).click(function() {

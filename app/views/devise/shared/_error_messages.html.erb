@@ -1,7 +1,10 @@
 <% if resource.errors.any? %>
-  <div  class="alert-warning" id="error_explanation">
-    <% resource.errors.full_messages.each do |message| %>
-      <p class="error_message_p"><%= message %></p>
-    <% end %>
-  </div>
+  <% resource.errors.messages[attribute].each do |message| %>
+    <div>
+      <div class="alert-warning error_message_text">
+        <%= User.human_attribute_name(attribute) %><%= message %></br>
+      </div>
+    </div>
+  <% end %>
 <% end %>
+
