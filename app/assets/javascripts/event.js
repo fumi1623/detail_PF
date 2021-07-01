@@ -7,49 +7,49 @@ $(function() {
 
 // indexページ
 
-// $(function() {
-//   $('.event-index--today__box').hide();
-// });
+$(function() {
+  $('.event-index--today').hide();
+});
 
-// $(function() {
-//   $('.event-index--tag__menu').hide();
-// });
+$(function() {
+  $('.event-index--tag').hide();
+});
 
-// $(function() {
-//   $('.event-index--group__box').hide();
-// });
+$(function() {
+  $('.event-index--group').hide();
+});
 
-// $(function() {
-//   $('.event-index--invitation__box').hide();
-// });
+$(function() {
+  $('.event-index--invitation-content').hide();
+});
 
-// $(function() {
-//   $('.event-index--today__title').click(function() {
-//     $('.today-events-icon').toggleClass('icon_rotate');
-//     $('.event-index--today__box').slideToggle();
-//   });
-// });
+$(function() {
+  $('.event-index--today__title').click(function() {
+    $('.today-events-icon').toggleClass('icon_rotate');
+    $('.event-index--today').slideToggle();
+  });
+});
 
-// $(function() {
-//   $('.event-index--tag__title').click(function() {
-//     $('.tag-index-icon').toggleClass('icon_rotate');
-//     $('.event-index--tag__menu').slideToggle();
-//   })
-// })
+$(function() {
+  $('.event-index--tag__title').click(function() {
+    $('.tag-index-icon').toggleClass('icon_rotate');
+    $('.event-index--tag').slideToggle();
+  })
+})
 
-// $(function() {
-//   $('.event-index--group__title').click(function() {
-//     $('.group-index-icon').toggleClass('icon_rotate');
-//     $('.event-index--group__box').slideToggle();
-//   })
-// })
+$(function() {
+  $('.event-index--group__title').click(function() {
+    $('.group-index-icon').toggleClass('icon_rotate');
+    $('.event-index--group').slideToggle();
+  })
+})
 
-// $(function() {
-//   $('.event-index--invitation__title').click(function() {
-//     $('.invitation-index-icon').toggleClass('icon_rotate');
-//     $('.event-index--invitation__box').slideToggle();
-//   })
-// })
+$(function() {
+  $('.event-index--invitation__title').click(function() {
+    $('.invitation-index-icon').toggleClass('icon_rotate');
+    $('.event-index--invitation-content').slideToggle();
+  })
+})
 
 // プリセット関連
 $(function() {

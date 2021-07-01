@@ -110,19 +110,36 @@
   // leftSide
   &side {
     padding-top: 30px;
+    padding-right: 0 !important;
     background-color: #ededed;
 
     &__ul {
       list-style: none;
+      padding-left: 0;
     }
 
     &__li {
       min-height: 50px;
+      padding-left: 40px;
+      border-top: 1px solid #3a3a3a;
+      border-bottom: 1px solid #3a3a3a;
+    }
+    &__li:first-child {
+      border-top: none;
+    }
+    &__content {
+      background-color: #fdfdfd
     }
   }
   // 予定追加部分
   &new_link {
-    margin-top: 30px;
+    color: #212529;
+
+    &:hover {
+      text-decoration: none;
+      color: #212529;
+      opacity: 0.7;
+    }
 
     &__text {
       font-size: 1.2rem;
@@ -133,17 +150,21 @@
     margin-top: 30px;
   }
   &today {
-    margin-top: 30px;
-
     &__title {
+      padding-top: 10px;
       &:hover {
         opacity: 0.7;
       }
     }
     &__box {
+    list-style: none;
+
       &__link {
         &:hover {
           text-decoration: none;
+        }
+        &__li {
+          margin-top: 16px;
         }
         &__text {
           background: #7abcff;
@@ -165,21 +186,26 @@
   }
   // タグ部分
   &tag {
-    margin-top: 30px;
-
     &__title {
+      padding-top: 10px;
+
       &:hover {
         opacity: 0.7;
       }
     }
     &__menu {
-      padding-left: 8px;
+      list-style: none;
+      margin-bottom: 20px;
 
       &__li {
-        list-style: none;
+        margin-top: 16px;
 
         &__link {
+          color: #212529;
+
           &:hover {
+            color: #212529;
+            text-decoration: none;
             opacity: 0.7;
           }
         }
@@ -188,14 +214,17 @@
   }
   // 所属グループ部分
   &group {
-    margin-top: 30px;
-
     &__title {
+      padding-top: 10px;
+
       &:hover {
         opacity: 0.7;
       }
     }
     &__box {
+      margin-top: 10px;
+      list-style: none;
+
       &__name {
         width: 180px;
 
@@ -203,13 +232,29 @@
           opacity: 0.7;
         }
       }
+      &__link {
+        color: #212529;
+        margin-top: 10px;
+
+        &__li {
+          padding-left: 16px;
+        }
+        &:hover {
+          text-decoration: none;
+          color: #212529;
+          opacity: 0.7;
+        }
+      }
     }
   }
   // 承認待ちグループ部分
   &invitation {
-    margin-top: 30px;
+    margin-top: 16px;
+    list-style: none;
 
     &__title {
+      padding-top: 10px;
+
       &:hover {
         opacity: 0.7;
       }
@@ -231,6 +276,11 @@
       }
     }
   }
+
+  &none-data {
+    margin-top: 16px;
+  }
+
   // カレンダー部分
   &calendar {
     &__inside {
@@ -269,6 +319,10 @@
       }
     }
   }
+}
+
+.alert {
+  margin-bottom: 0;
 }
 
 .day {  // シンプルカレンダーのmonthの１日のbox

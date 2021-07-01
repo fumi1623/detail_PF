@@ -18,79 +18,95 @@
           <li class="event-index--side__li">
             <h5 class="event-index--today__title">本日の予定  <i class="fas fa-chevron-circle-right today-events-icon"></i>
           </li>
-            <% if @today_events.present? %>
-              <% @today_events.each do |event| %>
-                <%= link_to event_path(event), class: "event-index--today__box__link" do %>
-                  <li class="event-index--side__li">
-                    <p class="event-index--today__box__link__text text-left"><%= event.name %></p>
-                  </li>
+          <li class="event-index--side__li event-index--side__content event-index--today">
+            <ul class="event-index--today__box">
+              <% if @today_events.present? %>
+                <% @today_events.each do |event| %>
+                  <%= link_to event_path(event), class: "event-index--today__box__link" do %>
+                    <li class="event-index--today__box__link__li">
+                      <p class="event-index--today__box__link__text text-left"><%= event.name %></p>
+                    </li>
+                  <% end %>
                 <% end %>
+              <% else %>
+                <li>
+                  <p class="event-index--none-data">登録されていません</p>
+                </li>
               <% end %>
-            <% else %>
-              <li class="event-index--side__li">
-                <p>登録されていません</p>
-              </li>
-            <% end %>
+            </ul>
+          </li>
+
           <!--タグ一覧部分-->
           <li class="event-index--side__li">
             <h5 class="event-index--tag__title">タグ一覧  <i class="fas fa-chevron-circle-right tag-index-icon"></i></h5>
+          </li>
+          <li class="event-index--side__li event-index--side__content event-index--tag">
             <ul class="event-index--tag__menu">
               <% if @tags.present? %>
                 <% @tags.each do |tag| %>
                   <li class="event-index--tag__menu__li">
-                    <%= link_to event_tag_path(id: tag.id), class: "btn event-index--tag__menu__li__link" do %>
+                    <%= link_to event_tag_path(id: tag.id), class: "event-index--tag__menu__li__link" do %>
                       <i class="fas fa-tag"></i>  <%= tag.name %>
                     <% end %>
                   </li>
                 <% end %>
               <% else %>
-              <li class="event-index--side__li">
-                <p>登録されていません</p>
+              <li>
+                <p class="event-index--none-data">登録されていません</p>
               </li>
               <% end %>
             </ul>
           </li>
+
           <!--所属グループ部分-->
           <li class="event-index--side__li">
             <h5 class="event-index--group__title">所属グループ  <i class="fas fa-chevron-circle-right group-index-icon"></i></h5>
-
+          </li>
+          <li class="event-index--side__li event-index--side__content event-index--group">
+            <ul class="event-index--group__box">
               <% if @true_group_users.present? %>
                 <% @true_group_users.each do |group_user| %>
-                  <%= link_to group_path(group_user.group), class: "btn event-index--group__box__link" do %>
-                    <li class="event-index--side__li">
+                  <%= link_to group_path(group_user.group), class: "event-index--group__box__link" do %>
+                    <li class="event-index--group__box__link__li">
                       <p class="event-index--group__box__name"><%= group_user.group.name %></p>
                     </li>
                   <% end %>
                 <% end %>
               <% else %>
-                <p>グループに所属していません</p>
+                <p class="event-index--none-data">グループに所属していません</p>
               <% end %>
-
+            </ul>
           </li>
+
           <!--承認待ちグループ部分-->
           <li class="event-index--side__li">
             <h5 class="event-index--invitation__title">招待を受けているグループ  <i class="fas fa-chevron-circle-right invitation-index-icon"></i></h5>
-            <div class="event-index--invitation__box">
-              <% if @false_group_users.present? %>
-                <% @false_group_users.each do |group_user| %>
-                  <p class="event-index--invitation__box__name"><%= group_user.group.name %></p>
-                  <div class="event-index--invitation__box__btn">
-                    <%= form_with(model: group_user, url:group_users_accept_path(id: group_user.id) ,class: "event-index--invitation__box__btn__accept" ,local: true) do |f| %>
-                      <%= f.hidden_field :invitation, :value => true %>
-                      <%= f.submit "承認", class: "btn btn-sm btn-outline-success" %>
-                    <% end %>
-                    <%= link_to "拒否", group_users_reject_path(id: group_user.id), class: "btn btn-sm btn-outline-dark"  %>
-                  </div>
+          </li>
+          <li class="event-index--side__li event-index--side__content event-index--invitation-content">
+            <ul class="event-index--invitation">
+              <div class="event-index--invitation__box">
+                <% if @false_group_users.present? %>
+                  <% @false_group_users.each do |group_user| %>
+                    <p class="event-index--invitation__box__name"><%= group_user.group.name %></p>
+                    <div class="event-index--invitation__box__btn">
+                      <%= form_with(model: group_user, url:group_users_accept_path(id: group_user.id) ,class: "event-index--invitation__box__btn__accept" ,local: true) do |f| %>
+                        <%= f.hidden_field :invitation, :value => true %>
+                        <%= f.submit "承認", class: "btn btn-sm btn-outline-success" %>
+                      <% end %>
+                      <%= link_to "拒否", group_users_reject_path(id: group_user.id), class: "btn btn-sm btn-outline-dark"  %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <li>
+                    <p>招待はありません</p>
+                  </li>
                 <% end %>
-              <% else %>
-                <li class="event-index--side__li">
-                  <p class="text-left">招待はありません</p>
-                </li>
-              <% end %>
-            </div>
+              </div>
+            </ul>
           </li>
         </ul>
       </nav>
+    </div>
   <!--カレンダー部分-->
     <div class="col-xl-8 col-lg-11 event-index--calendar">
       <div class="event-index--calendar__inside">
