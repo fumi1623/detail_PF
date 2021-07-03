@@ -11,10 +11,8 @@ class GroupsController < ApplicationController
     if @group.save
       group_user = @group.group_users.new(user: current_user, invitation: true) # 作成したユーザーは招待済みにする
       group_user.save
-      # flash[:success] = 'グループが登録されました'
       group_ids = current_user.group_users.pluck(:group_id)
       @groups = Group.where(id: group_ids).order(updated_at: :desc)
-      # redirect_to groups_path
     else
       group_ids = current_user.group_users.pluck(:group_id)
       @groups = Group.where(id: group_ids).order(updated_at: :desc)
@@ -28,14 +26,19 @@ class GroupsController < ApplicationController
       redirect_to groups_path
       return
     end
-    group_users = @group.group_users.where(invitation: true)
-    user_ids = group_users.pluck(:user_id)
-    if user_ids.include?(current_user.id)  #アクセス制限
-      @users = User.where(id: user_ids)
+    true_group_users = @group.group_users.where(invitation: true)
+    true_user_ids = true_group_users.pluck(:user_id)
+    false_group_users = @group.group_users.where(invitation: false)
+    false_user_ids = false_group_users.pluck(:user_id)
+    if true_user_ids.include?(current_user.id)  #アクセス制限
+      @users = User.where(id: true_user_ids)
       @events = Event.where(user_id: @users.ids, release: true)
       invitation_group_users = @group.group_users.where(invitation: false)
       invitation_user_ids = invitation_group_users.pluck(:user_id)
       @invitation_users = User.where(id: invitation_user_ids)
+    elsif false_user_ids.include?(current_user.id)
+      flash[:faile] = '招待を承認してください'
+      redirect_to groups_path
     else
       flash[:faile] = 'グループに所属していません'
       redirect_to groups_path

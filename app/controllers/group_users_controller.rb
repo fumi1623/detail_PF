@@ -16,21 +16,26 @@ class GroupUsersController < ApplicationController
   def destroy
     group_user = GroupUser.find_by(user_id: group_user_params[:user_id], group_id: params[:id])
     group = Group.find(params[:id])
-    group_user.destroy
-    redirect_to group_path(group)
+    if group_user.user_id == current_user.id
+      group_user.destroy
+      flash[:success] = '正常にグループから抜けました'
+      redirect_to groups_path
+    else
+      group_user.destroy
+      redirect_to group_path(group)
+    end
   end
 
   def accept
     group_user = GroupUser.find(params[:id])
     group_user.update(group_user_params)
-    group = group_user.group
-    redirect_to group_path(group)
+    redirect_to groups_path
   end
 
   def reject
     group_user = GroupUser.find(params[:id])
     group_user.destroy
-    redirect_to events_path
+    redirect_to groups_path
   end
 
   private
