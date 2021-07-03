@@ -8,28 +8,28 @@
         <tr scope="row">
           <th class="text-nowrap"><%= f.label :ユーザーネーム %></th>
           <td>
-            <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名", :size => "60*30" %></br>
+            <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名", :size => "60*30" %><br>
             <%= render "devise/shared/error_messages", model: @user, attribute: :name %>
           </td>
         </tr>
         <tr scope="row">
           <th class="text-nowrap"><%= f.label :"eメールアドレス" %></th>
           <td>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "xxx@yyy.com", :size => "60*30" %></br>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "xxx@yyy.com", :size => "60*30" %><br>
             <%= render "devise/shared/error_messages", model: @user, attribute: :email %>
           </td>
         </tr>
         <tr scope="row">
           <th><%= f.label :"パスワード(6文字以上に設定してください)" %></th>
           <td>
-            <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを入力してください", :size => "60*30" %></br>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを入力してください", :size => "60*30" %><br>
             <%= render "devise/shared/error_messages", model: @user, attribute: :password %>
           </td>
         </tr>
         <tr scope="row">
           <th class="text-nowrap"><%= f.label :"パスワード(確認用)" %></th>
           <td>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "もう一度ご入力ください", :size => "60*30" %></br>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "もう一度ご入力ください", :size => "60*30" %><br>
             <%= render "devise/shared/error_messages", model: @user, attribute: :password_confirmation %>
           </td>
         </tr>

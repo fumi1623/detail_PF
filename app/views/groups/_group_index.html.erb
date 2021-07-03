@@ -15,7 +15,14 @@
             <% if group_user.invitation == false %>
               <span class="group-index--user_name__invitation">
                 招待中
-              </span>
+              </span><br>
+              <% if group_user.user_id == current_user.id %>
+                <%= form_with(model: group_user, url:group_users_accept_path(id: group_user.id) ,class: "group-index--user_name__accept" ,local: true) do |f| %>
+                  <%= f.hidden_field :invitation, :value => true %>
+                  <%= f.submit "承認", class: "btn btn-sm btn-outline-success" %>
+                <% end %>
+                <%= link_to "拒否", group_users_reject_path(id: group_user.id), class: "btn btn-sm btn-outline-dark"  %>
+              <% end %>
             <% end %>
           </td>
         <% end %>

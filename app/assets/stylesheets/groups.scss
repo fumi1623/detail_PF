@@ -16,6 +16,10 @@
       border-radius: 2px;
       color: #f8f8f8;
     }
+    &__accept {
+      display: inline-block;
+      margin: 0 10px 0 10px;
+    }
   }
   &new-form {
     margin-right: 20px;

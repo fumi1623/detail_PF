@@ -6,14 +6,14 @@
         <tr scope="row">
           <th class="text-nowrap"><%= form.label :"予定のタイトル" %></th>
           <td>
-            <%= form.text_field :name, autofocus: true, placeholder: "◯◯会議 , ◯◯に行く , 20文字以内で入力してください。", :size => "60*30" %></br>
+            <%= form.text_field :name, autofocus: true, placeholder: "◯◯会議 , ◯◯に行く , 20文字以内で入力してください。", :size => "60*30" %><br>
             <%= render "layouts/error_messages", model: @event, attribute: :name %>
           </td>
         </tr>
         <tr scope="row">
           <th class="text-nowrap"><%= form.label :"場所" %></th>
           <td>
-            <%= form.text_field :place, :size => "60*30", placeholder: "後から予定の場所をMAPでも登録できます" %></br>
+            <%= form.text_field :place, :size => "60*30", placeholder: "後から予定の場所をMAPでも登録できます" %><br>
             <%= render "layouts/error_messages", model: @event, attribute: :place %>
           </td>
         </tr>
@@ -21,12 +21,12 @@
           <th class="text-nowrap"><%= form.label :"時間" %></th>
           <td class="text-nowrap d-flex">
             <div>
-              <%= form.datetime_field :start_time %></br>
+              <%= form.datetime_field :start_time %><br>
               <%= render "layouts/error_messages", model: @event, attribute: :start_time %>
             </div>
             <div>　〜　</div>
             <div>
-              <%= form.datetime_field :end_time %></br>
+              <%= form.datetime_field :end_time %><br>
               <%= render "layouts/error_messages", model: @event, attribute: :end_time %>
             </div>
           </td>
@@ -53,7 +53,7 @@
             <div class="event-form__release__q-box" id="eventNewQuestion">
               <div class="event-form__release__q-box__balloon"></div>
               <p class="event-form__release__q-box__text">
-                「公開」にした場合、あなたが所属するグループメンバーがこの予定を閲覧できるようになります。</br>
+                「公開」にした場合、あなたが所属するグループメンバーがこの予定を閲覧できるようになります。<br>
                 この設定は後から変更が出来ます。
               </p>
             </div>
