@@ -10,8 +10,8 @@ class EventsController < ApplicationController
   end
 
   def day
-    user_events = Event.where(user_id: current_user.id)
     @day = Time.zone.parse(params[:day].to_s) # viewから入力された日付を取得
+    user_events = Event.where(user_id: current_user.id)
     @events = user_events.where('end_time>=? and start_time<?', @day, @day.tomorrow)
     @before_events = @events.where('start_time<?', @day).order(:start_time) # 前日から続いてる予定
     @today_events = @events.where('start_time>=?', @day).order(:start_time) # 当日始まる予定
