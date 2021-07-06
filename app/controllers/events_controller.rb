@@ -1,16 +1,16 @@
 class EventsController < ApplicationController
+
+  before_action :tags
+
   def index
     @events = current_user.events.order(:start_time)
-    event_ids = @events.pluck(:id)  # ユーザーの持つイベントのTagを抽出
-    tag_relationships_tag_ids = TagRelationship.where(event_id: event_ids).pluck(:tag_id)
-    @tags = Tag.where(id: tag_relationships_tag_ids) # ここまでTagの記述
     @true_group_users = current_user.group_users.where(invitation: true) # 所属グループ
     @false_group_users = current_user.group_users.where(invitation: false) # 招待を受けているグループ
     @today_events = @events.where('end_time>=? and start_time<?', Date.today, Date.tomorrow).order(:start_time)
   end
 
   def day
-    @day = Time.zone.parse(params[:day].to_s) # viewから入力された日付を取得
+    @day = Time.zone.parse(params[:day].to_s)
     user_events = Event.where(user_id: current_user.id)
     @events = user_events.where('end_time>=? and start_time<?', @day, @day.tomorrow)
     @before_events = @events.where('start_time<?', @day).order(:start_time) # 前日から続いてる予定
@@ -119,4 +119,12 @@ class EventsController < ApplicationController
     params.require(:event).permit(:user_id, :name, :detail, :remarks, :start_time, :end_time, :place, :release,
                                   images_images: [])
   end
+
+  def tags
+    @events = current_user.events.order(:start_time)
+    event_ids = @events.pluck(:id)  # ユーザーの持つイベントのTagを抽出
+    tag_relationships_tag_ids = TagRelationship.where(event_id: event_ids).pluck(:tag_id)
+    @tags = Tag.where(id: tag_relationships_tag_ids) # ここまでTagの記述
+  end
+
 end
